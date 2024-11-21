@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EV Calculator</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <h1>EV Calculator</h1>
+
+    <!-- Option Selection -->
+    <div class="section">
+        <h2>Select Option:</h2>
+        <button onclick="showAWvsSolo()">AW vs Solo</button>
+        <button onclick="showProfit()">Profit Calculator</button>
+    </div>
+
+    <!-- AW vs Solo Section -->
+    <div class="section" id="aw-vs-solo" style="display: none;">
+        <h2>AW vs Solo</h2>
+        <label for="awPercent">AW %:</label>
+        <input type="number" id="awPercent" placeholder="Enter AW %" />
+        <label for="soloPercent">Solo %:</label>
+        <input type="number" id="soloPercent" placeholder="Enter Solo %" />
+        <button onclick="calculateAWvsSolo()">Calculate</button>
+        <div class="result" id="aw-solo-result"></div>
+    </div>
+
+    <!-- Profit Calculator Section -->
+    <div class="section" id="profit-calculator" style="display: none;">
+        <h2>Profit Calculator</h2>
+        <label for="apPercent">AP %:</label>
+        <input type="number" id="apPercent" placeholder="Enter AP %" />
+        <label for="remoteMultiplier">Remote Multiplier (x):</label>
+        <input type="number" id="remoteMultiplier" placeholder="Enter Remote Multiplier" />
+        <label for="petSelect">Choose Delivery Pet:</label>
+        <select id="petSelect">
+            <option value=""></option>
+            <option value="panda">Panda</option>
+            <option value="turtle">Turtle</option>
+            <option value="red_panda">Red Panda</option>
+            <option value="pony">Pony</option>
+            <option value="penguin">Penguin</option>
+        </select>
+
+        <label for="perfect">Perfect [yes/no]:</label>
+        <select id="perfect" />
+            <option value=""></option>
+            <option value="yes">yes</option>
+            <option value="no">no</option>
+        </select>
+
+        <label for="divinity">Divinity [yes/no]:</label>
+        <select id="divinity" />
+            <option value=""></option>
+            <option value="yes">yes</option>
+            <option value="no">no</option>
+        </select>
+        
+        <button onclick="calculateProfit()">Calculate</button>
+        <div class="result" id="profit-result"></div>
+    </div>
+
+    <script src="scripts/main.js"></script>
+</body>
+</html>
