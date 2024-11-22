@@ -6,14 +6,21 @@ const petBonuses = {
     penguin: 700
 };
 
-function showAWvsSolo() {
-    document.getElementById('aw-vs-solo').style.display = 'block';
-    document.getElementById('profit-calculator').style.display = 'none';
-}
+const tabs = {
+    "AWvSolo": "aw-vs-solo",
+    "Profit": "profit-calculator",
+    "Boxes": "boxes",
+    "Salvage": "salvage",
+} 
 
-function showProfit() {
-    document.getElementById('profit-calculator').style.display = 'block';
-    document.getElementById('aw-vs-solo').style.display = 'none';
+function showCurrent(section){
+    document.getElementById(tabs[section]).style.display = 'block'
+    const filteredTabs = Object.keys(tabs).filter((tab) => {
+        return tab != section
+    });
+    filteredTabs.forEach((tab) => {
+        document.getElementById(tabs[tab]).style.display='none'
+    })
 }
 
 function calculateAWvsSolo() {

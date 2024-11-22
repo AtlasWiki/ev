@@ -1,41 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EV Calculator</title>
     <link rel="stylesheet" href="./css/style.css">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Fallback CSS -->
+    <link id="fallback-styles" rel="stylesheet" href="./css/backup-style.css" disabled>
+    <style>
+        @layer utilities {
+            .bg-custom-dark {
+                background-color: #1c1c1c;
+            }
+            .bg-custom-section {
+                background-color: #2a2a2a;
+            }
+            .bg-custom-input {
+                background-color: #3a3a3a;
+            }
+            .text-custom-light {
+                color: #e0e0e0;
+            }
+            .text-custom-highlight {
+                color: #00b3b3;
+            }
+            .text-custom-green {
+                color: #00ff00;
+            }
+            .focus-custom-border {
+                border-color: #00b3b3;
+            }
+            .hover-custom-button {
+                background-color: #008080;
+            }    
+        }
+    </style>
+    <script>
+        // Fallback logic: Enable backup CSS if Tailwind fails to load
+        document.addEventListener('DOMContentLoaded', function () {
+            const testDiv = document.createElement('div');
+            testDiv.className = 'hidden';
+            document.body.appendChild(testDiv);
+
+            // Check if the utility class has been applied
+            if (getComputedStyle(testDiv).display !== 'none') {
+                document.getElementById('fallback-styles').disabled = true;
+            } else {
+                document.getElementById('fallback-styles').disabled = false;
+            }
+
+            document.body.removeChild(testDiv);
+        });
+    </script>
 </head>
-<body>
-    <h1>EV Calculator</h1>
+
+<body class="bg-custom-dark text-gray-200 font-sans p-5">
+    <h1 class="text-4xl font-bold text-custom-highlight mb-5">EV Calculator</h1>
 
     <!-- Option Selection -->
-    <div class="section">
-        <h2>Select Option:</h2>
-        <button onclick="showAWvsSolo()">AW vs Solo</button>
-        <button onclick="showProfit()">Profit Calculator</button>
+    <div class="mb-10 p-5 bg-custom-section rounded-lg shadow-lg">
+        <h2 class="text-2xl font-semibold text-custom-highlight mb-3">Select Option:</h2>
+        <button onclick="showCurrent('AWvSolo')" class="bg-[#00b3b3] hover:hover-custom-button text-white py-2 px-4 rounded mr-2">AW vs Solo</button>
+        <button onclick="showCurrent('Profit')" class="bg-[#00b3b3] hover:hover-custom-button text-white py-2 px-4 rounded mr-2">Profit</button>
+        <button onclick="showCurrent('Boxes')" class="bg-[#00b3b3] hover:hover-custom-button text-white py-2 px-4 rounded mr-2">Boxes</button>
+        <button onclick="showCurrent('Salvage')" class="bg-[#00b3b3] hover:hover-custom-button text-white py-2 px-4 rounded mr-2">Salvage</button>
     </div>
 
     <!-- AW vs Solo Section -->
-    <div class="section" id="aw-vs-solo" style="display: none;">
-        <h2>AW vs Solo</h2>
-        <label for="awPercent">AW %:</label>
-        <input type="number" id="awPercent" placeholder="Enter AW %" />
-        <label for="soloPercent">Solo %:</label>
-        <input type="number" id="soloPercent" placeholder="Enter Solo %" />
-        <button onclick="calculateAWvsSolo()">Calculate</button>
-        <div class="result" id="aw-solo-result"></div>
+    <div id="aw-vs-solo" class="mb-10 p-5 bg-custom-section rounded-lg shadow-lg hidden">
+        <h2 class="text-2xl font-semibold text-custom-highlight mb-5">AW vs Solo</h2>
+        <label for="awPercent" class="block font-semibold">AW %:</label>
+        <input type="number" id="awPercent" placeholder="Enter AW %" class="mt-2 bg-custom-input w-full p-2 rounded text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2" />
+
+        <label for="soloPercent" class="block font-semibold">Solo %:</label>
+        <input type="number" id="soloPercent" placeholder="Enter Solo %" class="mt-q bg-custom-input w-full p-2 rounded text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2" />
+
+        <button onclick="calculateAWvsSolo()" class="bg-[#00b3b3] hover:hover-custom-button text-white py-2 px-4 rounded mt-2">
+            Calculate
+        </button>
+        <div id="aw-solo-result" class="font-semibold text-green-400 mt-5"></div>
     </div>
 
     <!-- Profit Calculator Section -->
-    <div class="section" id="profit-calculator" style="display: none;">
-        <h2>Profit Calculator</h2>
-        <label for="apPercent">AP %:</label>
-        <input type="number" id="apPercent" placeholder="Enter AP %" />
-        <label for="remoteMultiplier">Remote Multiplier (x):</label>
-        <input type="number" id="remoteMultiplier" placeholder="Enter Remote Multiplier" />
-        <label for="petSelect">Choose Delivery Pet:</label>
-        <select id="petSelect">
+    <div id="profit-calculator" class="mb-10 p-5 bg-custom-section rounded-lg shadow-lg hidden">
+        <h2 class="text-2xl font-semibold text-custom-highlight mb-5">Profit</h2>
+        <label for="apPercent" class="block font-semibold">AP %:</label>
+        <input type="number" id="apPercent" placeholder="Enter AP %" class="mt-2 w-full p-2 rounded bg-custom-input text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2" />
+
+        <label for="remoteMultiplier" class="block font-semibold">Remote Multiplier (x):</label>
+        <input type="number" id="remoteMultiplier" placeholder="Enter Remote Multiplier" class="mt-2 w-full p-2 rounded bg-custom-input text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2" />
+
+        <label for="petSelect" class="block font-semibold">Choose Delivery Pet:</label>
+        <select id="petSelect" class="mt-2 w-full p-2 rounded bg-custom-input text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2">
             <option value=""></option>
             <option value="panda">Panda</option>
             <option value="turtle">Turtle</option>
@@ -44,24 +103,42 @@
             <option value="penguin">Penguin</option>
         </select>
 
-        <label for="perfect">Perfect [yes/no]:</label>
-        <select id="perfect" />
+        <label for="perfect" class="block font-semibold">Perfect [yes/no]:</label>
+        <select id="perfect" class="mt-2 w-full p-2 rounded bg-custom-input text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2">
             <option value=""></option>
             <option value="yes">yes</option>
             <option value="no">no</option>
         </select>
 
-        <label for="divinity">Divinity [yes/no]:</label>
-        <select id="divinity" />
+        <label for="divinity" class="block font-semibold">Divinity [yes/no]:</label>
+        <select id="divinity" class="mt-2 w-full p-2 rounded bg-custom-input text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2">
             <option value=""></option>
             <option value="yes">yes</option>
             <option value="no">no</option>
         </select>
-        
-        <button onclick="calculateProfit()">Calculate</button>
-        <div class="result" id="profit-result"></div>
+
+        <button onclick="calculateProfit()" class="bg-[#00b3b3] hover:hover-custom-button text-white py-2 px-4 rounded mt-2">
+            Calculate
+        </button>
+        <div id="profit-result" class="font-semibold text-green-400 mt-5"></div>
+    </div>
+
+    <!-- Boxes Section -->
+    <div id="boxes" class="mb-10 p-5 bg-custom-section rounded-lg shadow-lg hidden">
+        <h2 class="text-2xl font-semibold text-custom-highlight mb-5">Boxes</h2>
+        <label class="block font-semibold">Boxes:</label>
+        <h3 class="text-xl font-semibold text-custom-highlight mb-5">Coming Soon</h3>
+        <!-- Add Box Input Fields Here -->
+    </div>
+
+    <div id="salvage" class="mb-10 p-5 bg-custom-section rounded-lg shadow-lg hidden">
+        <h2 class="text-2xl font-semibold text-custom-highlight mb-5">Salvage</h2>
+        <label class="block font-semibold">XP</label>
+        <h3 class="text-xl font-semibold text-custom-highlight mb-5">Coming Soon</h3>
+        <!-- Add Box Input Fields Here -->
     </div>
 
     <script src="./js/main.js"></script>
 </body>
+
 </html>
