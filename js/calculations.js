@@ -1,27 +1,3 @@
-const petBonuses = {
-    panda: 1000,
-    turtle: 700,
-    red_panda: 1600,
-    pony: 700,
-    penguin: 700
-};
-
-const tabs = {
-    "AWvSolo": "aw-vs-solo",
-    "Profit": "profit-calculator",
-    "Boxes": "boxes",
-    "Salvage": "salvage",
-} 
-
-function showCurrent(section){
-    document.getElementById(tabs[section]).style.display = 'block'
-    const filteredTabs = Object.keys(tabs).filter((tab) => {
-        return tab != section
-    });
-    filteredTabs.forEach((tab) => {
-        document.getElementById(tabs[tab]).style.display='none'
-    })
-}
 
 function calculateAWvsSolo() {
     const awPercent = parseFloat(document.getElementById('awPercent').value);

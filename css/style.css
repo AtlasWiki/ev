@@ -10,9 +10,9 @@ label {
     margin-top: 15px;
 }
 
-button:hover {
+/* button:hover {
     background-color: #008080;
-}
+} */
 
 input, select {
     border: none;
@@ -22,3 +22,75 @@ input, select {
     box-sizing: border-box;
 }
 
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    overflow-x: auto;
+    display: block;
+}
+
+th, td {
+    text-align: center;
+    border: 1px solid #ddd;
+    word-wrap: break-word; 
+}
+
+/* Header Styling */
+th {
+    background-color: #4B4B4B;
+    color: white;
+    font-size: 1.2rem;
+}
+
+/* Body Styling */
+td {
+    color: #fff;
+    background-color: #2d2d2d;
+}
+
+/* Alternating Row Colors */
+tbody tr:nth-child(even) {
+    background-color: #3a3a3a;
+}
+
+tbody tr:hover {
+    background-color: #575757;
+}
+
+/* Hover Effects */
+tr:hover {
+    cursor: pointer;
+    background-color: #4c4c4c;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    /* Reduce font size for smaller screens */
+    table {
+        font-size: 0.6rem;
+    }
+
+    th, td {
+        padding: 0px;
+    }
+
+    /* Make the table scrollable horizontally */
+    .table-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch; /* For smooth scrolling */
+    }
+}
+
+
+@media (max-width: 480px) {
+    th, td {
+        font-size: 0.6rem;
+        padding: 0px;
+    }
+
+    table {
+        display: block;
+    }
+}

@@ -64,10 +64,10 @@
     <div class="mb-10 p-5 bg-custom-section rounded-lg shadow-lg">
         <h2 class="text-2xl font-semibold text-custom-highlight mb-3">Select Option:</h2>
         <div class="md:flex gap-2">
-            <button onclick="showCurrent('AWvSolo')" class="bg-[#00b3b3] hover:hover-custom-button text-white py-2 px-4 rounded mr-2 mb-2 md:mb-0">AW vs Solo</button>
-            <button onclick="showCurrent('Profit')" class="bg-[#00b3b3] hover:hover-custom-button text-white py-2 px-4 rounded mr-2 mb-2 md:mb-0">Profit</button>
-            <button onclick="showCurrent('Boxes')" class="bg-[#00b3b3] hover:hover-custom-button text-white py-2 px-4 rounded mr-2 mb-2 md:mb-0">Boxes</button>
-            <button onclick="showCurrent('Salvage')" class="bg-[#00b3b3] hover:hover-custom-button text-white py-2 px-4 rounded mr-2 mb-2 md:mb-0">Salvage</button>
+            <button onclick="showCurrent('AWvSolo')" class="bg-[#00b3b3] hover:bg-[#008080] text-white py-2 px-4 rounded mr-2 mb-2 md:mb-0">AW vs Solo</button>
+            <button onclick="showCurrent('Profit')" class="bg-[#00b3b3] hover:bg-[#008080] text-white py-2 px-4 rounded mr-2 mb-2 md:mb-0">Profit</button>
+            <button onclick="showCurrent('Boxes')" class="bg-[#00b3b3] hover:bg-[#008080] text-white py-2 px-4 rounded mr-2 mb-2 md:mb-0">Boxes</button>
+            <button onclick="showCurrent('Salvage')" class="bg-[#00b3b3] hover:bg-[#008080] text-white py-2 px-4 rounded mr-2 mb-2 md:mb-0">Salvage</button>
         </div>
     </div>
 
@@ -80,7 +80,7 @@
         <label for="soloPercent" class="block font-semibold">Solo %:</label>
         <input type="number" id="soloPercent" placeholder="Enter Solo %" class="mt-q bg-custom-input w-full p-2 rounded text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2" />
 
-        <button onclick="calculateAWvsSolo()" class="bg-[#00b3b3] hover:hover-custom-button text-white py-2 px-4 rounded mt-2">
+        <button onclick="calculateAWvsSolo()" class="bg-[#00b3b3] hover:bg-[#008080] text-white py-2 px-4 rounded mt-2">
             Calculate
         </button>
         <div id="aw-solo-result" class="font-semibold text-green-400 mt-5"></div>
@@ -119,7 +119,7 @@
             <option value="no">no</option>
         </select>
 
-        <button onclick="calculateProfit()" class="bg-[#00b3b3] hover:hover-custom-button text-white py-2 px-4 rounded mt-2">
+        <button onclick="calculateProfit()" class="bg-[#00b3b3] hover:bg-[#008080] text-white py-2 px-4 rounded mt-2">
             Calculate
         </button>
         <div id="profit-result" class="font-semibold text-green-400 mt-5"></div>
@@ -133,14 +133,63 @@
         <!-- Add Box Input Fields Here -->
     </div>
 
-    <div id="salvage" class="mb-10 p-5 bg-custom-section rounded-lg shadow-lg hidden">
+    <div id="salvage" class="p-5 bg-custom-section rounded-lg shadow-lg hidden">
         <h2 class="text-2xl font-semibold text-custom-highlight mb-5">Salvage</h2>
         <label class="block font-semibold">XP</label>
         <h3 class="text-xl font-semibold text-custom-highlight mb-5">Coming Soon</h3>
-        <!-- Add Box Input Fields Here -->
+    
+        <!-- Toggle button for the XP Table -->
+        <button onclick="toggleXPTable()" id="toggleButton" class="bg-[#3a3a3a] hover:bg-[#4b4b4b] transition-all duration-300 w-full p-2 md:p-6 font-semibold text-xl rounded-md flex items-center justify-between">
+            <span>Show Club XP Reference Chart</span>
+            <svg id="chevronIcon" class="w-6 h-6 transform transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+        </button>
+    
+        <!-- XP Reference Table -->
+        <section id="xpTable" class="hidden mt-5">
+            <div class="table-container flex flex-col md:flex-row gap-5">
+                <!-- First table (left) -->
+                <div id="table1" class="w-full md:w-1/2">
+                    <table class="min-w-full">
+                        <thead>
+                            <tr class="bg-custom-header text-white">
+                                <th class="py-1 px-7 text-md font-medium">XP</th>
+                                <th class="py-1 px-7 text-md font-medium">Total XP</th>
+                                <th class="py-1 px-7 text-md font-medium">Levels</th>
+                                <th class="py-1 px-7 text-md font-medium">Rewards</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body-1">
+                            <!-- Data rows for table 1 will go here -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Second table (right) -->
+                <div id="table2" class="w-full md:w-1/2">
+                    <table class="min-w-full">
+                        <thead>
+                            <tr class="bg-custom-header text-white">
+                                <th class="py-1 px-7 text-md font-medium">XP</th>
+                                <th class="py-1 px-7 text-md font-medium">Total XP</th>
+                                <th class="py-1 px-7 text-md font-medium">Levels</th>
+                                <th class="py-1 px-7 text-md font-medium">Rewards</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body-2">
+                            <!-- Data rows for table 2 will go here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
     </div>
 
-    <script src="./js/main.js"></script>
+    <script src="./js/constants.js"></script>
+    <script src="./js/tabManager.js"></script>
+    <script src="./js/calculations.js"></script>
+    <script src="./js/props.js"></script>
 </body>
 
 </html>
