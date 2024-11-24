@@ -55,10 +55,51 @@ function updateTables() {
       const row = createRow(level, data);
       tableBody2.appendChild(row);
     });
+    displayTableResult()
   }
   
   // Initial population of tables on page load
   updateTables();
+
+function displayTableResult(){
+    const entryResult = document.getElementById("club-entry-result");
+    const {
+        totalGems,
+        totalPetfood,
+        smallBoxes,
+        bigBoxes,
+        clubBoxes,
+        epicEggs,
+        totalMultiplier
+    } = calculateRewards(filterEntries(), filterEntries(), false);
+
+    const formatNumber = (num) => {
+        return num >= 1000 ? (num / 1000).toFixed(1) + 'k' : num;
+    };
+
+    // Build rewards array
+    const rewardParts = [];
+    
+    if (smallBoxes) rewardParts.push(`${smallBoxes} Small Boxes`);
+    if (bigBoxes) rewardParts.push(`${bigBoxes} Big Boxes`);
+    if (clubBoxes) rewardParts.push(`${clubBoxes} Club Boxes`);
+    if (epicEggs) rewardParts.push(`${epicEggs} Epic Egg${epicEggs > 1 ? 's' : ''}`);
+    if (totalGems) rewardParts.push(`${formatNumber(totalGems)} Gems`);
+    if (totalPetfood) rewardParts.push(`${formatNumber(totalPetfood)} Petfood`);
+    if (totalMultiplier) rewardParts.push(`${totalMultiplier}x Total Multiplier`);
+
+    // Create list items
+    const rewardsList = rewardParts.length 
+        ? rewardParts.map(reward => `<li class="text-white font-light mb-1">${reward}</li>`).join('')
+        : '<li class="text-white font-light">None</li>';
+
+    entryResult.innerHTML = ` 
+        <p class="text-[#00b3b3] font-semibold">Total Rewards: </p>
+        <ul class="md:w-1/3 list-disc pl-6 mt-2 mb-4 grid grid-cols-2 md:grid-cols-3">
+            ${rewardsList}
+        </ul>
+    `;
+}
 
 function createDescription(sectionname){
     const sectionID = sections[sectionname]

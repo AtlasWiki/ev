@@ -43,9 +43,58 @@ function calculateClubGoal() {
     }
 
     goalResult.classList.replace("text-red-400", "text-[#00b3b3]");
-    
+
     const mainLvl = clubLvlsArray.find(([lvl]) => lvl === `lvl${clubGoal}`);
 
+    // Call the reusable function to calculate rewards
+    const {
+        totalGems,
+        totalPetfood,
+        smallBoxes,
+        bigBoxes,
+        clubBoxes,
+        epicEggs,
+        totalMultiplier
+    } = calculateRewards(clubLvlsArray, clubGoal, true);
+
+    // Format numbers with k suffix if >= 1000
+    const formatNumber = (num) => {
+        return num >= 1000 ? (num / 1000).toFixed(1) + 'k' : num;
+    };
+
+    // Build rewards array
+    const rewardParts = [];
+    
+    if (smallBoxes) rewardParts.push(`${smallBoxes} Small Boxes`);
+    if (bigBoxes) rewardParts.push(`${bigBoxes} Big Boxes`);
+    if (clubBoxes) rewardParts.push(`${clubBoxes} Club Boxes`);
+    if (epicEggs) rewardParts.push(`${epicEggs} Epic Egg${epicEggs > 1 ? 's' : ''}`);
+    if (totalGems) rewardParts.push(`${formatNumber(totalGems)} Gems`);
+    if (totalPetfood) rewardParts.push(`${formatNumber(totalPetfood)} Petfood`);
+    if (totalMultiplier) rewardParts.push(`${totalMultiplier}x Total Multiplier`);
+
+    // Create list items
+    const rewardsList = rewardParts.length 
+        ? rewardParts.map(reward => `<li class="text-white font-light mb-1">${reward}</li>`).join('')
+        : '<li class="text-white font-light">None</li>';
+
+    goalResult.innerHTML = ` 
+        <p>XP required for level up: </p> 
+        <p class="mb-4"><span class='text-white font-light'>${mainLvl[1].xp}</span></p>
+        <p>Total XP needed:</p>
+        <p class="mb-4"><span class='text-white font-light'>${mainLvl[1].totalXP}</span></p>
+        <p>Average XP per player:</p>
+        <p class="mb-4"><span class='text-white font-light'>${mainLvl[1].totalXP / 10}</span></p>
+        <p>Current Level Reward:</p>
+        <p class="mb-4"><span class='text-white font-light'>${mainLvl[1].reward}</span></p>
+        <p>All Previous Rewards: </p>
+        <ul class="md:w-1/3 list-disc pl-6 mt-2 mb-4 grid grid-cols-2 md:grid-cols-3">
+            ${rewardsList}
+        </ul>
+    `;
+}
+
+function calculateRewards(clubLvlsArray, clubGoal, prevConditional) {
     totalGems = 0;
     totalPetfood = 0;
     smallBoxes = 0;
@@ -58,7 +107,11 @@ function calculateClubGoal() {
     const prevLvls = clubLvlsArray
         .filter(([lvl]) => {
             const currentLvlNum = parseInt(lvl.replace('lvl', ''));
-            return currentLvlNum < clubGoal;
+            if (prevConditional){
+                return currentLvlNum < clubGoal;
+            } else {
+                return currentLvlNum
+            }
         })
         .map(level => level[1]);
     
@@ -121,39 +174,13 @@ function calculateClubGoal() {
         });
     });
 
-    // Format numbers with k suffix if >= 1000
-    const formatNumber = (num) => {
-        return num >= 1000 ? (num / 1000).toFixed(1) + 'k' : num;
+    return {
+        totalGems,
+        totalPetfood,
+        smallBoxes,
+        bigBoxes,
+        clubBoxes,
+        epicEggs,
+        totalMultiplier
     };
-
-    // Build rewards array
-    const rewardParts = [];
-    
-    if (smallBoxes) rewardParts.push(`${smallBoxes} Small Boxes`);
-    if (bigBoxes) rewardParts.push(`${bigBoxes} Big Boxes`);
-    if (clubBoxes) rewardParts.push(`${clubBoxes} Club Boxes`);
-    if (epicEggs) rewardParts.push(`${epicEggs} Epic Egg${epicEggs > 1 ? 's' : ''}`);
-    if (totalGems) rewardParts.push(`${formatNumber(totalGems)} Gems`);
-    if (totalPetfood) rewardParts.push(`${formatNumber(totalPetfood)} Petfood`);
-    if (totalMultiplier) rewardParts.push(`${totalMultiplier}x Total Multiplier`);
-
-    // Create list items
-    const rewardsList = rewardParts.length 
-        ? rewardParts.map(reward => `<li class="text-white font-light mb-1">${reward}</li>`).join('')
-        : '<li class="text-white font-light">None</li>';
-
-    goalResult.innerHTML = `
-        <p>XP required for level up: </p> 
-        <p class="mb-4"><span class='text-white font-light'>${mainLvl[1].xp}</span></p>
-        <p>Total XP needed:</p>
-        <p class="mb-4"><span class='text-white font-light'>${mainLvl[1].totalXP}</span></p>
-        <p>Average XP per player:</p>
-        <p class="mb-4"><span class='text-white font-light'>${mainLvl[1].totalXP / 10}</span></p>
-        <p>Current Level Reward:</p>
-        <p class="mb-4"><span class='text-white font-light'>${mainLvl[1].reward}</span></p>
-        <p>All Previous Rewards: </p>
-        <ul class="md:w-1/3 list-disc pl-6 mt-2 mb-4 grid grid-cols-2 md:grid-cols-3">
-            ${rewardsList}
-        </ul>
-    `;
 }
