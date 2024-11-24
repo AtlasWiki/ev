@@ -15,8 +15,6 @@ function showCurrent(section){
     })
 }
 
-
-
 function toggleXPTable() {
     const xpTable = document.getElementById('xpTable');
     // const toggleButton = document.getElementById('toggleButton');
@@ -34,15 +32,15 @@ function toggleXPTable() {
 }
 
 function toggleRewardDesc(){
-    const xpTable = document.getElementById('club-rewards-desc');
+    const rewardDesc = document.getElementById('club-rewards-desc');
     // const toggleButton = document.getElementById('toggleButton');
     const chevronIcon = document.getElementById('chevronIcon');
     
     // Toggle visibility of the table
-    xpTable.classList.toggle('hidden');
+    rewardDesc.classList.toggle('hidden');
     
     // Change button text and icon based on table visibility
-    if (xpTable.classList.contains('hidden')) {
+    if (rewardDesc.classList.contains('hidden')) {
         chevronIcon.classList.remove('rotate-180');
     } else {
         chevronIcon.classList.add('rotate-180');
