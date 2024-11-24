@@ -107,9 +107,16 @@ const clubLvls = {
     lvl50: { xp: 8200, totalXP: 241950, reward: "8 Club Boxes" }
 };
 
-// const regex_patterns = {
-//     multiplier: '/(\d+\.?\d*)x\s*Multiplier/i',
-//     gems: '/(\d+(?:\.\d+)?k?)\s*Gems/i',
-//     petFood: '/(\d+(?:\.\d+)?k?)\s*Petfood/i',
-//     other: '/(\d+)?\s*(Small|Big|Club)\s*Boxes|(\d+)?\s*Epic\s*Egg/i',
-// }
+let totalGems = 0;
+let totalPetfood = 0;
+let smallBoxes = 0;
+let bigBoxes = 0;
+let clubBoxes = 0;
+let epicEggs = 0;
+let totalMultiplier = 0;
+
+const regex_patterns = {
+    gems: /(\d+(?:\.\d+)?k?)\s*Gems/i,
+    petFood: /(\d+(?:\.\d+)?k?)\s*Petfood/i,
+    other: /(\d+)?\s*(Small|Big|Club)\s*Boxes|(\d+)?\s*Epic\s*Egg/i,
+}

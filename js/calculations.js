@@ -46,13 +46,13 @@ function calculateClubGoal() {
     
     const mainLvl = clubLvlsArray.find(([lvl]) => lvl === `lvl${clubGoal}`);
 
-    let totalGems = 0;
-    let totalPetfood = 0;
-    let smallBoxes = 0;
-    let bigBoxes = 0;
-    let clubBoxes = 0;
-    let epicEggs = 0;
-    let totalMultiplier = 0;
+    totalGems = 0;
+    totalPetfood = 0;
+    smallBoxes = 0;
+    bigBoxes = 0;
+    clubBoxes = 0;
+    epicEggs = 0;
+    totalMultiplier = 0;
 
     // Get all previous levels
     const prevLvls = clubLvlsArray
@@ -78,7 +78,7 @@ function calculateClubGoal() {
             }
 
             // Handle gems
-            const gemsMatch = reward.match(/(\d+(?:\.\d+)?k?)\s*Gems/i);
+            const gemsMatch = reward.match(regex_patterns.gems);
             if (gemsMatch) {
                 let gemAmount = gemsMatch[1];
                 if (gemAmount.endsWith('k')) {
@@ -89,7 +89,7 @@ function calculateClubGoal() {
             }
 
             // Handle petfood
-            const petfoodMatch = reward.match(/(\d+(?:\.\d+)?k?)\s*Petfood/i);
+            const petfoodMatch = reward.match(regex_patterns.petFood);
             if (petfoodMatch) {
                 let amount = petfoodMatch[1];
                 if (amount.endsWith('k')) {
@@ -100,7 +100,7 @@ function calculateClubGoal() {
             }
 
             // Handle boxes and eggs
-            const quantityMatch = reward.match(/(\d+)?\s*(Small|Big|Club)\s*Boxes|(\d+)?\s*Epic\s*Egg/i);
+            const quantityMatch = reward.match(regex_patterns.other);
 
             if (quantityMatch) {
                 // Default quantity to 1 if no number is found
