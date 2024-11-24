@@ -1,10 +1,20 @@
 const tableBody1 = document.getElementById("table-body-1");
 const tableBody2 = document.getElementById("table-body-2");
 
-// Split the rows into two halves (25 each for two tables)
-const half = Math.ceil(clubLvlsArray.length / 2);
-const firstHalf = clubLvlsArray.slice(0, half);
-const secondHalf = clubLvlsArray.slice(half);
+function filterEntries() {
+    const selectElement = document.getElementById("clubRewards");
+    const query = selectElement.value;
+  
+    return clubLvlsArray.filter(([level, data]) => {
+      let reward = data.reward;
+      if (reward.includes(query)) {
+        return true; 
+      } else if (query === "All") {
+        return true; 
+      }
+      return false;
+    });
+  }
 
 // Function to create table rows
 function createRow(level, data) {
@@ -21,17 +31,34 @@ function createRow(level, data) {
     return row;
 }
 
-// Populate table 1
-firstHalf.forEach(([level, data]) => {
-    const row = createRow(level, data);
-    tableBody1.appendChild(row);
-});
-
-// Populate table 2
-secondHalf.forEach(([level, data]) => {
-    const row = createRow(level, data);
-    tableBody2.appendChild(row);
-});
+function updateTables() {
+    // Clear previous table content
+    tableBody1.innerHTML = '';
+    tableBody2.innerHTML = '';
+  
+    // Get the filtered entries
+    const filteredEntries = filterEntries();
+  
+    // Split filtered entries into two halves
+    const half = Math.ceil(filteredEntries.length / 2);
+    const firstHalf = filteredEntries.slice(0, half);
+    const secondHalf = filteredEntries.slice(half);
+  
+    // Populate table 1
+    firstHalf.forEach(([level, data]) => {
+      const row = createRow(level, data);
+      tableBody1.appendChild(row);
+    });
+  
+    // Populate table 2
+    secondHalf.forEach(([level, data]) => {
+      const row = createRow(level, data);
+      tableBody2.appendChild(row);
+    });
+  }
+  
+  // Initial population of tables on page load
+  updateTables();
 
 function createDescription(sectionname){
     const sectionID = sections[sectionname]
