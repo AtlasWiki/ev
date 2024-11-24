@@ -74,6 +74,29 @@
     <!-- AW vs Solo Section -->
     <div id="aw-vs-solo" class="mb-10 p-5 bg-custom-section rounded-lg shadow-lg hidden">
         <h2 class="text-2xl font-semibold text-custom-highlight mb-5">AW vs Solo</h2>
+
+         <!-- Description Toggle Button -->
+         <button onclick="showCurrentSection('awvsolo')" class="bg-[#3a3a3a] hover:bg-[#4b4b4b] transition-all duration-300 w-full p-2 md:p-5 font-semibold text-xl rounded-md flex items-center justify-between">
+            <div class="flex justify-center items-center gap-2">
+                <!-- <svg class="" id="showIcon" xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 24 24"><path fill="#83ce96" d="M12 5c-7.633 0-9.927 6.617-9.948 6.684L1.946 12l.105.316C2.073 12.383 4.367 19 12 19s9.927-6.617 9.948-6.684l.106-.316l-.105-.316C21.927 11.617 19.633 5 12 5m0 11c-2.206 0-4-1.794-4-4s1.794-4 4-4s4 1.794 4 4s-1.794 4-4 4"/><path fill="#5cccb9" d="M12 10c-1.084 0-2 .916-2 2s.916 2 2 2s2-.916 2-2s-.916-2-2-2"/></svg> -->
+                <svg id="awvsoloChevronIcon" class="rotate-180 w-6 h-6 transform transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7" />
+                </svg>
+                <span>Description</span>
+            </div>
+        </button>
+
+        <section id="awvsolo-desc" class="mt-2 p-2 mb-5">
+            <p class="leading-8 text-md md:w-3/4">
+                This is a calculator for calculating percentages from all workers and solo workers. 
+                When combining all workers and solo workers, the percentages are multiplicative rather than addictive.
+                This research can be found in this 
+                <a class="text-blue-400 underline hover:no-underline" href="https://www.reddit.com/r/eatventureofficial/comments/14kq5xa/demonstration_that_personal_and_all_worker/">reddit post</a>.
+                Be sure to join the discord community for more guides, theories, and proven research.
+                
+            </p>
+        </section>
+
         <label for="awPercent" class="block font-semibold">AW %:</label>
         <input type="number" id="awPercent" placeholder="Enter AW %" class="mt-2 bg-custom-input w-full p-2 rounded text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2" />
 
@@ -84,15 +107,38 @@
             Calculate
         </button>
         <div id="aw-solo-result" class="font-semibold text-green-400 mt-5"></div>
+        
     </div>
 
     <!-- Profit Calculator Section -->
     <div id="profit-calculator" class="mb-10 p-5 bg-custom-section rounded-lg shadow-lg hidden">
         <h2 class="text-2xl font-semibold text-custom-highlight mb-5">Profit</h2>
+
+         <!-- Description Toggle Button -->
+         <button onclick="showCurrentSection('profit')" class="bg-[#3a3a3a] hover:bg-[#4b4b4b] transition-all duration-300 w-full p-2 md:p-5 font-semibold text-xl rounded-md flex items-center justify-between">
+            <div class="flex justify-center items-center gap-2">
+                <!-- <svg class="" id="showIcon" xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 24 24"><path fill="#83ce96" d="M12 5c-7.633 0-9.927 6.617-9.948 6.684L1.946 12l.105.316C2.073 12.383 4.367 19 12 19s9.927-6.617 9.948-6.684l.106-.316l-.105-.316C21.927 11.617 19.633 5 12 5m0 11c-2.206 0-4-1.794-4-4s1.794-4 4-4s4 1.794 4 4s-1.794 4-4 4"/><path fill="#5cccb9" d="M12 10c-1.084 0-2 .916-2 2s.916 2 2 2s2-.916 2-2s-.916-2-2-2"/></svg> -->
+                <svg id="awvsoloChevronIcon" class="rotate-180 w-6 h-6 transform transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7" />
+                </svg>
+                <span>Description</span>
+            </div>
+        </button>
+
+        <section id="profit-desc" class="mt-2 p-2 mb-5">
+            <p class="leading-8 text-md md:w-3/4">
+                This is a calculator for calculating how much profit multiplier you would get in each dish. 
+                For example, a worker selling a $90 dish would profit $720k if the multipliers times the dish by 8000x.
+                Keep in mind this calculator is not completely accurate and it can be a little off (further research is needed).
+                However, it gives an idea of your possible profit multiplier. 
+                For club multipliers, please put that as your remote to include it in a more accurate measurement.
+            </p>
+        </section>
+
         <label for="apPercent" class="block font-semibold">AP %:</label>
         <input type="number" id="apPercent" placeholder="Enter AP %" class="mt-2 w-full p-2 rounded bg-custom-input text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2" />
 
-        <label for="remoteMultiplier" class="block font-semibold">Remote Multiplier (x):</label>
+        <label for="remoteMultiplier" class="block font-semibold">Remote + Club Multiplier (x):</label>
         <input type="number" id="remoteMultiplier" placeholder="Enter Remote Multiplier" class="mt-2 w-full p-2 rounded bg-custom-input text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2" />
 
         <label for="petSelect" class="block font-semibold">Choose Delivery Pet:</label>

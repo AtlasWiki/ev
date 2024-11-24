@@ -16,6 +16,8 @@ const tabs = {
 const sections = {
     "xpTable": "xpTable",
     "clubDesc": "club-rewards-desc",
+    "awvsolo": "awvsolo-desc",
+    "profit": "profit-desc"
 }
 
 const clubLvls = {

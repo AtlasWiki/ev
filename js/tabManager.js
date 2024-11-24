@@ -26,28 +26,3 @@ function showCurrentSection(sectionname){
         chevronIcon.classList.add('rotate-180');
     }
 }
-
-// function toggleXPTable() {
-//     const xpTable = document.getElementById('xpTable');
-//     const chevronIcon = document.getElementById('chevronIcon');
-    
-//     xpTable.classList.toggle('hidden');
-//     if (xpTable.classList.contains('hidden')) {
-//         chevronIcon.classList.remove('rotate-180');
-//     } else {
-//         chevronIcon.classList.add('rotate-180');
-//     }
-// }
-
-// function toggleRewardDesc(){
-//     const rewardDesc = document.getElementById('club-rewards-desc');
-//     const chevronIcon = document.getElementById('chevronIcon');
-//     rewardDesc.classList.toggle('hidden');
-    
-//     if (rewardDesc.classList.contains('hidden')) {
-//         chevronIcon.classList.remove('rotate-180');
-//     } else {
-//         chevronIcon.classList.add('rotate-180');
-//     }
-    
-// }
