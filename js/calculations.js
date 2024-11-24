@@ -32,35 +32,127 @@ function calculateProfit() {
     document.getElementById('profit-result').innerText = `Profit Multiplier: ${formula.toFixed(2)}x`;
 }
 
-function calculateClubGoal(){
+function calculateClubGoal() {
     const clubGoal = Number(document.getElementById("club-goal").value);
     const goalResult = document.getElementById("goal-result");
 
     if (isNaN(clubGoal) || clubGoal < 1 || clubGoal > 50) {
-        goalResult.classList.replace("text-[#00b3b3]", "text-red-400")
-        goalResult.innerText = "Invalid level. Valid level range is 1-50"
-    } else {
-        goalResult.classList.replace("text-red-400", "text-[#00b3b3]")
-        const level = clubLvlsArray.find( ([lvl]) => lvl === "lvl"+clubGoal )
-        // goalResult.innerHTML = `
-        
-        // <p class="mb-2">XP required for level up: <span class='text-white'>${level[1].xp}</span></p> 
-        // <p class="mb-2">Total XP needed: <span class='text-white'>${level[1].totalXP}</span></p>
-        // <p class="mb-2">Average XP per player: <span class='text-white'>${level[1].totalXP / 10}</span></p>
-        // <p class="mb-2">Reward: <span class='text-white'>${level[1].reward}</span></p>
-        
-        // `
-        goalResult.innerHTML = `
-        
-        <p>XP required for level up: </p> 
-        <p class="mb-4"><span class='text-white font-light'>${level[1].xp}</span></p>
-        <p>Total XP needed:</p>
-        <p class="mb-4"><span class='text-white font-light'>${level[1].totalXP}</span></p>
-        <p>Average XP per player:</p>
-        <p class="mb-4"><span class='text-white font-light'>${level[1].totalXP / 10}</span></p>
-        <p>Reward</p>
-        <p class="mb-4"><span class='text-white font-light'>${level[1].reward}</span></p>
-        
-        `
+        goalResult.classList.replace("text-[#00b3b3]", "text-red-400");
+        goalResult.innerText = "Invalid level. Valid level range is 1-50";
+        return;
     }
+
+    goalResult.classList.replace("text-red-400", "text-[#00b3b3]");
+    
+    const mainLvl = clubLvlsArray.find(([lvl]) => lvl === `lvl${clubGoal}`);
+    
+    // Get all previous levels
+    const prevLvls = clubLvlsArray
+        .filter(([lvl]) => {
+            const currentLvlNum = parseInt(lvl.replace('lvl', ''));
+            return currentLvlNum < clubGoal;
+        })
+        .map(level => level[1]);
+
+    // Initialize aggregates
+    let totalGems = 0;
+    let totalPetfood = 0;
+    let smallBoxes = 0;
+    let bigBoxes = 0;
+    let clubBoxes = 0;
+    let epicEggs = 0;
+    const multipliers = new Set();
+
+    prevLvls.forEach(level => {
+        if (!level.reward) return;
+        
+        const rewards = level.reward.split(',').map(r => r.trim());
+        rewards.forEach(reward => {
+            // Handle multipliers
+            if (reward.includes('Multiplier')) {
+                multipliers.add(reward);
+                return;
+            }
+
+            // Handle gems
+            const gemsMatch = reward.match(/(\d+(?:\.\d+)?k?)\s*Gems/i);
+            if (gemsMatch) {
+                let gemAmount = gemsMatch[1];
+                if (gemAmount.endsWith('k')) {
+                    gemAmount = parseFloat(gemAmount) * 1000;
+                }
+                totalGems += parseFloat(gemAmount);
+                return;
+            }
+
+            // Handle petfood
+            const petfoodMatch = reward.match(/(\d+(?:\.\d+)?k?)\s*Petfood/i);
+            if (petfoodMatch) {
+                let amount = petfoodMatch[1];
+                if (amount.endsWith('k')) {
+                    amount = parseFloat(amount) * 1000;
+                }
+                totalPetfood += parseFloat(amount);
+                return;
+            }
+
+            // Handle boxes and eggs
+            const quantityMatch = reward.match(/(\d+)\s*(Small|Big|Club)\s*Boxes?|Epic\s*Egg/i);
+            if (quantityMatch) {
+                const quantity = parseInt(quantityMatch[1] || 1);
+                if (reward.includes('Small Box')) {
+                    smallBoxes += quantity;
+                } else if (reward.includes('Big Box')) {
+                    bigBoxes += quantity;
+                } else if (reward.includes('Club Box')) {
+                    clubBoxes += quantity;
+                } else if (reward.includes('Epic Egg')) {
+                    epicEggs += quantity;
+                }
+            }
+        });
+    });
+
+    // Format numbers with k suffix if >= 1000
+    const formatNumber = (num) => {
+        return num >= 1000 ? (num / 1000).toFixed(1) + 'k' : num;
+    };
+
+    // Build rewards array
+    const rewardParts = [];
+    
+    if (smallBoxes) rewardParts.push(`${smallBoxes} Small Boxes`);
+    if (bigBoxes) rewardParts.push(`${bigBoxes} Big Boxes`);
+    if (clubBoxes) rewardParts.push(`${clubBoxes} Club Boxes`);
+    if (epicEggs) rewardParts.push(`${epicEggs} Epic Egg${epicEggs > 1 ? 's' : ''}`);
+    if (totalGems) rewardParts.push(`${formatNumber(totalGems)} Gems`);
+    if (totalPetfood) rewardParts.push(`${formatNumber(totalPetfood)} Petfood`);
+    
+    // Sort multipliers and add them
+    const sortedMultipliers = Array.from(multipliers)
+        .sort((a, b) => {
+            const getMultValue = (str) => parseFloat(str.match(/(\d+\.?\d*)x/)[1]);
+            return getMultValue(a) - getMultValue(b);
+        });
+    rewardParts.push(...sortedMultipliers);
+
+    // Create list items
+    const rewardsList = rewardParts.length 
+        ? rewardParts.map(reward => `<li class="text-white font-light mb-1">${reward}</li>`).join('')
+        : '<li class="text-white font-light">None</li>';
+
+    goalResult.innerHTML = `
+        <p>XP required for level up: </p> 
+        <p class="mb-4"><span class='text-white font-light'>${mainLvl[1].xp}</span></p>
+        <p>Total XP needed:</p>
+        <p class="mb-4"><span class='text-white font-light'>${mainLvl[1].totalXP}</span></p>
+        <p>Average XP per player:</p>
+        <p class="mb-4"><span class='text-white font-light'>${mainLvl[1].totalXP / 10}</span></p>
+        <p>Current Level Reward:</p>
+        <p class="mb-4"><span class='text-white font-light'>${mainLvl[1].reward}</span></p>
+        <p>All Previous Rewards: </p>
+        <ul class="md:w-1/3 list-disc pl-6 mt-2 mb-4 grid grid-cols-2 md:grid-cols-3">
+            ${rewardsList}
+        </ul>
+    `;
 }
