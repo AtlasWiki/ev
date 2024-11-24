@@ -14,8 +14,8 @@ const tabs = {
 } 
 
 const sections = {
-    "xpTable": "",
-    "clubDesc": "",
+    "xpTable": "xpTable",
+    "clubDesc": "club-rewards-desc",
 }
 
 const clubLvls = {
@@ -70,11 +70,3 @@ const clubLvls = {
     lvl49: { xp: 8100, totalXP: 233750, reward: "1250 Petfood" },
     lvl50: { xp: 8200, totalXP: 241950, reward: "8 Club Boxes" }
 };
-
-let totalGems = 0;
-let totalPetfood = 0;
-let smallBoxes = 0;
-let bigBoxes = 0;
-let clubBoxes = 0;
-let epicEggs = 0;
-let totalMultiplier = 0;

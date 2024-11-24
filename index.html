@@ -64,10 +64,10 @@
     <div class="mb-10 p-5 bg-custom-section rounded-lg shadow-lg">
         <h2 class="text-2xl font-semibold text-custom-highlight mb-3">Select Option:</h2>
         <div class="md:flex gap-2">
-            <button onclick="showCurrent('AWvSolo')" class="bg-[#00b3b3] hover:bg-[#008080] text-white py-2 px-4 rounded mr-2 mb-2 md:mb-0">AW vs Solo</button>
-            <button onclick="showCurrent('Profit')" class="bg-[#00b3b3] hover:bg-[#008080] text-white py-2 px-4 rounded mr-2 mb-2 md:mb-0">Profit</button>
-            <button onclick="showCurrent('Boxes')" class="bg-[#00b3b3] hover:bg-[#008080] text-white py-2 px-4 rounded mr-2 mb-2 md:mb-0">Boxes</button>
-            <button onclick="showCurrent('ClubRewards')" class="bg-[#00b3b3] hover:bg-[#008080] text-white py-2 px-4 rounded mr-2 mb-2 md:mb-0">Club Rewards</button>
+            <button onclick="showCurrentTab('AWvSolo')" class="bg-[#00b3b3] hover:bg-[#008080] text-white py-2 px-4 rounded mr-2 mb-2 md:mb-0">AW vs Solo</button>
+            <button onclick="showCurrentTab('Profit')" class="bg-[#00b3b3] hover:bg-[#008080] text-white py-2 px-4 rounded mr-2 mb-2 md:mb-0">Profit</button>
+            <button onclick="showCurrentTab('Boxes')" class="bg-[#00b3b3] hover:bg-[#008080] text-white py-2 px-4 rounded mr-2 mb-2 md:mb-0">Boxes</button>
+            <button onclick="showCurrentTab('ClubRewards')" class="bg-[#00b3b3] hover:bg-[#008080] text-white py-2 px-4 rounded mr-2 mb-2 md:mb-0">Club Rewards</button>
         </div>
     </div>
 
@@ -138,10 +138,10 @@
         <h2 class="text-2xl font-semibold text-custom-highlight mb-5">Club Rewards</h2>
         
         <!-- Description Toggle Button -->
-        <button onclick="toggleRewardDesc()" class="bg-[#3a3a3a] hover:bg-[#4b4b4b] transition-all duration-300 w-full p-2 md:p-5 font-semibold text-xl rounded-md flex items-center justify-between">
+        <button onclick="showCurrentSection('clubDesc')" class="bg-[#3a3a3a] hover:bg-[#4b4b4b] transition-all duration-300 w-full p-2 md:p-5 font-semibold text-xl rounded-md flex items-center justify-between">
             <div class="flex justify-center items-center gap-2">
                 <!-- <svg class="" id="showIcon" xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 24 24"><path fill="#83ce96" d="M12 5c-7.633 0-9.927 6.617-9.948 6.684L1.946 12l.105.316C2.073 12.383 4.367 19 12 19s9.927-6.617 9.948-6.684l.106-.316l-.105-.316C21.927 11.617 19.633 5 12 5m0 11c-2.206 0-4-1.794-4-4s1.794-4 4-4s4 1.794 4 4s-1.794 4-4 4"/><path fill="#5cccb9" d="M12 10c-1.084 0-2 .916-2 2s.916 2 2 2s2-.916 2-2s-.916-2-2-2"/></svg> -->
-                <svg id="chevronIcon" class="rotate-180 w-6 h-6 transform transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg id="clubDescChevronIcon" class="rotate-180 w-6 h-6 transform transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7" />
                 </svg>
                 <span>Description</span>
@@ -153,7 +153,7 @@
                 This is a lookup tool where you figure out how much exp you need for each level as a club or average per person, 
                 or even calculate the amount of rewards gained. 
                 The reward calculator may be subject to change as the game goes on.
-                A Club XP rewards and a reference chart for it. The data and formulas were taken from:
+                A Club XP rewards and a reference chart is provided. The data and formulas were taken from:
                 <a class="text-blue-400 underline hover:no-underline" href="https://docs.google.com/spreadsheets/d/e/2PACX-1vSV4ou9YZ1NgCYkT4Tr__sq6PHN6YsPyQuUh-Pryw98hQiEkCwcbUhoPXAB2pPGynuBIAjcyc7A86zv/pubhtml#">Eatventure's handbook</a>
                 made by <span class="text-[#00b3b3]">fallen_spectre</span> and <span class="text-[#00b3b3]">BladedCross</span>. The calculations can be seen from <a class="text-blue-400 underline hover:no-underline" href="https://docs.google.com/spreadsheets/d/1b79jTHCbbLnLLWFgrCdxYWqDgt2msgrFqUMaBR3XSYo/edit?gid=607690110#gid=607690110"> EV Multipurpose Calculator</a>
             </p>
@@ -165,10 +165,10 @@
         <span id="goal-result" class="text-[#00b3b3] font-semibold mt-3 mb-5 block"></span>
 
         <!-- Toggle button for the XP Table -->
-        <button onclick="toggleXPTable()" class="bg-[#3a3a3a] hover:bg-[#4b4b4b] transition-all duration-300 w-full p-2 md:p-3 font-semibold text-xl rounded-md flex items-center justify-between">
+        <button onclick="showCurrentSection('xpTable')" class="bg-[#3a3a3a] hover:bg-[#4b4b4b] transition-all duration-300 w-full p-2 md:p-3 font-semibold text-xl rounded-md flex items-center justify-between">
             <div class="flex justify-center items-center gap-2">
                 <!-- <svg class="" id="showIcon" xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 24 24"><path fill="#83ce96" d="M12 5c-7.633 0-9.927 6.617-9.948 6.684L1.946 12l.105.316C2.073 12.383 4.367 19 12 19s9.927-6.617 9.948-6.684l.106-.316l-.105-.316C21.927 11.617 19.633 5 12 5m0 11c-2.206 0-4-1.794-4-4s1.794-4 4-4s4 1.794 4 4s-1.794 4-4 4"/><path fill="#5cccb9" d="M12 10c-1.084 0-2 .916-2 2s.916 2 2 2s2-.916 2-2s-.916-2-2-2"/></svg> -->
-                <svg id="chevronIcon" class="w-6 h-6 transform transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg id="xpTableChevronIcon" class="w-6 h-6 transform transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7" />
                 </svg>
                 <span>Club XP Reference Chart</span>
