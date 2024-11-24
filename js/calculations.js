@@ -37,17 +37,29 @@ function calculateClubGoal(){
     const goalResult = document.getElementById("goal-result");
 
     if (isNaN(clubGoal) || clubGoal < 1 || clubGoal > 50) {
-        goalResult.classList.replace("text-green-400", "text-red-400")
+        goalResult.classList.replace("text-[#00b3b3]", "text-red-400")
         goalResult.innerText = "Invalid level. Valid level range is 1-50"
     } else {
-        goalResult.classList.replace("text-red-400", "text-green-400")
+        goalResult.classList.replace("text-red-400", "text-[#00b3b3]")
         const level = clubLvlsArray.find( ([lvl]) => lvl === "lvl"+clubGoal )
+        // goalResult.innerHTML = `
+        
+        // <p class="mb-2">XP required for level up: <span class='text-white'>${level[1].xp}</span></p> 
+        // <p class="mb-2">Total XP needed: <span class='text-white'>${level[1].totalXP}</span></p>
+        // <p class="mb-2">Average XP per player: <span class='text-white'>${level[1].totalXP / 10}</span></p>
+        // <p class="mb-2">Reward: <span class='text-white'>${level[1].reward}</span></p>
+        
+        // `
         goalResult.innerHTML = `
         
-        <p>XP required for level up: <span class='text-white'>${level[1].xp}</span></p> 
-        <p>Total XP needed: <span class='text-white'>${level[1].totalXP}</span></p>
-        <p>Average XP per player: <span class='text-white'>${level[1].totalXP / 10}</span></p>
-        <p>Reward: <span class='text-white'>${level[1].reward}</span></p>
+        <p>XP required for level up: </p> 
+        <p class="mb-4"><span class='text-white font-light'>${level[1].xp}</span></p>
+        <p>Total XP needed:</p>
+        <p class="mb-4"><span class='text-white font-light'>${level[1].totalXP}</span></p>
+        <p>Average XP per player:</p>
+        <p class="mb-4"><span class='text-white font-light'>${level[1].totalXP / 10}</span></p>
+        <p>Reward</p>
+        <p class="mb-4"><span class='text-white font-light'>${level[1].reward}</span></p>
         
         `
     }
