@@ -6,6 +6,7 @@ const petBonuses = {
     penguin: 700
 };
 
+// Tab names and IDs
 const tabs = {
     "AWvSolo": "aw-vs-solo",
     "Profit": "profit-calculator",
@@ -13,12 +14,45 @@ const tabs = {
     "ClubRewards": "club-rewards",
 } 
 
+// Section tag names and IDs
 const sections = {
     "xpTable": "xpTable",
-    "clubDesc": "club-rewards-desc",
+    "club": "club-desc",
     "awvsolo": "awvsolo-desc",
     "profit": "profit-desc"
 }
+
+// SectionPlaceholders. tag names and IDs
+const sectionPlaceholder = {
+    "club": "clubSection",
+    "profit" : "profitSection",
+    "awvsolo": "awvsoloSection"
+}
+
+// IDs (belongs to section ids) and text
+const descriptions = {
+    "profit-desc": `This is a calculator for calculating how much profit multiplier you would get in each dish.
+                    For example, a worker selling a $90 dish would profit $720k if the multipliers times the dish by 8000x.
+                    Keep in mind this calculator is not completely accurate and it can be a little off (further research is needed).
+                    However, it gives an idea of your possible profit multiplier. 
+                    For club multipliers, please put that as your remote to include it in a more accurate measurement.`,
+
+    "awvsolo-desc":`This is a calculator for calculating percentages from all workers and solo workers.
+                    When combining all workers and solo workers, the percentages are multiplicative rather than addictive.
+                    This research can be found in this 
+                    <a class="text-blue-400 underline hover:no-underline" href="https://www.reddit.com/r/eatventureofficial/comments/14kq5xa/demonstration_that_personal_and_all_worker/">reddit post</a>.
+                    Be sure to join the discord community for more guides, theories, and proven research.`,
+    
+    "club-desc": `This is a lookup tool where you figure out how much exp you need for each level as a club or average per person, 
+                or even calculate the amount of rewards gained. 
+                The reward calculator may be subject to change as the game goes on.
+                A Club XP rewards and a reference chart is provided. The data and formulas were taken from:
+                <a class="text-blue-400 underline hover:no-underline" href="https://docs.google.com/spreadsheets/d/e/2PACX-1vSV4ou9YZ1NgCYkT4Tr__sq6PHN6YsPyQuUh-Pryw98hQiEkCwcbUhoPXAB2pPGynuBIAjcyc7A86zv/pubhtml#">Eatventure's handbook</a>
+                made by <span class="text-[#00b3b3]">fallen_spectre</span> and <span class="text-[#00b3b3]">BladedCross</span>. The calculations can be seen from <a class="text-blue-400 underline hover:no-underline" href="https://docs.google.com/spreadsheets/d/1b79jTHCbbLnLLWFgrCdxYWqDgt2msgrFqUMaBR3XSYo/edit?gid=607690110#gid=607690110"> EV Multipurpose Calculator</a>`,
+
+    
+                
+};
 
 const clubLvls = {
     lvl1: { xp: "N/A", totalXP: 0, reward: "N/A" },
