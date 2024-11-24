@@ -69,10 +69,12 @@ function calculateClubGoal() {
         
         rewards.forEach(reward => {
             // Handle multipliers
-            const multiplierMatch = reward.match(/(\d+\.?\d*)x\s*Multiplier/i);
-            if (multiplierMatch) {
-                totalMultiplier += parseFloat(multiplierMatch[1]);
-                return;
+            if (reward.includes("x Multiplier")) {
+                const multiplierPart = reward.split("x Multiplier")[0].trim(); 
+                const multiplierValue = parseFloat(multiplierPart);
+                if (!isNaN(multiplierValue)) {
+                    totalMultiplier =+ multiplierValue;
+                }
             }
 
             // Handle gems
@@ -99,7 +101,7 @@ function calculateClubGoal() {
 
             // Handle boxes and eggs
             const quantityMatch = reward.match(/(\d+)?\s*(Small|Big|Club)\s*Boxes|(\d+)?\s*Epic\s*Egg/i);
-            
+
             if (quantityMatch) {
                 // Default quantity to 1 if no number is found
                 let quantity = quantityMatch[1] 

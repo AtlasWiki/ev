@@ -106,3 +106,10 @@ const clubLvls = {
     lvl49: { xp: 8100, totalXP: 233750, reward: "1250 Petfood" },
     lvl50: { xp: 8200, totalXP: 241950, reward: "8 Club Boxes" }
 };
+
+// const regex_patterns = {
+//     multiplier: '/(\d+\.?\d*)x\s*Multiplier/i',
+//     gems: '/(\d+(?:\.\d+)?k?)\s*Gems/i',
+//     petFood: '/(\d+(?:\.\d+)?k?)\s*Petfood/i',
+//     other: '/(\d+)?\s*(Small|Big|Club)\s*Boxes|(\d+)?\s*Epic\s*Egg/i',
+// }
