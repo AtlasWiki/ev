@@ -17,13 +17,9 @@ function showCurrent(section){
 
 function toggleXPTable() {
     const xpTable = document.getElementById('xpTable');
-    // const toggleButton = document.getElementById('toggleButton');
     const chevronIcon = document.getElementById('chevronIcon');
     
-    // Toggle visibility of the table
     xpTable.classList.toggle('hidden');
-    
-    // Change button text and icon based on table visibility
     if (xpTable.classList.contains('hidden')) {
         chevronIcon.classList.remove('rotate-180');
     } else {
@@ -33,13 +29,9 @@ function toggleXPTable() {
 
 function toggleRewardDesc(){
     const rewardDesc = document.getElementById('club-rewards-desc');
-    // const toggleButton = document.getElementById('toggleButton');
     const chevronIcon = document.getElementById('chevronIcon');
-    
-    // Toggle visibility of the table
     rewardDesc.classList.toggle('hidden');
     
-    // Change button text and icon based on table visibility
     if (rewardDesc.classList.contains('hidden')) {
         chevronIcon.classList.remove('rotate-180');
     } else {
