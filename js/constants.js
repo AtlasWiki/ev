@@ -10,7 +10,7 @@ const tabs = {
     "AWvSolo": "aw-vs-solo",
     "Profit": "profit-calculator",
     "Boxes": "boxes",
-    "Salvage": "salvage",
+    "ClubRewards": "club-rewards",
 } 
 
 const clubLvls = {

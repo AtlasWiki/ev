@@ -17,7 +17,8 @@ function showCurrent(section){
 
 function toggleXPTable() {
     const xpTable = document.getElementById('xpTable');
-    const toggleButton = document.getElementById('toggleButton');
+    // const toggleButton = document.getElementById('toggleButton');
+    const toggleMSG = document.getElementById('toggleMSG')
     const chevronIcon = document.getElementById('chevronIcon');
     
     // Toggle visibility of the table
@@ -25,10 +26,10 @@ function toggleXPTable() {
     
     // Change button text and icon based on table visibility
     if (xpTable.classList.contains('hidden')) {
-        toggleButton.innerHTML = '<span>Show Club XP Reference Chart</span>';
+        toggleMSG.innerText = 'Show Club XP Reference Chart';
         chevronIcon.classList.remove('rotate-180');
     } else {
-        toggleButton.innerHTML = '<span>Hide Club XP Reference Chart</span>';
+        toggleMSG.innerText = 'Hide Club XP Reference Chart';
         chevronIcon.classList.add('rotate-180');
     }
 }

@@ -67,7 +67,7 @@
             <button onclick="showCurrent('AWvSolo')" class="bg-[#00b3b3] hover:bg-[#008080] text-white py-2 px-4 rounded mr-2 mb-2 md:mb-0">AW vs Solo</button>
             <button onclick="showCurrent('Profit')" class="bg-[#00b3b3] hover:bg-[#008080] text-white py-2 px-4 rounded mr-2 mb-2 md:mb-0">Profit</button>
             <button onclick="showCurrent('Boxes')" class="bg-[#00b3b3] hover:bg-[#008080] text-white py-2 px-4 rounded mr-2 mb-2 md:mb-0">Boxes</button>
-            <button onclick="showCurrent('Salvage')" class="bg-[#00b3b3] hover:bg-[#008080] text-white py-2 px-4 rounded mr-2 mb-2 md:mb-0">Salvage</button>
+            <button onclick="showCurrent('ClubRewards')" class="bg-[#00b3b3] hover:bg-[#008080] text-white py-2 px-4 rounded mr-2 mb-2 md:mb-0">Club Rewards</button>
         </div>
     </div>
 
@@ -133,19 +133,27 @@
         <!-- Add Box Input Fields Here -->
     </div>
 
-    <div id="salvage" class="p-5 bg-custom-section rounded-lg shadow-lg hidden">
-        <h2 class="text-2xl font-semibold text-custom-highlight mb-5">Salvage</h2>
-        <label class="block font-semibold">XP</label>
-        <h3 class="text-xl font-semibold text-custom-highlight mb-5">Coming Soon</h3>
-    
+    <!-- Club Rewards section -->
+    <div id="club-rewards" class="p-5 bg-custom-section rounded-lg shadow-lg hidden">
+        <h2 class="text-2xl font-semibold text-custom-highlight mb-5">Club Rewards</h2>
+        <label for="club-goal" class="block font-semibold">Club Goal</label>
+        <input oninput="calculateClubGoal()" type="number" id="club-goal" min="1" max="50" placeholder="Enter Level" class="mt-2 w-full p-2 rounded bg-custom-input text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2" />
+        <!-- <button onclick="calculateClubGoal()" class="bg-[#00b3b3] hover:bg-[#008080] text-white py-2 px-4 rounded mt-2">
+            Calculate
+        </button> -->
+        <span id="goal-result" class="text-green-400 mt-3 mb-5 block"></span>
+
         <!-- Toggle button for the XP Table -->
         <button onclick="toggleXPTable()" id="toggleButton" class="bg-[#3a3a3a] hover:bg-[#4b4b4b] transition-all duration-300 w-full p-2 md:p-6 font-semibold text-xl rounded-md flex items-center justify-between">
-            <span>Show Club XP Reference Chart</span>
-            <svg id="chevronIcon" class="w-6 h-6 transform transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-            </svg>
+            <div class="flex justify-center items-center gap-2">
+                <!-- <svg class="" id="showIcon" xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 24 24"><path fill="#83ce96" d="M12 5c-7.633 0-9.927 6.617-9.948 6.684L1.946 12l.105.316C2.073 12.383 4.367 19 12 19s9.927-6.617 9.948-6.684l.106-.316l-.105-.316C21.927 11.617 19.633 5 12 5m0 11c-2.206 0-4-1.794-4-4s1.794-4 4-4s4 1.794 4 4s-1.794 4-4 4"/><path fill="#5cccb9" d="M12 10c-1.084 0-2 .916-2 2s.916 2 2 2s2-.916 2-2s-.916-2-2-2"/></svg> -->
+                <svg id="chevronIcon" class="w-6 h-6 transform transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7" />
+                </svg>
+                <span id="toggleMSG">Show Club XP Reference Chart</span>
+            </div>
         </button>
-    
+
         <!-- XP Reference Table -->
         <section id="xpTable" class="hidden mt-5">
             <div class="table-container flex flex-col md:flex-row gap-5">
