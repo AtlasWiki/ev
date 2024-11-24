@@ -53,7 +53,7 @@ function calculateClubGoal() {
     let clubBoxes = 0;
     let epicEggs = 0;
     let totalMultiplier = 0;
-    
+
     // Get all previous levels
     const prevLvls = clubLvlsArray
         .filter(([lvl]) => {
@@ -98,17 +98,22 @@ function calculateClubGoal() {
             }
 
             // Handle boxes and eggs
-            const quantityMatch = reward.match(/(\d+)\s*(Small|Big|Club)\s*Boxes?|Epic\s*Egg/i);
+            const quantityMatch = reward.match(/(\d+)?\s*(Small|Big|Club)\s*Boxes|(\d+)?\s*Epic\s*Egg/i);
+            
             if (quantityMatch) {
-                const quantity = parseInt(quantityMatch[1] || 1);
-                if (reward.includes('Small Box')) {
+                // Default quantity to 1 if no number is found
+                let quantity = quantityMatch[1] 
+                    ? parseInt(quantityMatch[1]) 
+                    : (quantityMatch[3] ? parseInt(quantityMatch[3]) : 1);
+
+                if (/Small\s*Box/i.test(reward)) {
                     smallBoxes += quantity;
-                } else if (reward.includes('Big Box')) {
+                } else if (/Big\s*Box/i.test(reward)) {
                     bigBoxes += quantity;
-                } else if (reward.includes('Club Box')) {
+                } else if (/Club\s*Box/i.test(reward)) {
                     clubBoxes += quantity;
-                } else if (reward.includes('Epic Egg')) {
-                    epicEggs += quantity;
+                } else if (/Epic\s*Egg/i.test(reward)) {
+                    epicEggs += quantity; // Accumulate the quantity
                 }
             }
         });
