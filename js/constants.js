@@ -13,6 +13,11 @@ const tabs = {
     "ClubRewards": "club-rewards",
 } 
 
+const sections = {
+    "xpTable": "",
+    "clubDesc": "",
+}
+
 const clubLvls = {
     lvl1: { xp: "N/A", totalXP: 0, reward: "N/A" },
     lvl2: { xp: 150, totalXP: 150, reward: "2 Small Boxes" },

@@ -15,10 +15,11 @@ function showCurrent(section){
     })
 }
 
+
+
 function toggleXPTable() {
     const xpTable = document.getElementById('xpTable');
     // const toggleButton = document.getElementById('toggleButton');
-    const toggleMSG = document.getElementById('toggleMSG')
     const chevronIcon = document.getElementById('chevronIcon');
     
     // Toggle visibility of the table
@@ -26,10 +27,25 @@ function toggleXPTable() {
     
     // Change button text and icon based on table visibility
     if (xpTable.classList.contains('hidden')) {
-        toggleMSG.innerText = 'Show Club XP Reference Chart';
         chevronIcon.classList.remove('rotate-180');
     } else {
-        toggleMSG.innerText = 'Hide Club XP Reference Chart';
         chevronIcon.classList.add('rotate-180');
     }
+}
+
+function toggleRewardDesc(){
+    const xpTable = document.getElementById('club-rewards-desc');
+    // const toggleButton = document.getElementById('toggleButton');
+    const chevronIcon = document.getElementById('chevronIcon');
+    
+    // Toggle visibility of the table
+    xpTable.classList.toggle('hidden');
+    
+    // Change button text and icon based on table visibility
+    if (xpTable.classList.contains('hidden')) {
+        chevronIcon.classList.remove('rotate-180');
+    } else {
+        chevronIcon.classList.add('rotate-180');
+    }
+    
 }

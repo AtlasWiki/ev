@@ -45,6 +45,14 @@ function calculateClubGoal() {
     goalResult.classList.replace("text-red-400", "text-[#00b3b3]");
     
     const mainLvl = clubLvlsArray.find(([lvl]) => lvl === `lvl${clubGoal}`);
+
+    let totalGems = 0;
+    let totalPetfood = 0;
+    let smallBoxes = 0;
+    let bigBoxes = 0;
+    let clubBoxes = 0;
+    let epicEggs = 0;
+    let totalMultiplier = 0;
     
     // Get all previous levels
     const prevLvls = clubLvlsArray
