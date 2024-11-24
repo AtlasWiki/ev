@@ -53,24 +53,17 @@ function calculateClubGoal() {
             return currentLvlNum < clubGoal;
         })
         .map(level => level[1]);
-
-    // Initialize aggregates
-    let totalGems = 0;
-    let totalPetfood = 0;
-    let smallBoxes = 0;
-    let bigBoxes = 0;
-    let clubBoxes = 0;
-    let epicEggs = 0;
-    const multipliers = new Set();
-
+    
     prevLvls.forEach(level => {
         if (!level.reward) return;
         
         const rewards = level.reward.split(',').map(r => r.trim());
+        
         rewards.forEach(reward => {
             // Handle multipliers
-            if (reward.includes('Multiplier')) {
-                multipliers.add(reward);
+            const multiplierMatch = reward.match(/(\d+\.?\d*)x\s*Multiplier/i);
+            if (multiplierMatch) {
+                totalMultiplier += parseFloat(multiplierMatch[1]);
                 return;
             }
 
@@ -127,14 +120,7 @@ function calculateClubGoal() {
     if (epicEggs) rewardParts.push(`${epicEggs} Epic Egg${epicEggs > 1 ? 's' : ''}`);
     if (totalGems) rewardParts.push(`${formatNumber(totalGems)} Gems`);
     if (totalPetfood) rewardParts.push(`${formatNumber(totalPetfood)} Petfood`);
-    
-    // Sort multipliers and add them
-    const sortedMultipliers = Array.from(multipliers)
-        .sort((a, b) => {
-            const getMultValue = (str) => parseFloat(str.match(/(\d+\.?\d*)x/)[1]);
-            return getMultValue(a) - getMultValue(b);
-        });
-    rewardParts.push(...sortedMultipliers);
+    if (totalMultiplier) rewardParts.push(`${totalMultiplier}x Total Multiplier`);
 
     // Create list items
     const rewardsList = rewardParts.length 
