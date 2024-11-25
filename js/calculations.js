@@ -18,6 +18,7 @@ function calculateProfit() {
     const pet = document.getElementById('petSelect').value;
     const perfect = document.getElementById('perfect').value.toLowerCase();
     const divinity = document.getElementById('divinity').value.toLowerCase();
+    const two = document.getElementById('2x').value.toLowerCase();
 
     if (isNaN(apPercent) || isNaN(remoteMultiplier) || !petBonuses[pet]) {
         document.getElementById('profit-result').innerText = "Please enter valid values.";
@@ -27,8 +28,9 @@ function calculateProfit() {
     const petBonus = petBonuses[pet];
     const perfectMultiplier = perfect === 'yes' ? 6 : 1;
     const divinityMultiplier = divinity === 'yes' ? 25 : 1;
+    const twoMultiplier = two === 'yes' ? 2 : 1;
 
-    const formula = (apPercent / 100) * (petBonus / 100) * perfectMultiplier * divinityMultiplier * remoteMultiplier;
+    const formula = (apPercent / 100) * (petBonus / 100) * perfectMultiplier * divinityMultiplier * remoteMultiplier * twoMultiplier;
     document.getElementById('profit-result').innerText = `Profit Multiplier: ${formula.toFixed(2)}x`;
 }
 
