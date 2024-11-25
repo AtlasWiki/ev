@@ -2,7 +2,8 @@ This is a web app hosted for an online Eatventure calculator. Hosted in https://
 
 ## Installation:
 
-1. Clone the repo:
-`git clone https://github.com/AtlasWiki/ev.git`
+Clone the repo:
 
-2. Open the HTML file and enjoy.
+```git clone https://github.com/AtlasWiki/ev.git```
+
+Open the HTML file and enjoy.
