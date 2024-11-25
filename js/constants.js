@@ -13,6 +13,7 @@ const tabs = {
     "Profit": "profit-calculator",
     "Boxes": "boxes",
     "ClubRewards": "club-rewards",
+    "Changelog": "changelog"
 } 
 
 // Section tag names and IDs
@@ -23,7 +24,7 @@ const sections = {
     "profit": "profit-desc"
 }
 
-// SectionPlaceholders. tag names and IDs
+// SectionPlaceholders. tag names and IDs. used for matching with the placeholder divs
 const sectionPlaceholder = {
     "club": "clubSection",
     "profit" : "profitSection",

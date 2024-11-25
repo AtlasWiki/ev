@@ -68,6 +68,7 @@
             <button onclick="showCurrentTab('Profit');createDescription('profit')" class="bg-[#00b3b3] hover:bg-[#008080] text-white py-2 px-4 rounded mr-2 mb-2 md:mb-0">Profit</button>
             <button onclick="showCurrentTab('Boxes');" class="bg-[#00b3b3] hover:bg-[#008080] text-white py-2 px-4 rounded mr-2 mb-2 md:mb-0">Boxes</button>
             <button onclick="showCurrentTab('ClubRewards');createDescription('club')" class="bg-[#00b3b3] hover:bg-[#008080] text-white py-2 px-4 rounded mr-2 mb-2 md:mb-0">Club Rewards</button>
+            <button onclick="showCurrentTab('Changelog');" class="bg-[#00b3b3] hover:bg-[#008080] text-white py-2 px-4 rounded mr-2 mb-2 md:mb-0">Changelog</button>
         </div>
     </div>
 
@@ -183,12 +184,12 @@
                 <div class="py-2 md:py-0 md:w-1/6">
                     <p class="mb-5">Min Level</p>
                     <div id="min-level-range" class="bg-[#3a3a3a] p-1 text-center">0</div>
-                    <input id="min-level-input" type="range" oninput="updateLevelRangeValue('min-level-range', this);updateTables()" max="50" value="1">
+                    <input class="mt-2" id="min-level-input" type="range" oninput="updateLevelRangeValue('min-level-range', this);updateTables()" max="50" value="1">
                 </div>
                 <div class="py-2 md:py-0 md:w-1/6">
                     <p class="mb-5">Max Level</p>
                     <div id="max-level-range" class="bg-[#3a3a3a] p-1 text-center">0</div>
-                    <input id="max-level-input" type="range" oninput="updateLevelRangeValue('max-level-range', this);updateTables()" max="50" value="50">
+                    <input class="mt-2" id="max-level-input" type="range" oninput="updateLevelRangeValue('max-level-range', this);updateTables()" max="50" value="50">
                 </div>
                
             </div>
@@ -227,15 +228,23 @@
         </section>
     </div>
 
-    <!-- <div class="bg-[#2a2a2a] mb-10 p-20 rounded-sm shadow-lg">
-
-    </div> -->
+    <!-- Changelog section -->
+    <div id="changelog" class="mb-10 p-5 bg-custom-section rounded-lg shadow-lg hidden">
+        <h2 class="text-2xl font-semibold text-custom-highlight mb-5">
+            Changelog
+        </h2>
+        <div id="changelog-item" class="font-md">
+           
+        </div>
+        
+    </div>
 
     <script src="./js/constants.js"></script>
     <script src="./js/utils.js"></script>
     <script src="./js/tabManager.js"></script>
     <script src="./js/calculations.js"></script>
     <script src="./js/props.js"></script>
+    <script src="./js/changelog.js"></script>
     <script>
         window.onload = ""
     </script>
