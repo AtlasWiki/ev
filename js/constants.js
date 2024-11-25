@@ -1,9 +1,10 @@
+// need more pets
 const petBonuses = {
-    panda: 1000,
-    turtle: 700,
-    red_panda: 1600,
-    pony: 700,
-    penguin: 700
+    panda: 1100,
+    turtle: 800,
+    red_panda: 1700, // need to add 20% divinity
+    pony: 800,
+    penguin: 800,
 };
 
 // Tab names and IDs
