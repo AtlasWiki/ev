@@ -4,12 +4,16 @@ const tableBody2 = document.getElementById("table-body-2");
 function filterEntries() {
     const selectElement = document.getElementById("clubRewards");
     const query = selectElement.value;
-  
+    const minRange = Number(document.getElementById('min-level-input').value);
+    const maxRange = Number(document.getElementById('max-level-input').value);
+
     return clubLvlsArray.filter(([level, data]) => {
       let reward = data.reward;
-      if (reward.includes(query)) {
+      const formattedLvl = parseInt(level.match(/\d+/)[0]);
+      const withinRange = formattedLvl >= minRange && formattedLvl <= maxRange;
+      if (reward.includes(query) && withinRange){
         return true; 
-      } else if (query === "All") {
+      } else if (query === "All" && withinRange) {
         return true; 
       }
       return false;
@@ -38,7 +42,16 @@ function updateTables() {
   
     // Get the filtered entries
     const filteredEntries = filterEntries();
-  
+    
+    const firstEntry = 1
+
+    const minInputValue = document.getElementById("min-level-input");
+    minInputValue.min = firstEntry
+
+    const maxInputValue = document.getElementById("max-level-input");
+    maxInputValue.min = firstEntry
+   
+    initialLevelRangeValueUpdate()
     // Split filtered entries into two halves
     const half = Math.ceil(filteredEntries.length / 2);
     const firstHalf = filteredEntries.slice(0, half);
@@ -101,19 +114,20 @@ function displayTableResult(){
     `;
 }
 
-// function updateLevelRangeValue(elementValueID, inputElement){
-//     const elementValue = document.getElementById(elementValueID);
-//     const inputValue = inputElement.value;
-//     elementValue.innerText = inputValue;
-// }
+function updateLevelRangeValue(elementValueID, inputElement){
+    const elementValue = document.getElementById(elementValueID);
+    const inputValue = inputElement.value;
+    elementValue.innerText = inputValue;
+}
 
-// function updateLevelRangeCaps(){
-//     const minInputValue = document.getElementById("min-level-input");
-//     minInputValue.max = 100
-//     const maxInputValue = document.getElementById("max-level-input");
-//     minInputValue.max = 100
-// }
-
+function initialLevelRangeValueUpdate(){
+    const minTextValue = document.getElementById("min-level-range");
+    const maxTextValue = document.getElementById("max-level-range");
+    const minInput = document.getElementById("min-level-input").value;
+    const maxInput = document.getElementById("max-level-input").value;
+    minTextValue.innerText = minInput;
+    maxTextValue.innerText = maxInput;
+}
 
 function createDescription(sectionname){
     const sectionID = sections[sectionname]
