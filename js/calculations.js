@@ -55,7 +55,7 @@ function calculateClubGoal() {
         clubBoxes,
         epicEggs,
         totalMultiplier
-    } = calculateRewards(clubLvlsArray, clubGoal, true);
+    } = calculateRewards(clubLvlsArray, clubGoal, false);
 
     // Format numbers with k suffix if >= 1000
     const formatNumber = (num) => {
@@ -87,7 +87,7 @@ function calculateClubGoal() {
         <p class="mb-4"><span class='text-white font-light'>${mainLvl[1].totalXP / 10}</span></p>
         <p>Current Level Reward:</p>
         <p class="mb-4"><span class='text-white font-light'>${mainLvl[1].reward}</span></p>
-        <p>All Previous Rewards: </p>
+        <p>All Rewards Met: </p>
         <ul class="md:w-1/3 list-disc pl-6 mt-2 mb-4 grid grid-cols-2 md:grid-cols-3">
             ${rewardsList}
         </ul>

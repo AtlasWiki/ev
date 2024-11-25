@@ -163,14 +163,28 @@
         <!-- XP Reference Table -->
         <section id="xpTable" class="hidden mt-5">
             <!-- Rewards Select Menu -->
-            <select id="clubRewards" onchange="updateTables()" class="mt-5 w-2/5 md:w-1/6 p-2 rounded bg-custom-input text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2">
-                <option value="All">All</option>
-                <option value="Gems">Gems</option>
-                <option value="Petfood">Petfood</option>
-                <option value="Club Boxes">Club Boxes</option>
-                <option value="Big Boxes">Big Boxes</option>
-                <option value="Multiplier">Multiplier</option>
-            </select>
+            <div class="flex flex-col gap-2">
+                <select id="clubRewards" onchange="updateTables()" class="mt-5 w-2/5 md:w-1/6 p-2 rounded bg-custom-input text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2">
+                    <option value="All">All</option>
+                    <option value="Gems">Gems</option>
+                    <option value="Petfood">Petfood</option>
+                    <option value="Club Boxes">Club Boxes</option>
+                    <option value="Big Boxes">Big Boxes</option>
+                    <option value="Multiplier">Multiplier</option>
+                </select>
+                <!-- <h3 class="text-lg font-semibold mt-5 mb-5">Ranges</h3>
+                <div class="w-2/5 md:w-1/6">
+                    <p class="mb-5">Min Level</p>
+                    <div id="min-level-range" class="bg-[#3a3a3a] p-1 text-center">0</div>
+                    <input id="min-level-input" type="range" oninput="updateLevelRangeValue('min-level-range', this)" max="5">
+                </div>
+                <div class="w-2/5 md:w-1/6">
+                    <p class="mb-5">Max Level</p>
+                    <div id="max-level-range" class="bg-[#3a3a3a] p-1 text-center">0</div>
+                    <input id="max-level-input" type="range" oninput="updateLevelRangeValue('max-level-range', this)" max="10">
+                </div> -->
+               
+            </div>
             <div id="club-entry-result" class="mt-5"></div>
             <div class="table-container flex flex-col md:flex-row gap-5">
                 <!-- First table (left) -->

@@ -101,6 +101,20 @@ function displayTableResult(){
     `;
 }
 
+// function updateLevelRangeValue(elementValueID, inputElement){
+//     const elementValue = document.getElementById(elementValueID);
+//     const inputValue = inputElement.value;
+//     elementValue.innerText = inputValue;
+// }
+
+// function updateLevelRangeCaps(){
+//     const minInputValue = document.getElementById("min-level-input");
+//     minInputValue.max = 100
+//     const maxInputValue = document.getElementById("max-level-input");
+//     minInputValue.max = 100
+// }
+
+
 function createDescription(sectionname){
     const sectionID = sections[sectionname]
     const sectionPlacement = sectionPlaceholder[sectionname]
