@@ -21,7 +21,8 @@ const sections = {
     "xpTable": "xpTable",
     "club": "club-desc",
     "awvsolo": "awvsolo-desc",
-    "profit": "profit-desc"
+    "profit": "profit-desc",
+    "clubGoal": "clubGoal",
 }
 
 // SectionPlaceholders. tag names and IDs. used for matching with the placeholder divs

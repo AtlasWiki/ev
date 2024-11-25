@@ -34,9 +34,9 @@ function calculateProfit() {
     document.getElementById('profit-result').innerText = `Profit Multiplier: ${formula.toFixed(2)}x`;
 }
 
-function calculateClubGoal() {
-    const clubGoal = Number(document.getElementById("club-goal").value);
-    const goalResult = document.getElementById("goal-result");
+function levelSearch() {
+    const clubGoal = Number(document.getElementById("level-search").value);
+    const goalResult = document.getElementById("level-result");
 
     if (isNaN(clubGoal) || clubGoal < 1 || clubGoal > 50) {
         goalResult.classList.replace("text-[#00b3b3]", "text-red-400");
@@ -185,4 +185,26 @@ function calculateRewards(clubLvlsArray, clubGoal, prevConditional) {
         epicEggs,
         totalMultiplier
     };
+}
+
+function calculateXPTotal() {
+    const currentLvlInput = Number(document.getElementById('current-level').value);
+    const targetLvl = Number(document.getElementById('target-level').value);
+    const currentLvl = clubLvlsArray.find(([lvl]) => lvl === `lvl${currentLvlInput - 1}`);
+    
+    const currentLvlXP = currentLvl[1].xp;
+    console.log("XP for current level:", currentLvlXP);
+
+    const prevLvlXP = clubLvlsArray
+        .filter(([lvl]) => {
+            const lvlNum = parseInt(lvl.replace('lvl', ''));
+            return lvlNum > currentLvlInput - 1 && lvlNum < targetLvl;
+        })
+        .map(([level, data]) => data.xp); // Extract XP values
+
+    console.log("XP for levels in range:", prevLvlXP);
+
+    const totalXP = prevLvlXP.reduce((total, xp) => total + xp, currentLvlXP);
+    console.log("Total XP needed:", totalXP);
+
 }

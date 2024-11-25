@@ -26,3 +26,12 @@ function showCurrentSection(sectionname){
         chevronIcon.classList.add('rotate-180');
     }
 }
+
+function createGap(id, button) {
+    const section = document.getElementById(id);
+    if (section.classList.contains("hidden")){
+        button.classList.replace('mt-10', 'mt-2');
+    } else {
+        button.classList.replace('mt-2', 'mt-10')
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}   }

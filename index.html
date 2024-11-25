@@ -156,12 +156,12 @@
         
         <div id="clubSection"></div>
 
-        <label for="club-goal" class="block font-semibold mt-5">Club Goal</label>
-        <input oninput="calculateClubGoal()" type="number" id="club-goal" min="1" max="50" placeholder="Enter Level" class="mt-2 w-full p-3 rounded bg-custom-input text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2" />
-        <span id="goal-result" class="text-[#00b3b3] font-semibold mt-3 mb-5 block"></span>
+        <label for="level-search" class="block font-semibold mt-5">Level Goal</label>
+        <input oninput="levelSearch()" type="number" id="level-search" min="1" max="50" placeholder="Enter Level" class="mt-2 w-full p-3 rounded bg-custom-input text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2" />
+        <span id="level-result" class="text-[#00b3b3] font-semibold mt-3 mb-5 block"></span>
 
         <!-- Toggle button for the XP Table -->
-        <button onclick="showCurrentSection('xpTable')" class="bg-[#3a3a3a] hover:bg-[#4b4b4b] transition-all duration-300 w-full p-2 md:p-3 font-semibold text-xl rounded-md flex items-center justify-between">
+        <button onclick="showCurrentSection('xpTable');createGap('xpTable', this);" class="bg-[#3a3a3a] hover:bg-[#4b4b4b] transition-all duration-300 w-full p-2 md:p-3 font-semibold text-xl rounded-md flex items-center justify-between">
             <div class="flex justify-center items-center gap-2">
                 <!-- <svg class="" id="showIcon" xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 24 24"><path fill="#83ce96" d="M12 5c-7.633 0-9.927 6.617-9.948 6.684L1.946 12l.105.316C2.073 12.383 4.367 19 12 19s9.927-6.617 9.948-6.684l.106-.316l-.105-.316C21.927 11.617 19.633 5 12 5m0 11c-2.206 0-4-1.794-4-4s1.794-4 4-4s4 1.794 4 4s-1.794 4-4 4"/><path fill="#5cccb9" d="M12 10c-1.084 0-2 .916-2 2s.916 2 2 2s2-.916 2-2s-.916-2-2-2"/></svg> -->
                 <svg id="xpTableChevronIcon" class="w-6 h-6 transform transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -203,9 +203,9 @@
                     <table class="min-w-full">
                         <thead>
                             <tr class="bg-custom-header text-white">
-                                <th class="py-1 px-7 text-md font-medium">XP</th>
-                                <th class="py-1 px-7 text-md font-medium">Total XP</th>
                                 <th class="py-1 px-7 text-md font-medium">Levels</th>
+                                <th class="py-1 px-7 text-md font-medium">Total XP</th>
+                                <th class="py-1 px-7 text-md font-medium">XP</th>
                                 <th class="py-1 px-7 text-md font-medium">Rewards</th>
                             </tr>
                         </thead>
@@ -218,9 +218,9 @@
                     <table class="min-w-full">
                         <thead>
                             <tr class="bg-custom-header text-white">
-                                <th class="py-1 px-7 text-md font-medium">XP</th>
-                                <th class="py-1 px-7 text-md font-medium">Total XP</th>
                                 <th class="py-1 px-7 text-md font-medium">Levels</th>
+                                <th class="py-1 px-7 text-md font-medium">Total XP</th>
+                                <th class="py-1 px-7 text-md font-medium">XP</th>
                                 <th class="py-1 px-7 text-md font-medium">Rewards</th>
                             </tr>
                         </thead>
@@ -229,6 +229,34 @@
                 </div>
             </div>
         </section>
+
+          <!-- Toggle button for the Club Gains -->
+          <button onclick="showCurrentSection('clubGoal');createGap('clubGoal', this)" class="mt-2 bg-[#3a3a3a] hover:bg-[#4b4b4b] transition-all duration-300 w-full p-2 md:p-3 font-semibold text-xl rounded-md flex items-center justify-between">
+            <div class="flex justify-center items-center gap-2">
+                <svg id="clubGoalChevronIcon" class="w-6 h-6 transform transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7" />
+                </svg>
+                <span>Current XP & Goals</span>
+            </div>
+        </button>
+
+        <!-- Section for Club Goals -->
+        <section id="clubGoal" class="hidden">
+            <label for="current-level" class="block font-semibold mt-10">Current Club Level</label>
+            <input id="current-level" type="number" min="1" max="50" placeholder="Enter Level" class="mt-2 w-full p-3 rounded bg-custom-input text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2" />
+
+            <label for="" class="block font-semibold mt-5">Target Club Level</label>
+            <input id="target-level" type="number" min="1" max="50" placeholder="Enter Level" class="mt-2 w-full p-3 rounded bg-custom-input text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2" />
+
+            <label for="" class="block font-semibold mt-5">Your Current XP in Level</label>
+            <input id="current-level-xp" type="number" placeholder="Enter XP Amount" class="mt-2 w-full p-3 rounded bg-custom-input text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2" />
+            <!-- <span id="" class="text-[#00b3b3] font-semibold mt-3 mb-2 block"></span> -->
+            <button onclick="calculateXPTotal()" class="bg-[#00b3b3] hover:bg-[#008080] text-white py-2 px-4 rounded mt-2">
+                Calculate
+            </button>
+            <div id="totalXP" class="font-semibold text-green-400 mt-5"></div>
+        </section>
+
     </div>
 
     <!-- Changelog section -->
@@ -236,10 +264,7 @@
         <h2 class="text-2xl font-semibold text-custom-highlight mb-5">
             Changelog
         </h2>
-        <div id="changelog-item" class="font-md">
-           
-        </div>
-        
+        <div id="changelog-item" class="font-md"></div>
     </div>
 
     <script src="./js/constants.js"></script>
