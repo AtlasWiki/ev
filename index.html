@@ -68,6 +68,7 @@
             <button onclick="showCurrentTab('Profit');createDescription('profit')" class="bg-[#00b3b3] hover:bg-[#008080] text-white py-2 px-4 rounded mr-2 mb-2 md:mb-0">Profit</button>
             <button onclick="showCurrentTab('Boxes');" class="bg-[#00b3b3] hover:bg-[#008080] text-white py-2 px-4 rounded mr-2 mb-2 md:mb-0">Boxes</button>
             <button onclick="showCurrentTab('ClubRewards');createDescription('club')" class="bg-[#00b3b3] hover:bg-[#008080] text-white py-2 px-4 rounded mr-2 mb-2 md:mb-0">Club Rewards</button>
+            <button onclick="showCurrentTab('Changelog');" class="bg-[#00b3b3] hover:bg-[#008080] text-white py-2 px-4 rounded mr-2 mb-2 md:mb-0">Changelog</button>
         </div>
     </div>
 
@@ -220,11 +221,23 @@
         </section>
     </div>
 
+    <!-- Changelog section -->
+    <div id="changelog" class="mb-10 p-5 bg-custom-section rounded-lg shadow-lg hidden">
+        <h2 class="text-2xl font-semibold text-custom-highlight mb-5">
+            Changelog
+        </h2>
+        <div id="changelog-item" class="font-md">
+           
+        </div>
+        
+    </div>
+
     <script src="./js/constants.js"></script>
     <script src="./js/utils.js"></script>
     <script src="./js/tabManager.js"></script>
     <script src="./js/calculations.js"></script>
     <script src="./js/props.js"></script>
+    <script src="./js/changelog.js"></script>
     <script>
         window.onload = ""
     </script>
