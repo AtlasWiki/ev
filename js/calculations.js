@@ -188,23 +188,49 @@ function calculateRewards(clubLvlsArray, clubGoal, prevConditional) {
 }
 
 function calculateXPTotal() {
-    const currentLvlInput = Number(document.getElementById('current-level').value);
-    const targetLvl = Number(document.getElementById('target-level').value);
-    const currentLvl = clubLvlsArray.find(([lvl]) => lvl === `lvl${currentLvlInput - 1}`);
+    let currentLvlInput = Number(document.getElementById('current-level').value);
+    const targetLvlInput = Number(document.getElementById('target-level').value);
+    const currentLvlXPInput = Number(document.getElementById('current-level-xp').value);
+    let currentLvl = clubLvlsArray.find(([lvl]) => lvl === `lvl${currentLvlInput}`);
     
-    const currentLvlXP = currentLvl[1].xp;
+    let currentLvlXP = currentLvl[1].xp - currentLvlXPInput;
+
+    
     console.log("XP for current level:", currentLvlXP);
 
-    const prevLvlXP = clubLvlsArray
-        .filter(([lvl]) => {
-            const lvlNum = parseInt(lvl.replace('lvl', ''));
-            return lvlNum > currentLvlInput - 1 && lvlNum < targetLvl;
-        })
-        .map(([level, data]) => data.xp); // Extract XP values
+    while (currentLvlXP <= 0) {
+        console.log(`Leveled up!`);
+        
+        // Increment level
+        currentLvlInput++; 
+    
+        // Find the new level in the array
+        const newLevel = clubLvlsArray.find(([lvl]) => lvl === `lvl${currentLvlInput}`);
+        if (!newLevel) {
+            console.log(`Maximum level reached!`);
+            break; // Exit the loop if no new level is found
+        }
+    
+        // Update current level and XP
+        currentLvl = newLevel;
+        console.log(`New level: ${currentLvl[0]}`);
+        
+        // Update XP needed for the next level
+        currentLvlXP = currentLvl[1].xp - Math.abs(currentLvlXP);
+    }
+    console.log("Final XP for current level:", currentLvlXP);
+    
 
-    console.log("XP for levels in range:", prevLvlXP);
+    // const prevLvlXP = clubLvlsArray
+    //     .filter(([lvl]) => {
+    //         const lvlNum = parseInt(lvl.replace('lvl', ''));
+    //         return lvlNum > currentLvlInput - 1 && lvlNum < targetLvl;
+    //     })
+    //     .map(([level, data]) => data.xp);
 
-    const totalXP = prevLvlXP.reduce((total, xp) => total + xp, currentLvlXP);
-    console.log("Total XP needed:", totalXP);
+    // console.log("XP for levels in range:", prevLvlXP);
+
+    // const totalXP = prevLvlXP.reduce((total, xp) => total + xp, currentLvlXP);
+    // console.log("Total XP needed:", totalXP);
 
 }

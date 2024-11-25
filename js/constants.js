@@ -58,7 +58,7 @@ const descriptions = {
 };
 
 const clubLvls = {
-    lvl1: { xp: "N/A", totalXP: 0, reward: "N/A" },
+    lvl1: { xp: 0, totalXP: 0, reward: "N/A" },
     lvl2: { xp: 150, totalXP: 150, reward: "2 Small Boxes" },
     lvl3: { xp: 200, totalXP: 350, reward: "1.05x Multiplier" },
     lvl4: { xp: 300, totalXP: 650, reward: "150 Gems" },
