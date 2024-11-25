@@ -16,5 +16,7 @@ Clone the repo (SKIP if doing step 1):
 
 ```git clone https://github.com/AtlasWiki/ev.git```
 
+<br>
+
 Open the HTML file and enjoy.
 
