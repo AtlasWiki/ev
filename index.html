@@ -5,11 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EV Calculator</title>
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="./css/style.css">
+
     <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="./css/backup.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Fallback CSS -->
-    <link id="fallback-styles" rel="stylesheet" href="./css/backup-style.css" disabled>
+    
     <style>
         @layer utilities {
             .bg-custom-dark {
@@ -38,23 +40,6 @@
             }    
         }
     </style>
-    <script>
-        // Fallback logic: Enable backup CSS if Tailwind fails to load
-        document.addEventListener('DOMContentLoaded', function () {
-            const testDiv = document.createElement('div');
-            testDiv.className = 'hidden';
-            document.body.appendChild(testDiv);
-
-            // Check if the utility class has been applied
-            if (getComputedStyle(testDiv).display !== 'none') {
-                document.getElementById('fallback-styles').disabled = true;
-            } else {
-                document.getElementById('fallback-styles').disabled = false;
-            }
-
-            document.body.removeChild(testDiv);
-        });
-    </script>
 </head>
 
 <body class="bg-custom-dark text-gray-200 font-sans p-5">
