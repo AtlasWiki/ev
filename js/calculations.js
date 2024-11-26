@@ -38,7 +38,12 @@ function levelSearch() {
     const clubGoal = Number(document.getElementById("level-search").value);
     const goalResult = document.getElementById("level-result");
 
-    if (isNaN(clubGoal) || clubGoal < 1 || clubGoal > 50) {
+    if (clubGoal === 0){
+        goalResult.innerText = ""
+        return
+    }
+
+    if (clubGoal < 1 || clubGoal > 50) {
         goalResult.classList.replace("text-[#00b3b3]", "text-red-400");
         goalResult.innerText = "Invalid level. Valid level range is 1-50";
         return;
@@ -96,7 +101,7 @@ function levelSearch() {
     `;
 }
 
-function calculateRewards(array, clubGoal, prevConditional) {
+function calculateRewards(array, clubGoal, rangeConditional) {
     totalGems = 0;
     totalPetfood = 0;
     smallBoxes = 0;
@@ -109,7 +114,8 @@ function calculateRewards(array, clubGoal, prevConditional) {
     const prevLvls = array
         .filter(([lvl]) => {
             const currentLvlNum = parseInt(lvl.replace('lvl', ''));
-            if (prevConditional){
+            // include 
+            if (rangeConditional){
                 return currentLvlNum < clubGoal + 1;
             } else {
                 return currentLvlNum
