@@ -57,7 +57,7 @@ function levelSearch() {
         clubBoxes,
         epicEggs,
         totalMultiplier
-    } = calculateRewards(clubLvlsArray, clubGoal, false);
+    } = calculateRewards(clubLvlsArray, clubGoal, true);
 
     // Format numbers with k suffix if >= 1000
     const formatNumber = (num) => {
@@ -110,7 +110,7 @@ function calculateRewards(array, clubGoal, prevConditional) {
         .filter(([lvl]) => {
             const currentLvlNum = parseInt(lvl.replace('lvl', ''));
             if (prevConditional){
-                return currentLvlNum < clubGoal;
+                return currentLvlNum < clubGoal + 1;
             } else {
                 return currentLvlNum
             }
