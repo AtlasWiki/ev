@@ -9,7 +9,7 @@ function createLog(){
         ([version, data]) => 
     `
         <div class="mt-1">
-           <a href="https://github.com/AtlasWiki/ev/releases/tag/v0.1.0" class="text-blue-400 underline hover:no-underline">
+           <a href="${data.url}" class="text-blue-400 underline hover:no-underline">
                 ${version} - ${data.title} (${data.date})
            </a>
         </div>
