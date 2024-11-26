@@ -13,7 +13,8 @@ const tabs = {
     "Profit": "profit-calculator",
     "Boxes": "boxes",
     "ClubRewards": "club-rewards",
-    "Changelog": "changelog"
+    "Changelog": "changelog",
+    "Cities": "Cities",
 } 
 
 // Section tag names and IDs
@@ -23,13 +24,15 @@ const sections = {
     "awvsolo": "awvsolo-desc",
     "profit": "profit-desc",
     "clubGoal": "clubGoal",
+    "cities": "cities-desc"
 }
 
 // SectionPlaceholders. tag names and IDs. used for matching with the placeholder divs
 const sectionPlaceholder = {
     "club": "clubSection",
     "profit" : "profitSection",
-    "awvsolo": "awvsoloSection"
+    "awvsolo": "awvsoloSection",
+    "cities": "citiesSection"
 }
 
 // IDs (belongs to section ids) and text
@@ -52,7 +55,8 @@ const descriptions = {
                 A Club XP rewards and a reference chart is provided. The data and formulas were taken from:
                 <a class="text-blue-400 underline hover:no-underline" href="https://docs.google.com/spreadsheets/d/e/2PACX-1vSV4ou9YZ1NgCYkT4Tr__sq6PHN6YsPyQuUh-Pryw98hQiEkCwcbUhoPXAB2pPGynuBIAjcyc7A86zv/pubhtml#">Eatventure's handbook</a>
                 made by <span class="text-[#00b3b3]">fallen_spectre</span> and <span class="text-[#00b3b3]">BladedCross</span>. The calculations can be seen from <a class="text-blue-400 underline hover:no-underline" href="https://docs.google.com/spreadsheets/d/1b79jTHCbbLnLLWFgrCdxYWqDgt2msgrFqUMaBR3XSYo/edit?gid=607690110#gid=607690110"> EV Multipurpose Calculator</a>`,
-
+    
+    "cities-desc": `This is a calculator for calculating statistics related to how gems and boxes associate with cities`,
     
                 
 };
