@@ -1,0 +1,15 @@
+{
+  "name": "ev",
+  "version": "1.0.0",
+  "description": "This is a web app hosted for an online Eatventure calculator. Hosted in https://ev-calc-nu.vercel.app/",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "tailwindcss": "^3.4.15"
+  }
+}
