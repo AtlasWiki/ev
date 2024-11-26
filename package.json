@@ -4,7 +4,9 @@
   "description": "This is a web app hosted for an online Eatventure calculator. Hosted in https://ev-calc-nu.vercel.app/",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:css": "npx tailwindcss -i ./css/tailwind-input.css -o ./css/backup.css",
+    "watch:css": "npx tailwindcss -i ./css/tailwind-input.css -o ./css/tailwind.css --watch"
   },
   "keywords": [],
   "author": "",
