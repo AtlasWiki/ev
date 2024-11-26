@@ -66,7 +66,7 @@ function levelSearch() {
 
     // Format numbers with k suffix if >= 1000
     const formatNumber = (num) => {
-        return num >= 1000 ? (num / 1000).toFixed(1) + 'k' : num;
+        return num >= 1000 ? (num / 1000).toFixed(2) + 'k' : num;
     };
 
     // Build rewards array
@@ -264,7 +264,7 @@ function calculateXPTotal() {
 
      // Format numbers with k suffix if >= 1000
      const formatNumber = (num) => {
-        return num >= 1000 ? (num / 1000).toFixed(1) + 'k' : num;
+        return num >= 1000 ? (num / 1000).toFixed(2) + 'k' : num;
      };
 
       // Build rewards array
