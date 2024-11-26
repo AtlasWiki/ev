@@ -96,7 +96,7 @@ function levelSearch() {
     `;
 }
 
-function calculateRewards(clubLvlsArray, clubGoal, prevConditional) {
+function calculateRewards(array, clubGoal, prevConditional) {
     totalGems = 0;
     totalPetfood = 0;
     smallBoxes = 0;
@@ -106,7 +106,7 @@ function calculateRewards(clubLvlsArray, clubGoal, prevConditional) {
     totalMultiplier = 0;
 
     // Get all previous levels
-    const prevLvls = clubLvlsArray
+    const prevLvls = array
         .filter(([lvl]) => {
             const currentLvlNum = parseInt(lvl.replace('lvl', ''));
             if (prevConditional){
@@ -190,47 +190,101 @@ function calculateRewards(clubLvlsArray, clubGoal, prevConditional) {
 function calculateXPTotal() {
     let currentLvlInput = Number(document.getElementById('current-level').value);
     const targetLvlInput = Number(document.getElementById('target-level').value);
-    const currentLvlXPInput = Number(document.getElementById('current-level-xp').value);
-    let currentLvl = clubLvlsArray.find(([lvl]) => lvl === `lvl${currentLvlInput}`);
-    
-    let currentLvlXP = currentLvl[1].xp - currentLvlXPInput;
+    const currentLvlErrorMSG = document.getElementById("current-level-error");
+    const targetLvlErrorMSG = document.getElementById("target-level-error");
 
-    
-    console.log("XP for current level:", currentLvlXP);
-
-    while (currentLvlXP <= 0) {
-        console.log(`Leveled up!`);
-        
-        // Increment level
-        currentLvlInput++; 
-    
-        // Find the new level in the array
-        const newLevel = clubLvlsArray.find(([lvl]) => lvl === `lvl${currentLvlInput}`);
-        if (!newLevel) {
-            console.log(`Maximum level reached!`);
-            break; // Exit the loop if no new level is found
-        }
-    
-        // Update current level and XP
-        currentLvl = newLevel;
-        console.log(`New level: ${currentLvl[0]}`);
-        
-        // Update XP needed for the next level
-        currentLvlXP = currentLvl[1].xp - Math.abs(currentLvlXP);
+    if (currentLvlInput < 1 | currentLvlInput > 50){
+        currentLvlErrorMSG.innerText = "Level must be from 1-50"
     }
+    if (targetLvlInput < 1 | targetLvlInput > 50){
+        targetLvlErrorMSG.innerText = "Level must be from 1-50"
+    }
+    // const currentLvlXPInput = Number(document.getElementById('current-level-xp').value);
+    const totalXPMSG = document.getElementById('totalXP')
+    let currentLvl = clubLvlsArray.find(([lvl]) => lvl === `lvl${currentLvlInput}`);
+
+    // let currentLvlXP = currentLvl[1].xp - currentLvlXPInput;
+    let currentLvlXP = currentLvl[1].xp;
+    const currentXPTotal = currentLvl[1].totalXP;
+    const currentXPMin = currentXPTotal - currentLvlXP
+    let currentXPMax = currentXPTotal - 1
+
+    if (currentLvlInput === 1){
+        currentXPMax = currentXPTotal
+    }
+
+    // while (currentLvlXP <= 0) {
+    //     // console.log(`Leveled up!`);
+    //     currentLvlInput++; 
+    
+    //     // Find the new level in the array
+    //     const newLevel = clubLvlsArray.find(([lvl]) => lvl === `lvl${currentLvlInput}`);
+    //     if (!newLevel) {
+    //         console.log(`Maximum level reached!`);
+    //         break;
+    //     }
+    
+    //     // Update current level and XP
+    //     currentLvl = newLevel;
+    //     console.log(`New level: ${currentLvl[0]}`);
+        
+    //     // Update XP needed for the next level
+    //     currentLvlXP = currentLvl[1].xp - Math.abs(currentLvlXP);
+    // }
     console.log("Final XP for current level:", currentLvlXP);
     
+    // all levels above current level up to target level
+    // ex: your current level = 1, your target level = 5
+    // Output: [2,3,4,5]
+    const rangeLvl = clubLvlsArray
+    .filter(([lvl]) => {
+        const lvlNum = parseInt(lvl.replace('lvl', ''));
+        return lvlNum > currentLvlInput && lvlNum <= targetLvlInput;
+    });
 
-    // const prevLvlXP = clubLvlsArray
-    //     .filter(([lvl]) => {
-    //         const lvlNum = parseInt(lvl.replace('lvl', ''));
-    //         return lvlNum > currentLvlInput - 1 && lvlNum < targetLvl;
-    //     })
-    //     .map(([level, data]) => data.xp);
+    let rangeLvlXP = rangeLvl.map(([level, data]) => data.xp);
 
-    // console.log("XP for levels in range:", prevLvlXP);
+    
 
-    // const totalXP = prevLvlXP.reduce((total, xp) => total + xp, currentLvlXP);
-    // console.log("Total XP needed:", totalXP);
+    const {
+        totalGems,
+        totalPetfood,
+        smallBoxes,
+        bigBoxes,
+        clubBoxes,
+        epicEggs,
+        totalMultiplier
+    } = calculateRewards(rangeLvl, targetLvlInput, false);
 
+     // Format numbers with k suffix if >= 1000
+     const formatNumber = (num) => {
+        return num >= 1000 ? (num / 1000).toFixed(1) + 'k' : num;
+     };
+
+      // Build rewards array
+      const rewardParts = [];
+    
+      if (smallBoxes) rewardParts.push(`${smallBoxes} Small Boxes`);
+      if (bigBoxes) rewardParts.push(`${bigBoxes} Big Boxes`);
+      if (clubBoxes) rewardParts.push(`${clubBoxes} Club Boxes`);
+      if (epicEggs) rewardParts.push(`${epicEggs} Epic Egg${epicEggs > 1 ? 's' : ''}`);
+      if (totalGems) rewardParts.push(`${formatNumber(totalGems)} Gems`);
+      if (totalPetfood) rewardParts.push(`${formatNumber(totalPetfood)} Petfood`);
+      if (totalMultiplier) rewardParts.push(`${totalMultiplier}x Total Multiplier`);
+  
+      // Create list items
+      const rewardsList = rewardParts.length 
+          ? rewardParts.map(reward => `<li class="text-white font-light mb-1">${reward}</li>`).join('')
+          : '<li class="text-white font-light">None</li>';
+
+      const xpToTarget = rangeLvlXP.reduce((total, xp) => total + xp, 0);
+
+    totalXPMSG.innerHTML = `
+        <p>Your Club's Total XP</p> 
+        <p class="mb-4"><span class='text-white font-light'>${currentXPMin} - ${currentXPMax}</span></p>
+        <p>XP required <span class="text-white">(Level ${currentLvlInput} -> ${targetLvlInput})</span></p> 
+        <p class="mb-4"><span class='text-white font-light'>${xpToTarget}</span></p>
+        <p>Rewards Gained</p> 
+        <p class="mb-1"><span class='text-white font-light'>${rewardsList}</span></p>
+    `
 }
