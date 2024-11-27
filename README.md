@@ -3,6 +3,8 @@ This is a web app hosted for an online Eatventure calculator. Hosted in https://
 ## Installation:
 
 Locally download the files (or files.zip) and open the HTML file to use this calculator in case of the server going down.
+The dist/ folder contains the same stuff but the javascript is bundled and minimized for faster load.
+
 
 <br>
 
