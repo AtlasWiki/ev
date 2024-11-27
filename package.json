@@ -3,12 +3,17 @@
   "version": "1.0.0",
   "description": "This is a web app hosted for an online Eatventure calculator. Hosted in https://ev-calc-nu.vercel.app/",
   "devDependencies": {
-    "vite": "^6.0.0"
+    "archiver": "^7.0.1",
+    "vite": "^5.4.11",
+    "vite-plugin-singlefile": "^2.0.3"
   },
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "serve": "vite preview"
+    "build": "vite build && vite build --config vite.config.inline.js && node node-scripts/zip.js && node node-scripts/vanillizeFiles.js",
+    "serve": "vite preview",
+    "build:inline": "vite build --config vite.config.inline.js && node node-scripts/zip.js",
+    "vanilla": "node node-scripts/vanillizeFiles.js",
+    "build:reg": "vite build"
   },
   "author": "",
   "license": "ISC",
