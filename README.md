@@ -11,7 +11,7 @@ A web app hosted for an online **Eatventure Calculator**.
 
 1. **Download** the `standalone.zip` file.  
 2. **Extract** the files.  
-3. Open the `ev-calc.html` file in your browser and enjoy! 🎉  
+3. Open the `ev-calc.html` file and enjoy! 🎉  
    - Everything is in one HTML file and minimized for speed and efficiency
 ---
 
@@ -19,7 +19,7 @@ A web app hosted for an online **Eatventure Calculator**.
 
 1. **Download** the `raw.zip` file.  
 2. **Extract** the files.  
-3. Open the `ev-calc.html` file in your browser and enjoy!  
+3. Open the `ev-calc.html` file and enjoy!  
    - All JavaScript files are **not bundled** and **not minimized**, allowing you to explore and learn.
 
 ---
