@@ -1,5 +1,5 @@
 // need more pets
-const petBonuses = {
+export const petBonuses = {
     panda: 1100,
     turtle: 800,
     red_panda: 1700, // need to add 20% divinity
@@ -8,7 +8,7 @@ const petBonuses = {
 };
 
 // Tab names and IDs
-const tabs = {
+export const tabs = {
     "AWvSolo": "aw-vs-solo",
     "Profit": "profit-calculator",
     "Boxes": "boxes",
@@ -17,7 +17,7 @@ const tabs = {
 } 
 
 // Section tag names and IDs
-const sections = {
+export const sections = {
     "xpTable": "xpTable",
     "club": "club-desc",
     "awvsolo": "awvsolo-desc",
@@ -26,14 +26,14 @@ const sections = {
 }
 
 // SectionPlaceholders. tag names and IDs. used for matching with the placeholder divs
-const sectionPlaceholder = {
+export const sectionPlaceholder = {
     "club": "clubSection",
     "profit" : "profitSection",
     "awvsolo": "awvsoloSection"
 }
 
 // IDs (belongs to section ids) and text
-const descriptions = {
+export const descriptions = {
     "profit-desc": `This is a calculator for calculating how much profit multiplier you would get in each dish.
                     For example, a worker selling a $90 dish would profit $720k if the multipliers times the dish by 8000x.
                     Keep in mind this calculator is not completely accurate and it can be a little off (further research is needed).
@@ -57,7 +57,7 @@ const descriptions = {
                 
 };
 
-const clubLvls = {
+export const clubLvls = {
     lvl1: { xp: 0, totalXP: 0, reward: "N/A" },
     lvl2: { xp: 150, totalXP: 150, reward: "2 Small Boxes" },
     lvl3: { xp: 200, totalXP: 350, reward: "1.05x Multiplier" },
@@ -110,15 +110,15 @@ const clubLvls = {
     lvl50: { xp: 8200, totalXP: 241950, reward: "8 Club Boxes" }
 };
 
-let totalGems = 0;
-let totalPetfood = 0;
-let smallBoxes = 0;
-let bigBoxes = 0;
-let clubBoxes = 0;
-let epicEggs = 0;
-let totalMultiplier = 0;
+export let totalGems = 0;
+export let totalPetfood = 0;
+export let smallBoxes = 0;
+export let bigBoxes = 0;
+export let clubBoxes = 0;
+export let epicEggs = 0;
+export let totalMultiplier = 0;
 
-const regex_patterns = {
+export const regex_patterns = {
     gems: /(\d+(?:\.\d+)?k?)\s*Gems/i,
     petFood: /(\d+(?:\.\d+)?k?)\s*Petfood/i,
     other: /(\d+)?\s*(Small|Big|Club)\s*Boxes|(\d+)?\s*Epic\s*Egg/i,

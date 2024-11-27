@@ -1,4 +1,4 @@
-function showCurrentTab(tabname){
+export function showCurrentTab(tabname){
     const currTab = document.getElementById(tabs[tabname]);
     if (currTab.style.display === "block"){
         currTab.style.display = "none"
@@ -15,7 +15,7 @@ function showCurrentTab(tabname){
     })
 }
 
-function showCurrentSection(sectionname){
+export function showCurrentSection(sectionname){
     const section = document.getElementById(sections[sectionname]);
     const chevronIcon = document.getElementById(`${sectionname}ChevronIcon`);
     
@@ -27,7 +27,7 @@ function showCurrentSection(sectionname){
     }
 }
 
-function createGap(id, button) {
+export function createGap(id, button) {
     const section = document.getElementById(id);
     if (section.classList.contains("hidden")){
         button.classList.replace('mt-10', 'mt-2');

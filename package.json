@@ -2,16 +2,24 @@
   "name": "ev",
   "version": "1.0.0",
   "description": "This is a web app hosted for an online Eatventure calculator. Hosted in https://ev-calc-nu.vercel.app/",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:css": "npx tailwindcss -i ./css/tailwind-input.css -o ./css/backup.css",
-    "watch:css": "npx tailwindcss -i ./css/tailwind-input.css -o ./css/tailwind.css --watch"
+    "watch:css": "npx tailwindcss -i ./css/tailwind-input.css -o ./css/tailwind.css --watch",
+    "bundle:js": "npx esbuild js/*.js --bundle --outdir=dist/bundle.js",
+    "bundle:js:one": "npx esbuild js/main.js --bundle --outfile=dist/bundle.js",
+    "build": "vite build",
+    "pbuild": "parcel build index.html"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "tailwindcss": "^3.4.15"
+  },
+  "devDependencies": {
+    "esbuild": "^0.24.0",
+    "svgo": "^3.3.2",
+    "vite": "^6.0.0"
   }
 }
