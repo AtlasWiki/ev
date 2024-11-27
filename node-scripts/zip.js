@@ -2,28 +2,43 @@ const fs = require('fs');
 const path = require('path');
 const archiver = require('archiver');
 
-const outputPath = path.join(__dirname, '../standalone.zip');
-
-// Ensure the output file or directory does not exist before creating the zip
-if (fs.existsSync(outputPath)) {
-  if (fs.lstatSync(outputPath).isDirectory()) {
-    fs.rmSync(outputPath, { recursive: true, force: true });  // Use fs.rm() for removal
-  } else {
-    fs.unlinkSync(outputPath);  // Remove file if it's a file
+// Function to create a zip file
+function createZip(outputPath, sourceDir) {
+  // Ensure the output file or directory does not exist before creating the zip
+  if (fs.existsSync(outputPath)) {
+    if (fs.lstatSync(outputPath).isDirectory()) {
+      fs.rmSync(outputPath, { recursive: true, force: true }); // Use fs.rm() for removal
+    } else {
+      fs.unlinkSync(outputPath); // Remove file if it's a file
+    }
   }
+
+  const output = fs.createWriteStream(outputPath);
+  const archive = archiver('zip', { zlib: { level: 9 } });
+
+  output.on('close', function () {
+    console.log(`Zipped ${archive.pointer()} total bytes to ${path.basename(outputPath)}`);
+  });
+
+  archive.on('error', function (err) {
+    throw err;
+  });
+
+  archive.pipe(output);
+  archive.directory(sourceDir, false); // Add sourceDir content to the zip
+  archive.finalize();
 }
 
-const output = fs.createWriteStream(outputPath);
-const archive = archiver('zip', { zlib: { level: 9 } });
+// Paths for standalone.zip
+const standaloneOutputPath = path.join(__dirname, '../standalone.zip');
+const standaloneSourceDir = path.join(__dirname, '../bundled-inline/'); // Update to 'bundled'
 
-output.on('close', function () {
-  console.log(`Zipped ${archive.pointer()} total bytes`);
-});
+// Paths for raw.zip
+const rawOutputPath = path.join(__dirname, '../raw.zip');
+const rawSourceDir = path.join(__dirname, '../vanilla/'); // Ensure this directory is correctly populated
 
-archive.on('error', function (err) {
-  throw err;
-});
+// Create standalone.zip
+createZip(standaloneOutputPath, standaloneSourceDir);
 
-archive.pipe(output);
-archive.directory(path.join(__dirname, '../bundled-inline/'), false);  // Update to 'bundled'
-archive.finalize();
+// Create raw.zip
+createZip(rawOutputPath, rawSourceDir);

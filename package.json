@@ -9,7 +9,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "vite build && vite build --config vite.config.inline.js && node node-scripts/zip.js && node node-scripts/vanillizeFiles.js",
+    "build": "vite build && vite build --config vite.config.inline.js && node node-scripts/vanillizeFiles.js && node node-scripts/zip.js",
     "serve": "vite preview",
     "build:inline": "vite build --config vite.config.inline.js && node node-scripts/zip.js",
     "vanilla": "node node-scripts/vanillizeFiles.js",
