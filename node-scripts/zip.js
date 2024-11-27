@@ -25,5 +25,5 @@ archive.on('error', function (err) {
 });
 
 archive.pipe(output);
-archive.directory(path.join(__dirname, '../bundled/'), false);  // Update to 'bundled'
+archive.directory(path.join(__dirname, '../bundled-inline/'), false);  // Update to 'bundled'
 archive.finalize();
