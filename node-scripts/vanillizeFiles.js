@@ -38,7 +38,7 @@ fs.readdirSync(jsSourceDir).forEach((file) => {
 
     // Write processed content to the destination
     fs.writeFileSync(destPath, processedContent, 'utf-8');
-    console.log(`Processed & Copied: ${file}`);
+    console.log(`Processed & Copied to ${jsDestDir}: ${file}`);
   }
 });
 
