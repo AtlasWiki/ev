@@ -208,17 +208,13 @@ export function calculateXPTotal() {
     }
     // const currentLvlXPInput = Number(document.getElementById('current-level-xp').value);
     const totalXPMSG = document.getElementById('totalXP')
-    let currentLvl = clubLvlsArray.find(([lvl]) => lvl === `lvl${currentLvlInput}`);
+    let currentLvl = clubLvlsArray.find(([lvl]) => lvl === `lvl${currentLvlInput + 1}`);
 
     // let currentLvlXP = currentLvl[1].xp - currentLvlXPInput;
     let currentLvlXP = currentLvl[1].xp;
     const currentXPTotal = currentLvl[1].totalXP;
     const currentXPMin = currentXPTotal - currentLvlXP
     let currentXPMax = currentXPTotal - 1
-
-    if (currentLvlInput === 1){
-        currentXPMax = currentXPTotal
-    }
 
     // while (currentLvlXP <= 0) {
     //     // console.log(`Leveled up!`);
