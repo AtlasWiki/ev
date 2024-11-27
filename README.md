@@ -1,22 +1,25 @@
-This is a web app hosted for an online Eatventure calculator. Hosted in https://ev-calc-nu.vercel.app/
+# Eatventure Calculator Web App
 
-## Installation:
+A web app hosted for an online **Eatventure Calculator**.  
+**Hosted at:** [https://ev-calc-nu.vercel.app/](https://ev-calc-nu.vercel.app/)
 
-Locally download the files (or files.zip) and open the HTML file to use this calculator in case of the server going down.
+---
 
-<br>
+## Installation
 
-1.) If you choose to not `git clone` nor download the files individually, you can download the files.zip and unzip it. 
+### For Users
 
+1. **Download** the `standalone.zip` file.  
+2. **Extract** the files.  
+3. Open the `ev-calc.html` file in your browser and enjoy! 🎉  
+   - Everything is in one HTML file and minimized for speed and efficiency
+---
 
-<br>
-<br>
+### For Curious Learners
 
-Clone the repo (SKIP if doing step 1):
+1. **Download** the `raw.zip` file.  
+2. **Extract** the files.  
+3. Open the `ev-calc.html` file in your browser and enjoy!  
+   - All JavaScript files are **not bundled** and **not minimized**, allowing you to explore and learn.
 
-```git clone https://github.com/AtlasWiki/ev.git```
-
-<br>
-
-Open the HTML file and enjoy.
-
+---
