@@ -1,7 +1,25 @@
-const tableBody1 = document.getElementById("table-body-1");
-const tableBody2 = document.getElementById("table-body-2");
+import { clubLvlsArray } from "./utils.js";
+import { sections, sectionPlaceholder, descriptions } from './constants.js';
+import { calculateRewards } from './calculations.js';
 
-function filterEntries() {
+// console.log("Props module loaded");
+// console.log("Imported clubLvlsArray:", clubLvlsArray);
+// console.log("Imported sections:", sections);
+// console.log("Imported sectionPlaceholder:", sectionPlaceholder);
+// console.log("Imported descriptions:", descriptions);
+
+export const tableBody1 = document.getElementById("table-body-1");
+export const tableBody2 = document.getElementById("table-body-2");
+
+// console.log(tableBody1)
+// console.log(tableBody2)
+
+
+export function test2(){
+    alert('test');
+}
+
+export function filterEntries() {
     const selectElement = document.getElementById("clubRewards");
     const query = selectElement.value;
     const minRange = Number(document.getElementById('min-level-input').value);
@@ -18,10 +36,10 @@ function filterEntries() {
       }
       return false;
     });
-  }
+}
 
-// Function to create table rows
-function createRow(level, data) {
+// export function to create table rows
+export function createRow(level, data) {
     const row = document.createElement("tr");
 
     // Add columns
@@ -35,7 +53,7 @@ function createRow(level, data) {
     return row;
 }
 
-function updateTables() {
+export function updateTables() {
     // Clear previous table content
     tableBody1.innerHTML = '';
     tableBody2.innerHTML = '';
@@ -74,7 +92,7 @@ function updateTables() {
   // Initial population of tables on page load
   updateTables();
 
-function displayTableResult(){
+export function displayTableResult(){
     const entryResult = document.getElementById("club-entry-result");
     const {
         totalGems,
@@ -114,13 +132,13 @@ function displayTableResult(){
     `;
 }
 
-function updateLevelRangeValue(elementValueID, inputElement){
+export function updateLevelRangeValue(elementValueID, inputElement){
     const elementValue = document.getElementById(elementValueID);
     const inputValue = inputElement.value;
     elementValue.innerText = inputValue;
 }
 
-function initialLevelRangeValueUpdate(){
+export function initialLevelRangeValueUpdate(){
     const minTextValue = document.getElementById("min-level-range");
     const maxTextValue = document.getElementById("max-level-range");
     const minInput = document.getElementById("min-level-input").value;
@@ -129,7 +147,7 @@ function initialLevelRangeValueUpdate(){
     maxTextValue.innerText = maxInput;
 }
 
-function createDescription(sectionname){
+export function createDescription(sectionname){
     const sectionID = sections[sectionname]
     const sectionPlacement = sectionPlaceholder[sectionname]
     const section = document.getElementById(sectionPlacement);

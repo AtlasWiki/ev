@@ -1,5 +1,6 @@
+import { regex_patterns } from "./constants";
 
-function calculateAWvsSolo() {
+export function calculateAWvsSolo() {
     const awPercent = parseFloat(document.getElementById('awPercent').value);
     const soloPercent = parseFloat(document.getElementById('soloPercent').value);
 
@@ -12,7 +13,7 @@ function calculateAWvsSolo() {
     document.getElementById('aw-solo-result').innerText = `Result: ${formula.toFixed(2)}%`;
 }
 
-function calculateProfit() {
+export function calculateProfit() {
     const apPercent = parseFloat(document.getElementById('apPercent').value);
     const remoteMultiplier = parseFloat(document.getElementById('remoteMultiplier').value);
     const pet = document.getElementById('petSelect').value;
@@ -34,7 +35,7 @@ function calculateProfit() {
     document.getElementById('profit-result').innerText = `Profit Multiplier: ${formula.toFixed(2)}x`;
 }
 
-function levelSearch() {
+export function levelSearch() {
     const clubGoal = Number(document.getElementById("level-search").value);
     const goalResult = document.getElementById("level-result");
 
@@ -53,7 +54,7 @@ function levelSearch() {
 
     const mainLvl = clubLvlsArray.find(([lvl]) => lvl === `lvl${clubGoal}`);
 
-    // Call the reusable function to calculate rewards
+    // Call the reusable export function to calculate rewards
     const {
         totalGems,
         totalPetfood,
@@ -101,14 +102,14 @@ function levelSearch() {
     `;
 }
 
-function calculateRewards(array, clubGoal, rangeConditional) {
-    totalGems = 0;
-    totalPetfood = 0;
-    smallBoxes = 0;
-    bigBoxes = 0;
-    clubBoxes = 0;
-    epicEggs = 0;
-    totalMultiplier = 0;
+export function calculateRewards(array, clubGoal, rangeConditional) {
+    let totalGems = 0;
+    let totalPetfood = 0;
+    let smallBoxes = 0;
+    let bigBoxes = 0;
+    let clubBoxes = 0;
+    let epicEggs = 0;
+    let totalMultiplier = 0;
 
     // Get all previous levels
     const prevLvls = array
@@ -193,7 +194,7 @@ function calculateRewards(array, clubGoal, rangeConditional) {
     };
 }
 
-function calculateXPTotal() {
+export function calculateXPTotal() {
     let currentLvlInput = Number(document.getElementById('current-level').value);
     const targetLvlInput = Number(document.getElementById('target-level').value);
     const currentLvlErrorMSG = document.getElementById("current-level-error");
