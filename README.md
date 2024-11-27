@@ -2,9 +2,11 @@ This is a web app hosted for an online Eatventure calculator. Hosted in https://
 
 ## Installation:
 
-1.) Download ev.zip.
+### For Users
+
+1.) Download standalone.zip.
 
 2.) Extract files
 
-3.) Open the ev.html file and enjoy.
+3.) Open the ev-calc.html file and enjoy.
 
