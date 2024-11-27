@@ -285,6 +285,8 @@ export function calculateXPTotal() {
     totalXPMSG.innerHTML = `
         <p>Your Club's Total XP</p> 
         <p class="mb-5"><span class='text-white font-light'>${currentXPMin} - ${currentXPMax}</span></p>
+        <p>Average XP Per Person Contributed</p> 
+        <p class="mb-5"><span class='text-white font-light'>${currentXPMin / 10} - ${currentXPMax / 10}</span></p>
         <p>XP required <span class="text-white">(Level ${currentLvlInput} -> ${targetLvlInput})</span></p>
         <p class="mb-5"><span class='text-white font-light'>${xpToTarget}</span></p>
         <p>Average XP Per Person Required <span class="text-white">(Level ${currentLvlInput} -> ${targetLvlInput})</span></p>
