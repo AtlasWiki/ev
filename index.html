@@ -51,7 +51,7 @@
         <div class="md:flex gap-2">
             <button onclick="showCurrentTab('AWvSolo');createDescription('awvsolo')" class="bg-[#00b3b3] hover:bg-[#008080] text-white py-2 px-4 rounded mr-2 mb-2 md:mb-0">AW vs Solo</button>
             <button onclick="showCurrentTab('Profit');createDescription('profit')" class="bg-[#00b3b3] hover:bg-[#008080] text-white py-2 px-4 rounded mr-2 mb-2 md:mb-0">Profit</button>
-            <button onclick="showCurrentTab('Boxes');" class="bg-[#00b3b3] hover:bg-[#008080] text-white py-2 px-4 rounded mr-2 mb-2 md:mb-0">Boxes</button>
+            <!-- <button onclick="showCurrentTab('Boxes');" class="bg-[#00b3b3] hover:bg-[#008080] text-white py-2 px-4 rounded mr-2 mb-2 md:mb-0">Boxes</button> -->
             <button onclick="showCurrentTab('ClubRewards');createDescription('club')" class="bg-[#00b3b3] hover:bg-[#008080] text-white py-2 px-4 rounded mr-2 mb-2 md:mb-0">Club Rewards</button>
             <button onclick="showCurrentTab('Changelog');createLog();" class="bg-[#00b3b3] hover:bg-[#008080] text-white py-2 px-4 rounded mr-2 mb-2 md:mb-0">Changelog</button>
             <a href="https://github.com/AtlasWiki/ev">
@@ -90,33 +90,64 @@
         <label for="remoteMultiplier" class="block font-semibold">Remote + Club Multiplier (x):</label>
         <input type="number" id="remoteMultiplier" placeholder="Enter Remote Multiplier" class="mt-2 w-full p-2 rounded bg-custom-input text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2" />
 
-        <label for="petSelect" class="block font-semibold">Choose Delivery Pet:</label>
-        <select id="petSelect" class="mt-2 w-full p-2 rounded bg-custom-input text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2">
-            <option value=""></option>
+        <label for="petSelect1" class="block font-semibold">Choose Pet 1:</label>
+        
+
+        <!-- <fieldset>
+            <legend>Select a pet:</legend>
+            <button class="cursor border-none" onclick="">
+                <img class="opacity-70 hover:opacity-100" src="./public/panda.png" alt="Panda image" />
+            </button>
+        </fieldset> -->
+          
+
+
+        <select id="petSelect1" class="mt-2 w-full p-2 rounded bg-custom-input text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2">
+            <option value="none"></option>
             <option value="panda">Panda</option>
             <option value="turtle">Turtle</option>
             <option value="red_panda">Red Panda</option>
             <option value="pony">Pony</option>
             <option value="penguin">Penguin</option>
+            <option value="dark_horse">Dark Horse</option>
+            <option value="tortoise">Tortoise</option>
+            <option value="mole">Mole</option>
+            <option value="vroomba">Vroomba</option>
+            <option value="baby_kraker">Baby Kraker</option>
         </select>
 
-        <label for="perfect" class="block font-semibold">Perfect [yes/no]:</label>
-        <select id="perfect" class="mt-2 w-full p-2 rounded bg-custom-input text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2">
-            <option value=""></option>
-            <option value="yes">yes</option>
-            <option value="no">no</option>
+        <label for="petSelect2" class="block font-semibold">Choose Pet 2:</label>
+        <select id="petSelect2" class="mt-2 w-full p-2 rounded bg-custom-input text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2">
+            <option value="none"></option>
+            <option value="panda">Panda</option>
+            <option value="turtle">Turtle</option>
+            <option value="red_panda">Red Panda</option>
+            <option value="pony">Pony</option>
+            <option value="penguin">Penguin</option>
+            <option value="dark_horse">Dark Horse</option>
+            <option value="tortoise">Tortoise</option>
+            <option value="mole">Mole</option>
+            <option value="vroomba">Vroomba</option>
+            <option value="baby_kraker">Baby Kraker</option>
         </select>
 
-        <label for="divinity" class="block font-semibold">Divinity [yes/no]:</label>
+        <label for="dish" class="block font-semibold">[Perfect/Divine] :</label>
+        <select id="dish" class="mt-2 w-full p-2 rounded bg-custom-input text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2">
+            <option value="none"></option>
+            <option value="perfect">Perfect</option>
+            <option value="divine">Divine</option>
+        </select>
+
+        <!-- <label for="divinity" class="block font-semibold">Divinity [yes/no]:</label>
         <select id="divinity" class="mt-2 w-full p-2 rounded bg-custom-input text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2">
             <option value=""></option>
             <option value="yes">yes</option>
             <option value="no">no</option>
-        </select>
+        </select> -->
 
         <label for="2x" class="block font-semibold">2x permanent [yes/no]:</label>
         <select id="2x" class="mt-2 w-full p-2 rounded bg-custom-input text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2">
-            <option value=""></option>
+            <option value="none"></option>
             <option value="yes">yes</option>
             <option value="no">no</option>
         </select>

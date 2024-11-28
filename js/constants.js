@@ -1,11 +1,28 @@
-// need more pets
-export const petBonuses = {
+// pet multiplier percentages that affect profits times by 100 (divided by 100 later in the formula)
+export const petProfitBonuses = {
     panda: 1100,
     turtle: 800,
-    red_panda: 1700, // need to add 20% divinity
+    red_panda: 1700,
     pony: 800,
     penguin: 800,
+    dark_horse: 100,
+    tortoise: 100,
+    mole: 1600,
+    vroomba: 100,
+    baby_kraker: 1600,
+    none: 100,
 };
+
+// pet multiplier percentages that affect dishes like perfect and divinity
+export const petPerfectDishBonuses = {
+    tortoise: 200,
+    dark_horse: 200
+}
+
+export const petDivineDishBonuses = {
+    baby_kraker: 40,
+    red_panda: 20,
+}
 
 // Tab names and IDs
 export const tabs = {
@@ -41,7 +58,7 @@ export const descriptions = {
                     For club multipliers, please put that as your remote to include it in a more accurate measurement.`,
 
     "awvsolo-desc":`This is a calculator for calculating percentages from all workers and solo workers.
-                    When combining all workers and solo workers, the percentages are multiplicative rather than addictive.
+                    When combining all workers and solo workers, the percentages are multiplicative rather than additive.
                     This research can be found in this 
                     <a class="text-blue-400 underline hover:no-underline" href="https://www.reddit.com/r/eatventureofficial/comments/14kq5xa/demonstration_that_personal_and_all_worker/">reddit post</a>.
                     Be sure to join the discord community for more guides, theories, and proven research.`,
