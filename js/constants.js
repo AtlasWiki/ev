@@ -53,8 +53,8 @@ export const sectionPlaceholder = {
 export const descriptions = {
     "profit-desc": `This is a calculator for calculating how much profit multiplier you would get in each dish.
                     For example, a worker selling a $90 dish would profit $720k if the multipliers times the dish by 8000x.
-                    Keep in mind this calculator is not completely accurate and it can be a little off (further research is needed).
-                    However, it gives an idea of your possible profit multiplier. 
+                    Keep in mind this calculator is not completely accurate and it can be a little off as there are game rounding mechanisms involved.
+                    However, it gives a very close idea of your possible profit multiplier. 
                     For club multipliers, please put that as your remote to include it in a more accurate measurement.`,
 
     "awvsolo-desc":`This is a calculator for calculating percentages from all workers and solo workers.
