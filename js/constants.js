@@ -30,7 +30,8 @@ export const tabs = {
     "Profit": "profit-calculator",
     "Boxes": "boxes",
     "ClubRewards": "club-rewards",
-    "Changelog": "changelog"
+    "Changelog": "changelog",
+    "Blueprint": "blueprint"
 } 
 
 // Section tag names and IDs
@@ -139,4 +140,164 @@ export const regex_patterns = {
     gems: /(\d+(?:\.\d+)?k?)\s*Gems/i,
     petFood: /(\d+(?:\.\d+)?k?)\s*Petfood/i,
     other: /(\d+)?\s*(Small|Big|Club)\s*Boxes|(\d+)?\s*Epic\s*Egg/i,
+}
+
+export const ultimate_items = {
+    royal_crown: {
+        children: [
+            { elder_beard: { type: "legendary_items", quantity: 1 } },
+            { mafia_hat: { type: "epic_items", quantity: 2 } },
+            { white_hat: { type: "rare_items", quantity: 3 } }
+        ],
+    },
+    royal_robe: {
+        
+        children: [
+            { kimono_black_belt: { type: "legendary_items", quantity: 1 } },
+            { robe: { type: "epic_items", quantity: 2 } },
+            { tux: { type: "rare_items", quantity: 3 } }
+        ],
+    },
+    royal_sceptre: {
+        children: [
+            { pepper_mill: { type: "legendary_items", quantity: 1 } },
+            { mug: { type: "epic_items", quantity: 2 } },
+            { scooper: { type: "rare_items", quantity: 3 } }
+        ],
+    },
+    torch_helmet: {
+        children: [
+            { irish_hat: { type: "legendary_items", quantity: 1 } },
+            { red_glasses: { type: "epic_items", quantity: 2 } },
+            { fireman_hat: { type: "rare_items", quantity: 3 } }
+        ],
+    },
+    tool_belt: {
+        children: [
+            { tank_top: { type: "legendary_items", quantity: 1 } },
+            { black_sweater: { type: "epic_items", quantity: 2 } },
+            { blue_hoodie: { type: "rare_items", quantity: 3 } }
+        ],
+    },
+    pickaxe: {
+        children: [
+            { chopsticks: { type: "legendary_items", quantity: 1 } },
+            { rolling_pin: { type: "epic_items", quantity: 2 } },
+            { ketchup: { type: "rare_items", quantity: 3 } }
+        ],
+    },
+    robot_head: {
+        children: [
+            { purple_cap: { type: "legendary_items", quantity: 1 } },
+            { hood: { type: "epic_items", quantity: 2 } },
+            { sushi_hat: { type: "rare_items", quantity: 3 } }
+        ],
+    },
+    robot_suit: {
+        children: [
+            { italian_chef: { type: "legendary_items", quantity: 1 } },
+            { purple_apron: { type: "epic_items", quantity: 2 } },
+            { yellow_hoodie: { type: "rare_items", quantity: 3 } }
+        ],
+    },
+    laser_gun: {
+        children: [
+            { mixer: { type: "legendary_items", quantity: 1 } },
+            { whisk: { type: "epic_items", quantity: 2 } },
+            { cheese_grater: { type: "rare_items", quantity: 3 } }
+        ],
+    },
+    shark_head: {
+        children: [
+            { tall_black_hat: { type: "legendary_items", quantity: 1 } },
+            { black_chefs_hat: { type: "epic_items", quantity: 2 } },
+            { cool_cap: { type: "rare_items", quantity: 3 } }
+        ],
+    },
+    shark_body: {
+        children: [
+            { black_apron: { type: "legendary_items", quantity: 1 } },
+            { kimono_white_belt: { type: "epic_items", quantity: 2 } },
+            { bowtie: { type: "rare_items", quantity: 3 } }
+        ],
+    },
+    anchor: {
+        children: [
+            { cook_book: { type: "legendary_items", quantity: 1 } },
+            { pizza_cutter: { type: "epic_items", quantity: 2 } },
+            { pasta_spoon: { type: "rare_items", quantity: 3 } }
+        ],
+    },
+};
+
+export const legendary_items = {
+    elder_beard: {
+        children: [{}]
+    },
+    scooper: {
+        children: [{}]
+    },
+    kimono_black_belt: {
+        children: [{}]
+    },
+    pepper_mill: {
+        children: [{}]
+    },
+    irish_hat: {
+        children: [{}]
+    },
+    tank_top: {
+        children: [{}]
+    },
+    chopsticks: {
+        children: [{}]
+    },
+    purple_cap: {
+        children: [{}]
+    },
+    italian_chef: {
+        children: [{}]
+    },
+    mixer: {
+        children: [{}]
+    },
+    tall_black_hat: {
+        children: [{}]
+    },
+    black_apron: {
+        children: [{}]
+    },
+    cook_book: {
+        children: [{}]
+    },
+};
+
+export const epic_items = {
+    mafia_hat: {ingredients: [{}]},
+    robe: {ingredients: [{}]},
+    mug: {ingredients: [{}]},
+    red_glasses: {ingredients: [{}]},
+    black_sweater: {ingredients: [{}]},
+    rolling_pin: {ingredients: [{}]},
+    hood: {ingredients: [{}]},
+    purple_apron: {ingredients: [{}]},
+    whisk: {ingredients: [{}]},
+    black_chefs_hat: {ingredients: [{}]},
+    kimono_white_belt: {ingredients: [{}]},
+    pizza_cutter: {ingredients: [{}]},
+}
+
+export const rare_items = {
+    white_hat: {ingredients: [{}]},
+    tux: {ingredients: [{}]},
+    scooper: {ingredients: [{}]},
+    fireman_hat: {ingredients: [{}]},
+    blue_hoodie: {ingredients: [{}]},
+    ketchup: {ingredients: [{}]},
+    sushi_hat: {ingredients: [{}]},
+    yellow_hoodie: {ingredients: [{}]},
+    cheese_grater: {ingredients: [{}]},
+    cool_cap: {ingredients: [{}]},
+    bowtie: {ingredients: [{}]},
+    pasta_spoon: {ingredients: [{}]},
 }
