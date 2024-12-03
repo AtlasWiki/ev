@@ -173,48 +173,6 @@ export function createDescription(sectionname){
     `
 }
 
-// export function createBlueprint(type) {
-//     const blueprints = document.getElementById("blueprint-grid");
-//     const blueprintType = type + "_items";
-//     const items = window[blueprintType];
-
-
-//     // Map over items and create HTML
-//     const item_mapper = Object.entries(items).map(([item, data]) => {
-//         // Map over ingredients
-//         const ingredientsMapper = data.children.flatMap((ingredient) => {
-//             const [[key, { type, quantity }]] = Object.entries(ingredient); // Destructure key, type, quantity
-//             // const itemData = window[type]?.[key];
-
-//             // Repeat the ingredient HTML based on its quantity
-//             return Array.from({ length: quantity }, () => `
-//                 <div class="relative flex flex-col items-center">
-//                     <img src="${"./" + key + '.png'}" alt="${key}" class="rounded shadow-lg" draggable="false" loading="lazy">
-//                 </div>
-//             `);
-//         });
-
-//         // Return the full blueprint HTML
-//         return `
-//         <div class="flex flex-col items-center space-y-4">
-//             <div class="relative flex flex-col items-center">
-//                 <img src="${"./" + item + '.png'}" alt="${item}" class="rounded shadow-lg" draggable="false" loading="lazy">
-//             </div>
-
-//             <!-- Connector Line -->
-//             <div class="w-0.5 h-10 bg-gray-400"></div>
-
-//             <!-- Ingredients (Bottom Items) -->
-//             <div class="grid grid-cols-3 gap-4">
-//                 ${ingredientsMapper.join("")}
-//             </div>
-//         </div>`;
-//     });
-
-//     // Append the mapped blueprints to the DOM
-//     blueprints.innerHTML = item_mapper.join("");
-// }
-
 let currentPage = 1; // Start on the first page
 const itemsPerPage = 6; // Number of items to display per page
 let prevItems = ""
@@ -235,14 +193,13 @@ export function createBlueprint(type) {
 
     if (type != prevItems){
         currentPage = 1;
-        console.log(type + ' from createBlueprint()')
-        console.log('switched to ' + currentPage)
     }
 
     const itemBtn = document.getElementById(itemBtns[type]);
 
     if (!itemBtn.classList.contains('text-purple-500')) {
         itemBtn.classList.add('text-purple-500');
+        itemBtn.classList.add("border-purple-500");
     }
 
     const filteredBtns = Object.entries(itemBtns).filter(([key]) => key !== type);
@@ -251,6 +208,7 @@ export function createBlueprint(type) {
         // Access the value, which is the second element of the entry
         const btnElement = document.getElementById(value);
         btnElement.classList.remove('text-purple-500')
+        btnElement.classList.remove("border-purple-500");
     });
 
     // Get the entries of the items and slice them for the current page
@@ -321,31 +279,53 @@ export function createPagination(type, totalPages) {
     );
     prevButton.disabled = currentPage === 1; // Disable if on first page
     prevButton.addEventListener("click", (event) => {
-        event.preventDefault()
+        event.preventDefault();
         if (currentPage > 1) {
             currentPage--;
             createBlueprint(type); // Refresh blueprint content with current type
+            createPagination(type, totalPages); // Recreate pagination
         }
     });
-    if (currentPage != 1) {
+    if (currentPage !== 1) {
         paginationContainer.appendChild(prevButton);
     }
 
-    // Create page number button (always display current page)
-    const pageButton = document.createElement("button");
-    pageButton.textContent = currentPage;
-    pageButton.classList.add(
-        "px-4", 
-        "py-2", 
-        "border", 
-        "border-gray-300", 
-        "hover:opacity-80", 
-        "rounded", 
-        "focus:outline-none", 
-        "focus:ring-2", 
-        "focus:ring-blue-500"
-    );
-    paginationContainer.appendChild(pageButton);
+    // Create page number buttons
+    for (let i = 1; i <= totalPages; i++) {
+        const pageButton = document.createElement("button");
+        pageButton.textContent = i;
+        pageButton.classList.add(
+            "px-4", 
+            "py-2", 
+            "border", 
+            "border-gray-300", 
+            "hover:opacity-80", 
+            "rounded", 
+            "focus:outline-none", 
+            "focus:ring-2", 
+            "focus:ring-blue-500"
+        );
+
+        // Highlight the current page button
+        if (i === currentPage) {
+            pageButton.classList.add("text-purple-500");
+            pageButton.classList.add("border-purple-500");
+        }
+
+        // Add click event to each page button
+        pageButton.addEventListener("click", (event) => {
+            event.preventDefault();
+
+            // Update current page
+            currentPage = i;
+
+            // Refresh blueprint and pagination
+            createBlueprint(type);
+            createPagination(type, totalPages);
+        });
+
+        paginationContainer.appendChild(pageButton);
+    }
 
     // Create Next button
     const nextButton = document.createElement("button");
@@ -363,16 +343,18 @@ export function createPagination(type, totalPages) {
     );
     nextButton.disabled = currentPage === totalPages; // Disable if on last page
     nextButton.addEventListener("click", (event) => {
-        event.preventDefault()
+        event.preventDefault();
         if (currentPage < totalPages) {
             currentPage++;
             createBlueprint(type); // Refresh blueprint content with current type
+            createPagination(type, totalPages); // Recreate pagination
         }
     });
     if (currentPage < totalPages) {
         paginationContainer.appendChild(nextButton);
     }
 }
+
 
 
 
