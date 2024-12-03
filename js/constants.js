@@ -228,6 +228,62 @@ export const ultimate_items = {
             { pasta_spoon: { type: "rare_items", quantity: 3 } }
         ],
     },
+    ring_of_evil: {
+        children: [
+            { snake_ring: { type: "legendary_items", quantity: 1 } },
+            { wreath_ring: { type: "epic_items", quantity: 2 } },
+            { silver_ring: { type: "rare_items", quantity: 3 } }
+        ],
+    },
+    ring_of_love: {
+        children: [
+            { winged_ring: { type: "legendary_items", quantity: 1 } },
+            { donut_ring: { type: "epic_items", quantity: 2 } },
+            { candy_ring: { type: "rare_items", quantity: 3 } }
+        ],
+    },
+    ring_of_nature: {
+        children: [
+            { bee_ring: { type: "legendary_items", quantity: 1 } },
+            { bagel_ring: { type: "epic_items", quantity: 2 } },
+            { onion_ring: { type: "rare_items", quantity: 3 } }
+        ],
+    },
+    ring_of_seas: {
+        children: [
+            { lucky_ring: { type: "legendary_items", quantity: 1 } },
+            { gold_ring: { type: "epic_items", quantity: 2 } },
+            { plastic_ring: { type: "rare_items", quantity: 3 } }
+        ],
+    },
+    anchor_necklace: {
+        children: [
+            { shark_tooth: { type: "legendary_items", quantity: 1 } },
+            { pearls: { type: "epic_items", quantity: 2 } },
+            { shellfish: { type: "rare_items", quantity: 3 } }
+        ],
+    },
+    nazar: {
+        children: [
+            { beads: { type: "legendary_items", quantity: 1 } },
+            { diamond_chain: { type: "epic_items", quantity: 2 } },
+            { leather: { type: "rare_items", quantity: 3 } }
+        ],
+    },
+    pirate_skull: {
+        children: [
+            { compass: { type: "legendary_items", quantity: 1 } },
+            { gold_chain: { type: "epic_items", quantity: 2 } },
+            { bandana: { type: "rare_items", quantity: 3 } }
+        ],
+    },
+    treasure_key: {
+        children: [
+            { sausages: { type: "legendary_items", quantity: 1 } },
+            { dog_collar: { type: "epic_items", quantity: 2 } },
+            { salt_shaker: { type: "rare_items", quantity: 3 } }
+        ],
+    },
 };
 
 export const legendary_items = {
@@ -303,6 +359,54 @@ export const legendary_items = {
             { pasta_spoon: { type: "rare_items", quantity: 3 } }
         ]
     },
+    bee_ring: {
+        children: [
+            { bagel_ring: { type: "epic_items", quantity: 2 } },
+            { onion_ring: { type: "rare_items", quantity: 3 } }
+        ]
+    },
+    lucky_ring: {
+        children: [
+            { gold_ring: { type: "epic_items", quantity: 2 } },
+            { plastic_ring: { type: "rare_items", quantity: 3 } }
+        ]
+    },
+    snake_ring: {
+        children: [
+            { wreath_ring: { type: "epic_items", quantity: 2 } },
+            { silver_ring: { type: "rare_items", quantity: 3 } }
+        ]
+    },
+    winged_ring: {
+        children: [
+            { donut_ring: { type: "epic_items", quantity: 2 } },
+            { candy_ring: { type: "rare_items", quantity: 3 } }
+        ]
+    },
+    beads: {
+        children: [
+            { diamond_chain: { type: "epic_items", quantity: 2 } },
+            { leather: { type: "rare_items", quantity: 3 } }
+        ]
+    },
+    compass: {
+        children: [
+            { gold_chain: { type: "epic_items", quantity: 2 } },
+            { bandana: { type: "rare_items", quantity: 3 } }
+        ]
+    },
+    sausages: {
+        children: [
+            { dog_collar: { type: "epic_items", quantity: 2 } },
+            { salt_shaker: { type: "rare_items", quantity: 3 } }
+        ]
+    },
+    shark_tooth: {
+        children: [
+            { pearls: { type: "epic_items", quantity: 2 } },
+            { shellfish: { type: "rare_items", quantity: 3 } }
+        ]
+    },
 };
 
 export const mythic_items = {
@@ -344,14 +448,6 @@ export const mythic_items = {
             { ring_of_love: { type: "ultimate_items", quantity: 1 } },
             { ring_of_nature: { type: "ultimate_items", quantity: 1 } },
             { ring_of_seas: { type: "ultimate_items", quantity: 1 } },
-        ]
-    },
-    trident:{
-        children: [
-            { anchor_necklace: { type: "ultimate_items", quantity: 1 } },
-            { nazar: { type: "ultimate_items", quantity: 1 } },
-            { pirate_skull: { type: "ultimate_items", quantity: 1 } },
-            { treasure_key: { type: "ultimate_items", quantity: 1 } },
         ]
     },
 }
