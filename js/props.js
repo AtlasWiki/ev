@@ -217,21 +217,32 @@ export function createDescription(sectionname){
 
 let currentPage = 1; // Start on the first page
 const itemsPerPage = 6; // Number of items to display per page
+let prevItems = ""
+
+export function setPrevItems(type){
+    prevItems = type
+    console.log(prevItems + ' from setPrevItems()')
+}
 
 export function createBlueprint(type) {
     const blueprints = document.getElementById("blueprint-grid");
     const items = itemsMap[type]; // Access items based on the type passed
-    
     // const mythicBtn = document.getElementById('mythicBtn');
     // const ultimateBtn = document.getElementById('ultimateBtn');
     // const legendaryBtn = document.getElementById("legendaryBtn");
 
+   
+
+    if (type != prevItems){
+        currentPage = 1;
+        console.log(type + ' from createBlueprint()')
+        console.log('switched to ' + currentPage)
+    }
+
     const itemBtn = document.getElementById(itemBtns[type]);
 
-    if (itemBtn.classList.contains('text-purple-500')){
-        pass
-    } else{
-        itemBtn.classList.add('text-purple-500')
+    if (!itemBtn.classList.contains('text-purple-500')) {
+        itemBtn.classList.add('text-purple-500');
     }
 
     const filteredBtns = Object.entries(itemBtns).filter(([key]) => key !== type);
@@ -239,7 +250,6 @@ export function createBlueprint(type) {
     filteredBtns.forEach(([key, value]) => {
         // Access the value, which is the second element of the entry
         const btnElement = document.getElementById(value);
-        console.log(btnElement)
         btnElement.classList.remove('text-purple-500')
     });
 
@@ -259,7 +269,7 @@ export function createBlueprint(type) {
             return Array.from({ length: quantity }, () => `
                 <div class="relative flex flex-col items-center">
                     <img src="${"./images/" + key + '.png'}" alt="${key}" class="rounded shadow-lg" draggable="false">
-                    <span class="absolute -top-4 text-white font-semibold text-xs px-2 rounded-lg w-full">${key}</span>
+                    <span class="absolute -top-4 font-semibold text-xs px-2 rounded-lg w-full text-gray-400">${key}</span>
                 </div>
             `);
         });
@@ -269,7 +279,7 @@ export function createBlueprint(type) {
         <div class="flex flex-col items-center space-y-4">
             <div class="relative flex flex-col items-center">
                 <img src="${"./images/" + item + '.png'}" alt="${item}" class="rounded shadow-lg" draggable="false">
-                <span class="absolute -top-4 font-semibold text-xs px-2 rounded-lg w-full">${item}</span>
+                <span class="absolute -top-4 font-bold text-xs px-2 rounded-lg w-full text-gray-500">${item}</span>
             </div>
 
             <!-- Connector Line -->

@@ -338,6 +338,22 @@ export const mythic_items = {
             { pickaxe: { type: "ultimate_items", quantity: 1 } },
         ]
     },
+    ring_of_thunder:{
+        children: [
+            { ring_of_evil: { type: "ultimate_items", quantity: 1 } },
+            { ring_of_love: { type: "ultimate_items", quantity: 1 } },
+            { ring_of_nature: { type: "ultimate_items", quantity: 1 } },
+            { ring_of_seas: { type: "ultimate_items", quantity: 1 } },
+        ]
+    },
+    trident:{
+        children: [
+            { anchor_necklace: { type: "ultimate_items", quantity: 1 } },
+            { nazar: { type: "ultimate_items", quantity: 1 } },
+            { pirate_skull: { type: "ultimate_items", quantity: 1 } },
+            { treasure_key: { type: "ultimate_items", quantity: 1 } },
+        ]
+    },
 }
 
 export const epic_items = {
