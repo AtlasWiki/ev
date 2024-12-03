@@ -378,3 +378,9 @@ export const itemsMap = {
     epic: epic_items,
     rare: rare_items,
 };
+
+export const itemBtns = {
+    mythic: "mythicBtn",
+    ultimate: "ultimateBtn",
+    legendary: "legendaryBtn",
+}

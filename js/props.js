@@ -1,5 +1,5 @@
 import { clubLvlsArray } from "./utils.js";
-import { sections, sectionPlaceholder, descriptions, itemsMap} from './constants.js';
+import { sections, sectionPlaceholder, descriptions, itemsMap, itemBtns } from './constants.js';
 import { calculateRewards } from './calculations.js';
 
 
@@ -221,7 +221,27 @@ const itemsPerPage = 6; // Number of items to display per page
 export function createBlueprint(type) {
     const blueprints = document.getElementById("blueprint-grid");
     const items = itemsMap[type]; // Access items based on the type passed
-    console.log(items)
+    
+    // const mythicBtn = document.getElementById('mythicBtn');
+    // const ultimateBtn = document.getElementById('ultimateBtn');
+    // const legendaryBtn = document.getElementById("legendaryBtn");
+
+    const itemBtn = document.getElementById(itemBtns[type]);
+
+    if (itemBtn.classList.contains('text-purple-500')){
+        pass
+    } else{
+        itemBtn.classList.add('text-purple-500')
+    }
+
+    const filteredBtns = Object.entries(itemBtns).filter(([key]) => key !== type);
+
+    filteredBtns.forEach(([key, value]) => {
+        // Access the value, which is the second element of the entry
+        const btnElement = document.getElementById(value);
+        console.log(btnElement)
+        btnElement.classList.remove('text-purple-500')
+    });
 
     // Get the entries of the items and slice them for the current page
     const itemEntries = Object.entries(items);
