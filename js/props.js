@@ -239,7 +239,7 @@ export function createBlueprint(type) {
             return Array.from({ length: quantity }, () => `
                 <div class="relative flex flex-col items-center">
                     <img src="${"./images/" + key + '.png'}" alt="${key}" class="rounded shadow-lg" draggable="false">
-                    <span class="absolute -top-3 bg-slate-500 text-white font-bold text-xs px-2 rounded-lg w-full">${key}</span>
+                    <span class="absolute -top-4 text-white font-semibold text-xs px-2 rounded-lg w-full">${key}</span>
                 </div>
             `);
         });
@@ -249,7 +249,7 @@ export function createBlueprint(type) {
         <div class="flex flex-col items-center space-y-4">
             <div class="relative flex flex-col items-center">
                 <img src="${"./images/" + item + '.png'}" alt="${item}" class="rounded shadow-lg" draggable="false">
-                <span class="absolute -top-3 bg-slate-500 font-bold text-xs px-2 rounded-lg w-full">${item}</span>
+                <span class="absolute -top-4 font-semibold text-xs px-2 rounded-lg w-full">${item}</span>
             </div>
 
             <!-- Connector Line -->
