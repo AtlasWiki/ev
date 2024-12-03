@@ -218,10 +218,10 @@ export function createDescription(sectionname){
 let currentPage = 1; // Start on the first page
 const itemsPerPage = 6; // Number of items to display per page
 
-// Function to create the blueprint grid
 export function createBlueprint(type) {
     const blueprints = document.getElementById("blueprint-grid");
-    const items = itemsMap[type];
+    const items = itemsMap[type]; // Access items based on the type passed
+    console.log(items)
 
     // Get the entries of the items and slice them for the current page
     const itemEntries = Object.entries(items);
@@ -263,13 +263,13 @@ export function createBlueprint(type) {
     // Append the mapped blueprints to the DOM
     blueprints.innerHTML = item_mapper.join("");
 
-    // Add pagination buttons
+    // Add pagination buttons for this type
     const totalPages = Math.ceil(itemEntries.length / itemsPerPage);
-    createPagination(totalPages);
+    createPagination(type, totalPages); // Pass type here
 }
 
 // Function to create the pagination buttons (previous and next)
-function createPagination(totalPages) {
+export function createPagination(type, totalPages) {
     const paginationContainer = document.getElementById("pagination-container");
     paginationContainer.innerHTML = ""; // Clear previous pagination
 
@@ -288,16 +288,17 @@ function createPagination(totalPages) {
         "focus:ring-blue-500"
     );
     prevButton.disabled = currentPage === 1; // Disable if on first page
-    prevButton.addEventListener("click", () => {
+    prevButton.addEventListener("click", (event) => {
+        event.preventDefault()
         if (currentPage > 1) {
             currentPage--;
-            createBlueprint("ultimate"); // Refresh blueprint content
+            createBlueprint(type); // Refresh blueprint content with current type
         }
     });
-    if (currentPage != 1){
+    if (currentPage != 1) {
         paginationContainer.appendChild(prevButton);
     }
-   
+
     // Create page number button (always display current page)
     const pageButton = document.createElement("button");
     pageButton.textContent = currentPage;
@@ -316,7 +317,7 @@ function createPagination(totalPages) {
 
     // Create Next button
     const nextButton = document.createElement("button");
-    nextButton.innerHTML = `<div class="flex justify-center item-center text-center"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="#fff8f8" d="M12.6 12L8 7.4L9.4 6l6 6l-6 6L8 16.6z"/></svg></div>`
+    nextButton.innerHTML = `<div class="flex justify-center item-center text-center"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="#fff8f8" d="M12.6 12L8 7.4L9.4 6l6 6l-6 6L8 16.6z"/></svg></div>`;
     nextButton.classList.add(
         "px-4", 
         "py-2", 
@@ -325,20 +326,21 @@ function createPagination(totalPages) {
         "hover:opacity-80", 
         "rounded", 
         "focus:outline-none", 
-        "focus:ring-2",
-        "focus:ring-blue-500"
+        "focus:ring-2", 
+        "focus:ring-black"
     );
     nextButton.disabled = currentPage === totalPages; // Disable if on last page
-    nextButton.addEventListener("click", () => {
+    nextButton.addEventListener("click", (event) => {
+        event.preventDefault()
         if (currentPage < totalPages) {
             currentPage++;
-            createBlueprint("ultimate"); // Refresh blueprint content
+            createBlueprint(type); // Refresh blueprint content with current type
         }
     });
-    if (currentPage < totalPages){
+    if (currentPage < totalPages) {
         paginationContainer.appendChild(nextButton);
     }
-   
 }
+
 
 

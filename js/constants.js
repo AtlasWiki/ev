@@ -232,45 +232,113 @@ export const ultimate_items = {
 
 export const legendary_items = {
     elder_beard: {
-        children: [{}]
-    },
-    scooper: {
-        children: [{}]
+        children: [
+            { mafia_hat: { type: "epic_items", quantity: 2 } },
+            { white_hat: { type: "rare_items", quantity: 3 } }
+        ],
     },
     kimono_black_belt: {
-        children: [{}]
+        children: [
+            { kimono_white_belt: { type: "epic_items", quantity: 2 } },
+            { bowtie: { type: "rare_items", quantity: 3 } }
+        ],
     },
     pepper_mill: {
-        children: [{}]
+        children: [
+            { rolling_pin: { type: "epic_items", quantity: 2 } },
+            { broom: { type: "rare_items", quantity: 3 } }
+        ],
     },
     irish_hat: {
-        children: [{}]
+        children: [
+            { red_glasses: { type: "epic_items", quantity: 2 } },
+            { fireman_hat: { type: "rare_items", quantity: 3 } }
+        ],
     },
     tank_top: {
-        children: [{}]
+        children: [
+            { black_sweater: { type: "epic_items", quantity: 2 } },
+            { blue_hoodie: { type: "rare_items", quantity: 3 } }
+        ]
     },
     chopsticks: {
-        children: [{}]
+        children: [
+            { pizza_cutter: { type: "epic_items", quantity: 2 } },
+            { ketchup: { type: "rare_items", quantity: 3 } }
+        ]
     },
     purple_cap: {
-        children: [{}]
+        children: [
+            { hood: { type: "epic_items", quantity: 2 } },
+            { cool_cap: { type: "rare_items", quantity: 3 } }
+        ]
     },
     italian_chef: {
-        children: [{}]
+        children: [
+            { robe: { type: "epic_items", quantity: 2 } },
+            { apron: { type: "rare_items", quantity: 3 } }
+        ]
     },
     mixer: {
-        children: [{}]
+        children: [
+            { whisk: { type: "epic_items", quantity: 2 } },
+            { cheese_grater: { type: "rare_items", quantity: 3 } }
+        ]
     },
     tall_black_hat: {
-        children: [{}]
+        children: [
+            { black_chefs_hat: { type: "epic_items", quantity: 2 } },
+            { cone: { type: "rare_items", quantity: 3 } }
+        ]
     },
     black_apron: {
-        children: [{}]
+        children: [
+            { purple_apron: { type: "epic_items", quantity: 2 } },
+            { tux: { type: "rare_items", quantity: 3 } }
+        ]
     },
     cook_book: {
-        children: [{}]
+        children: [
+            { mug: { type: "epic_items", quantity: 2 } },
+            { pasta_spoon: { type: "rare_items", quantity: 3 } }
+        ]
     },
 };
+
+export const mythic_items = {
+    chefs_helmet: {
+        children: [
+            { robot_head: { type: "ultimate_items", quantity: 1 } },
+            { royal_crown: { type: "ultimate_items", quantity: 1 } },
+            { shark_head: { type: "ultimate_items", quantity: 1 } },
+            { torch_helmet: { type: "ultimate_items", quantity: 1 } },
+        ]
+    },
+    armoured_apron: {
+        children: [
+            { robot_suit: { type: "ultimate_items", quantity: 1 } },
+            { royal_robe: { type: "ultimate_items", quantity: 1 } },
+            { shark_body: { type: "ultimate_items", quantity: 1 } },
+            { tool_belt: { type: "ultimate_items", quantity: 1 } },
+        ]
+    },
+    warriors_cleaver: {
+        children: [
+            { laser_gun: { type: "ultimate_items", quantity: 1 } },
+            { royal_sceptre: { type: "ultimate_items", quantity: 1 } },
+            { anchor: { type: "ultimate_items", quantity: 1 } },
+            { pickaxe: { type: "ultimate_items", quantity: 1 } },
+        ]
+    },
+    warriors_tenderiser: {
+        children: [
+            { laser_gun: { type: "ultimate_items", quantity: 1 } },
+            { royal_sceptre: { type: "ultimate_items", quantity: 1 } },
+            { anchor: { type: "ultimate_items", quantity: 1 } },
+            { pickaxe: { type: "ultimate_items", quantity: 1 } },
+        ]
+    },
+}
 
 export const epic_items = {
     mafia_hat: {ingredients: [{}]},
@@ -300,9 +368,11 @@ export const rare_items = {
     cool_cap: {ingredients: [{}]},
     bowtie: {ingredients: [{}]},
     pasta_spoon: {ingredients: [{}]},
+    broom: {ingredients: [{}]},
 }
 
 export const itemsMap = {
+    mythic: mythic_items,
     ultimate: ultimate_items,
     legendary: legendary_items,
     epic: epic_items,
