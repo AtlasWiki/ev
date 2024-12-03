@@ -301,3 +301,10 @@ export const rare_items = {
     bowtie: {ingredients: [{}]},
     pasta_spoon: {ingredients: [{}]},
 }
+
+export const itemsMap = {
+    ultimate: ultimate_items,
+    legendary: legendary_items,
+    epic: epic_items,
+    rare: rare_items,
+};

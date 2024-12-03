@@ -2,18 +2,21 @@ const fs = require('fs');
 const path = require('path');
 
 // Input and output directories
-const jsSourceDir = path.resolve(__dirname, '../js'); // Updated to point to the correct esm-js directory
-const jsDestDir = path.resolve(__dirname, '../vanilla/js'); // Output directory for JS files
-const cssSourceDir = path.resolve(__dirname, '../css'); // CSS folder location
-const cssDestDir = path.resolve(__dirname, '../vanilla/css'); // Output directory for CSS files
-const htmlSourceFile = path.resolve(__dirname, '../vanilla.html'); // HTML file location
-const htmlDestFile = path.resolve(__dirname, '../vanilla/ev-calc.html'); // Output HTML file
+const jsSourceDir = path.resolve(__dirname, '../js');
+const jsDestDir = path.resolve(__dirname, '../vanilla/js');
+const cssSourceDir = path.resolve(__dirname, '../css');
+const cssDestDir = path.resolve(__dirname, '../vanilla/css');
+const htmlSourceFile = path.resolve(__dirname, '../index.html');
+const htmlDestFile = path.resolve(__dirname, '../vanilla/ev-calc.html');
+const imagesSourceDir = path.resolve(__dirname, '../public/images');
+const imagesDestDir = path.resolve(__dirname, '../vanilla/images');
 
 // Ensure output directories exist
 if (!fs.existsSync(jsDestDir)) fs.mkdirSync(jsDestDir, { recursive: true });
 if (!fs.existsSync(cssDestDir)) fs.mkdirSync(cssDestDir, { recursive: true });
+if (!fs.existsSync(imagesDestDir)) fs.mkdirSync(imagesDestDir, { recursive: true });
 
-// Process JavaScript files
+// Function to copy JS files
 fs.readdirSync(jsSourceDir).forEach((file) => {
   if (file.endsWith('.js')) {
     const sourcePath = path.join(jsSourceDir, file);
@@ -42,7 +45,7 @@ fs.readdirSync(jsSourceDir).forEach((file) => {
   }
 });
 
-// Copy CSS folder
+// Function to copy CSS files
 fs.readdirSync(cssSourceDir).forEach((file) => {
   const sourcePath = path.join(cssSourceDir, file);
   const destPath = path.join(cssDestDir, file);
@@ -50,6 +53,52 @@ fs.readdirSync(cssSourceDir).forEach((file) => {
   console.log(`Copied CSS: ${file}`);
 });
 
-// Copy HTML file
-fs.copyFileSync(htmlSourceFile, htmlDestFile);
-console.log(`Copied HTML as: ev-calc.html`);
+// Function to copy only the `images` folder and its contents
+const copyImagesFolder = (srcDir, destDir) => {
+  if (fs.existsSync(srcDir) && fs.statSync(srcDir).isDirectory()) {
+    // Ensure destination exists
+    if (!fs.existsSync(destDir)) fs.mkdirSync(destDir, { recursive: true });
+
+    // Copy contents of the directory
+    fs.readdirSync(srcDir).forEach((file) => {
+      const srcFile = path.join(srcDir, file);
+      const destFile = path.join(destDir, file);
+
+      if (fs.statSync(srcFile).isDirectory()) {
+        // Recursively handle subdirectories
+        copyImagesFolder(srcFile, destFile);
+      } else {
+        // Copy files
+        fs.copyFileSync(srcFile, destFile);
+      }
+    });
+    console.log(`Copied Images Directory: ${srcDir} → ${destDir}`);
+  } else {
+    console.error(`Source images directory does not exist: ${srcDir}`);
+  }
+};
+
+// Perform the images copy
+copyImagesFolder(imagesSourceDir, imagesDestDir);
+
+// Replace the specific script tag in HTML
+const replacementScripts = ` 
+    <script src="./js/constants.js"></script>
+    <script src="./js/utils.js"></script>
+    <script src="./js/tabManager.js"></script>
+    <script src="./js/calculations.js"></script>
+    <script src="./js/props.js"></script>
+    <script src="./js/changelog.js"></script>
+`;
+
+let htmlContent = fs.readFileSync(htmlSourceFile, 'utf-8');
+
+// Replace the specific script tag
+htmlContent = htmlContent.replace(
+  /<script[^>]*src="\.\/js\/main-bundler\.js"[^>]*><\/script>/,
+  replacementScripts
+);
+
+// Write the updated HTML
+fs.writeFileSync(htmlDestFile, htmlContent, 'utf-8');
+console.log(`Copied and updated HTML as: ev-calc.html`);
