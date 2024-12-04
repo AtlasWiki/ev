@@ -31,7 +31,7 @@ export const tabs = {
     "Boxes": "boxes",
     "ClubRewards": "club-rewards",
     "Changelog": "changelog",
-    "Cities": "Cities",,
+    "Cities": "Cities",
     "Blueprint": "blueprint"
 } 
 
