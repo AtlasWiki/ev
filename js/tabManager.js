@@ -47,12 +47,12 @@ clipboardIcon.addEventListener('click', () => {
     .then(() => {
       // Change text and background color for success feedback
       discordTag.style.backgroundColor = 'green';
-      discordTag.firstChild.textContent = "COPIED"; // Change only the text
+      discordTag.childNodes[2].textContent = "COPIED"; // Change only the text
 
       // Reset the style and content after a brief delay
       setTimeout(() => {
         discordTag.style.backgroundColor = 'gray';
-        discordTag.firstChild.textContent = ".mrunoriginal"; // Reset text to original
+        discordTag.childNodes[2].textContent = ".mrunoriginal"; // Reset text to original
       }, 1000);
     })
     .catch((error) => {
