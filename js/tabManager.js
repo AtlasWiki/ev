@@ -35,3 +35,29 @@ export function createGap(id, button) {
         button.classList.replace('mt-2', 'mt-10')
         section.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }   }
+
+const discordTag = document.getElementById('discord-tag');
+const clipboardIcon = document.getElementById('clipboard-icon');
+
+// Function to handle the click event for copying text
+clipboardIcon.addEventListener('click', () => {
+  const textToCopy = discordTag.innerText.trim();  // To remove extra spaces
+
+  navigator.clipboard.writeText(textToCopy)
+    .then(() => {
+      // Change text and background color for success feedback
+      discordTag.style.backgroundColor = 'green';
+      discordTag.firstChild.textContent = "COPIED"; // Change only the text
+
+      // Reset the style and content after a brief delay
+      setTimeout(() => {
+        discordTag.style.backgroundColor = 'gray';
+        discordTag.firstChild.textContent = ".mrunoriginal"; // Reset text to original
+      }, 1000);
+    })
+    .catch((error) => {
+      console.error('Failed to copy text: ', error);
+    });
+});
+
+
