@@ -53,6 +53,7 @@
             <button onclick="showCurrentTab('Profit');createDescription('profit')" class="bg-[#00b3b3] hover:bg-[#008080] text-white py-2 px-4 rounded mr-2 mb-2 md:mb-0">Profit</button>
             <!-- <button onclick="showCurrentTab('Boxes');" class="bg-[#00b3b3] hover:bg-[#008080] text-white py-2 px-4 rounded mr-2 mb-2 md:mb-0">Boxes</button> -->
             <button onclick="showCurrentTab('ClubRewards');createDescription('club')" class="bg-[#00b3b3] hover:bg-[#008080] text-white py-2 px-4 rounded mr-2 mb-2 md:mb-0">Club Rewards</button>
+            <button onclick="showCurrentTab('Blueprint');setPrevItems('ultimate');createBlueprint('ultimate')" class="bg-[#00b3b3] hover:bg-[#008080] text-white py-2 px-4 rounded mr-2 mb-2 md:mb-0">Blueprints</button>
             <button onclick="showCurrentTab('Cities');" class="bg-[#00b3b3] hover:bg-[#008080] text-white py-2 px-4 rounded mr-2 mb-2 md:mb-0">Cities</button>
             <button onclick="showCurrentTab('Changelog');createLog();" class="bg-[#00b3b3] hover:bg-[#008080] text-white py-2 px-4 rounded mr-2 mb-2 md:mb-0">Changelog</button>
             <a href="https://github.com/AtlasWiki/ev">
@@ -60,6 +61,36 @@
             </a>
         </div>
     </div>
+
+    <div class="mb-10 p-5 pb-10 bg-custom-section flex flex-col items-center justify-center gap-10">
+        <h1 class="text-2xl font-semibold">Welcome to the Eatventure Fan Calculator</h1>
+        <img class="rounded-full size-32" src="./images/burger.png">
+        <div class="flex gap-0.5 items-center justify-center">
+            <span id="discord-tag" class="bg-gray-500 text-white text-xs font-semibold px-2 py-1 rounded-md flex items-center space-x-1 gap-0.5 cursor-pointer">
+                .mrunoriginal
+                <svg id="clipboard-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="cursor-pointer">
+                    <path fill="currentColor" d="M8 3.5A1.5 1.5 0 0 1 9.5 2h5A1.5 1.5 0 0 1 16 3.5v1A1.5 1.5 0 0 1 14.5 6h-5A1.5 1.5 0 0 1 8 4.5z"/>
+                    <path fill="currentColor" fill-rule="evenodd" d="M6.5 4.037c-1.258.07-2.052.27-2.621.84C3 5.756 3 7.17 3 9.998v6c0 2.829 0 4.243.879 5.122c.878.878 2.293.878 5.121.878h6c2.828 0 4.243 0 5.121-.878c.879-.88.879-2.293.879-5.122v-6c0-2.828 0-4.242-.879-5.121c-.569-.57-1.363-.77-2.621-.84V4.5a3 3 0 0 1-3 3h-5a3 3 0 0 1-3-3zM6.25 10.5A.75.75 0 0 1 7 9.75h10a.75.75 0 0 1 0 1.5H7a.75.75 0 0 1-.75-.75m1 3.5a.75.75 0 0 1 .75-.75h8a.75.75 0 0 1 0 1.5H8a.75.75 0 0 1-.75-.75m1 3.5a.75.75 0 0 1 .75-.75h6a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75" clip-rule="evenodd"/>
+                </svg>
+            </span>
+            <button class="flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M19.27 5.33C17.94 4.71 16.5 4.26 15 4a.1.1 0 0 0-.07.03c-.18.33-.39.76-.53 1.09a16.1 16.1 0 0 0-4.8 0c-.14-.34-.35-.76-.54-1.09c-.01-.02-.04-.03-.07-.03c-1.5.26-2.93.71-4.27 1.33c-.01 0-.02.01-.03.02c-2.72 4.07-3.47 8.03-3.1 11.95c0 .02.01.04.03.05c1.8 1.32 3.53 2.12 5.24 2.65c.03.01.06 0 .07-.02c.4-.55.76-1.13 1.07-1.74c.02-.04 0-.08-.04-.09c-.57-.22-1.11-.48-1.64-.78c-.04-.02-.04-.08-.01-.11c.11-.08.22-.17.33-.25c.02-.02.05-.02.07-.01c3.44 1.57 7.15 1.57 10.55 0c.02-.01.05-.01.07.01c.11.09.22.17.33.26c.04.03.04.09-.01.11c-.52.31-1.07.56-1.64.78c-.04.01-.05.06-.04.09c.32.61.68 1.19 1.07 1.74c.03.01.06.02.09.01c1.72-.53 3.45-1.33 5.25-2.65c.02-.01.03-.03.03-.05c.44-4.53-.73-8.46-3.1-11.95c-.01-.01-.02-.02-.04-.02M8.52 14.91c-1.03 0-1.89-.95-1.89-2.12s.84-2.12 1.89-2.12c1.06 0 1.9.96 1.89 2.12c0 1.17-.84 2.12-1.89 2.12m6.97 0c-1.03 0-1.89-.95-1.89-2.12s.84-2.12 1.89-2.12c1.06 0 1.9.96 1.89 2.12c0 1.17-.83 2.12-1.89 2.12"/>
+                </svg>
+            </button>
+            <form action="mailto:nathanwong3421@gmail.com" enctype="text/plain" class="flex items-center justify-center">
+                <button class="hover:opacity-80 flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
+                        <g fill="none">
+                            <path d="m12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.018-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z"/>
+                            <path fill="currentColor" d="m2.068 5.482l8.875 8.876a1.5 1.5 0 0 0 2.008.103l.114-.103l8.869-8.87q.043.165.058.337L22 6v12a2 2 0 0 1-1.85 1.995L20 20H4a2 2 0 0 1-1.995-1.85L2 18V6q0-.18.03-.35zM20 4q.182 0 .355.031l.17.039l-8.52 8.52l-8.523-8.522q.166-.045.34-.06L4 4z"/>
+                        </g>
+                    </svg>
+                </button>
+            </form>
+        </div>
+    </div>
+    
 
     <!-- AW vs Solo Section -->
     <div id="aw-vs-solo" class="mb-10 p-5 bg-custom-section rounded-lg shadow-lg hidden">
@@ -91,33 +122,64 @@
         <label for="remoteMultiplier" class="block font-semibold">Remote + Club Multiplier (x):</label>
         <input type="number" id="remoteMultiplier" placeholder="Enter Remote Multiplier" class="mt-2 w-full p-2 rounded bg-custom-input text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2" />
 
-        <label for="petSelect" class="block font-semibold">Choose Delivery Pet:</label>
-        <select id="petSelect" class="mt-2 w-full p-2 rounded bg-custom-input text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2">
-            <option value=""></option>
+        <label for="petSelect1" class="block font-semibold">Choose Pet 1:</label>
+        
+
+        <!-- <fieldset>
+            <legend>Select a pet:</legend>
+            <button class="cursor border-none" onclick="">
+                <img class="opacity-70 hover:opacity-100" src="./public/panda.png" alt="Panda image" />
+            </button>
+        </fieldset> -->
+          
+
+
+        <select id="petSelect1" class="mt-2 w-full p-2 rounded bg-custom-input text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2">
+            <option value="none"></option>
             <option value="panda">Panda</option>
             <option value="turtle">Turtle</option>
             <option value="red_panda">Red Panda</option>
             <option value="pony">Pony</option>
             <option value="penguin">Penguin</option>
+            <option value="dark_horse">Dark Horse</option>
+            <option value="tortoise">Tortoise</option>
+            <option value="mole">Mole</option>
+            <option value="vroomba">Vroomba</option>
+            <option value="baby_kraker">Baby Kraker</option>
         </select>
 
-        <label for="perfect" class="block font-semibold">Perfect [yes/no]:</label>
-        <select id="perfect" class="mt-2 w-full p-2 rounded bg-custom-input text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2">
-            <option value=""></option>
-            <option value="yes">yes</option>
-            <option value="no">no</option>
+        <label for="petSelect2" class="block font-semibold">Choose Pet 2:</label>
+        <select id="petSelect2" class="mt-2 w-full p-2 rounded bg-custom-input text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2">
+            <option value="none"></option>
+            <option value="panda">Panda</option>
+            <option value="turtle">Turtle</option>
+            <option value="red_panda">Red Panda</option>
+            <option value="pony">Pony</option>
+            <option value="penguin">Penguin</option>
+            <option value="dark_horse">Dark Horse</option>
+            <option value="tortoise">Tortoise</option>
+            <option value="mole">Mole</option>
+            <option value="vroomba">Vroomba</option>
+            <option value="baby_kraker">Baby Kraker</option>
         </select>
 
-        <label for="divinity" class="block font-semibold">Divinity [yes/no]:</label>
+        <label for="dish" class="block font-semibold">[Perfect/Divine] :</label>
+        <select id="dish" class="mt-2 w-full p-2 rounded bg-custom-input text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2">
+            <option value="none"></option>
+            <option value="perfect">Perfect</option>
+            <option value="divine">Divine</option>
+        </select>
+
+        <!-- <label for="divinity" class="block font-semibold">Divinity [yes/no]:</label>
         <select id="divinity" class="mt-2 w-full p-2 rounded bg-custom-input text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2">
             <option value=""></option>
             <option value="yes">yes</option>
             <option value="no">no</option>
-        </select>
+        </select> -->
 
         <label for="2x" class="block font-semibold">2x permanent [yes/no]:</label>
         <select id="2x" class="mt-2 w-full p-2 rounded bg-custom-input text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2">
-            <option value=""></option>
+            <option value="none"></option>
             <option value="yes">yes</option>
             <option value="no">no</option>
         </select>
@@ -248,26 +310,36 @@
             </button>
             <div id="totalXP" class="text-[#00b3b3] font-semibold mt-10 mb-5 text-md"></div>
         </section>
-
     </div>
 
-    <!-- Cities-->
-    <div id="Cities" class="mb-10 p-5 bg-custom-section rounded-lg shadow-lg hidden">
-        <h2 class="text-2xl font-semibold text-custom-highlight mb-5">Cities</h2>
+    <!-- <div id="blueprint" class="mb-10 p-5 bg-custom-section rounded-lg shadow-lg hidden w-full overflow-auto">
+        <h2 class="text-2xl font-semibold text-custom-highlight mb-5">
+            Blueprints
+        </h2>
+        <div id="blueprint-grid" class="grid md:grid-cols-3 gap-24 p-4">
+        </div>          
+    </div> -->
+
+    
+    <div id="blueprint" class="mb-10 p-5 bg-custom-section rounded-lg shadow-lg hidden w-full overflow-auto">
+        <h2 class="text-2xl font-semibold text-custom-highlight mb-5">
+            Blueprints
+        </h2>
+        <div class="flex gap-2 mb-10">
+            <button id="legendaryBtn" type="button" class="px-4 py-2 border border-gray-300 hover:opacity-80 rounded focus:outline-none focus:ring-2 focus:ring-black" onclick="createBlueprint('legendary');setPrevItems('legendary')">
+                Legendary
+            </button>
+            <button id="ultimateBtn" type="button" class="px-4 py-2 border border-gray-300 hover:opacity-80 rounded focus:outline-none focus:ring-2 focus:ring-black" onclick="createBlueprint('ultimate');setPrevItems('ultimate')">
+                Ultimate
+            </button>
+            <button id="mythicBtn" class="px-4 py-2 border border-gray-300 hover:opacity-80 rounded focus:outline-none focus:ring-2 focus:ring-black" onclick="createBlueprint('mythic');setPrevItems('mythic')">
+                Mythic
+            </button>
+        </div>
+        <div id="blueprint-grid" class="grid md:grid-cols-3 gap-24 p-4"></div>
         
-        <div id="citiesSection"></div>
-        test
-
-        <!-- <label for="awPercent" class="block font-semibold">AW %:</label>
-        <input type="number" id="awPercent" placeholder="Enter AW %" class="mt-2 bg-custom-input w-full p-2 rounded text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2" />
-
-        <label for="soloPercent" class="block font-semibold">Solo %:</label>
-        <input type="number" id="soloPercent" placeholder="Enter Solo %" class="mt-q bg-custom-input w-full p-2 rounded text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2" />
-
-        <button onclick="calculateAWvsSolo()" class="bg-[#00b3b3] hover:bg-[#008080] text-white py-2 px-4 rounded mt-2">
-            Calculate
-        </button>
-        <div id="aw-solo-result" class="font-semibold text-green-400 mt-5"></div> -->
+        <!-- Pagination -->
+        <div id="pagination-container" class="mt-4 flex justify-center space-x-2"></div>
     </div>
 
     <!-- Changelog section -->
@@ -278,7 +350,7 @@
         <div id="changelog-item" class="font-md"></div>
     </div>
 
-    <script type="module" src="./js/main-bundler.js" defer></script></script>
+    <script type="module" src="./js/main-bundler.js" defer></script>
     <script>
         window.onload = ""
     </script>

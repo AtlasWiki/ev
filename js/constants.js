@@ -1,11 +1,28 @@
-// need more pets
-export const petBonuses = {
+// pet multiplier percentages that affect profits times by 100 (divided by 100 later in the formula)
+export const petProfitBonuses = {
     panda: 1100,
     turtle: 800,
-    red_panda: 1700, // need to add 20% divinity
+    red_panda: 1700,
     pony: 800,
     penguin: 800,
+    dark_horse: 100,
+    tortoise: 100,
+    mole: 1600,
+    vroomba: 100,
+    baby_kraker: 1600,
+    none: 100,
 };
+
+// pet multiplier percentages that affect dishes like perfect and divinity
+export const petPerfectDishBonuses = {
+    tortoise: 200,
+    dark_horse: 200
+}
+
+export const petDivineDishBonuses = {
+    baby_kraker: 40,
+    red_panda: 20,
+}
 
 // Tab names and IDs
 export const tabs = {
@@ -14,7 +31,8 @@ export const tabs = {
     "Boxes": "boxes",
     "ClubRewards": "club-rewards",
     "Changelog": "changelog",
-    "Cities": "Cities",
+    "Cities": "Cities",,
+    "Blueprint": "blueprint"
 } 
 
 // Section tag names and IDs
@@ -39,12 +57,12 @@ export const sectionPlaceholder = {
 export const descriptions = {
     "profit-desc": `This is a calculator for calculating how much profit multiplier you would get in each dish.
                     For example, a worker selling a $90 dish would profit $720k if the multipliers times the dish by 8000x.
-                    Keep in mind this calculator is not completely accurate and it can be a little off (further research is needed).
-                    However, it gives an idea of your possible profit multiplier. 
+                    Keep in mind this calculator is not completely accurate and it can be a little off as there are game rounding mechanisms involved.
+                    However, it gives a very close idea of your possible profit multiplier. 
                     For club multipliers, please put that as your remote to include it in a more accurate measurement.`,
 
     "awvsolo-desc":`This is a calculator for calculating percentages from all workers and solo workers.
-                    When combining all workers and solo workers, the percentages are multiplicative rather than addictive.
+                    When combining all workers and solo workers, the percentages are multiplicative rather than additive.
                     This research can be found in this 
                     <a class="text-blue-400 underline hover:no-underline" href="https://www.reddit.com/r/eatventureofficial/comments/14kq5xa/demonstration_that_personal_and_all_worker/">reddit post</a>.
                     Be sure to join the discord community for more guides, theories, and proven research.`,
@@ -129,4 +147,359 @@ export const regex_patterns = {
     gems: /(\d+(?:\.\d+)?k?)\s*Gems/i,
     petFood: /(\d+(?:\.\d+)?k?)\s*Petfood/i,
     other: /(\d+)?\s*(Small|Big|Club)\s*Boxes|(\d+)?\s*Epic\s*Egg/i,
+}
+
+export const ultimate_items = {
+    royal_crown: {
+        children: [
+            { elder_beard: { type: "legendary_items", quantity: 1 } },
+            { mafia_hat: { type: "epic_items", quantity: 2 } },
+            { white_hat: { type: "rare_items", quantity: 3 } }
+        ],
+    },
+    royal_robe: {
+        
+        children: [
+            { kimono_black_belt: { type: "legendary_items", quantity: 1 } },
+            { robe: { type: "epic_items", quantity: 2 } },
+            { tux: { type: "rare_items", quantity: 3 } }
+        ],
+    },
+    royal_sceptre: {
+        children: [
+            { pepper_mill: { type: "legendary_items", quantity: 1 } },
+            { mug: { type: "epic_items", quantity: 2 } },
+            { scooper: { type: "rare_items", quantity: 3 } }
+        ],
+    },
+    torch_helmet: {
+        children: [
+            { irish_hat: { type: "legendary_items", quantity: 1 } },
+            { red_glasses: { type: "epic_items", quantity: 2 } },
+            { fireman_hat: { type: "rare_items", quantity: 3 } }
+        ],
+    },
+    tool_belt: {
+        children: [
+            { tank_top: { type: "legendary_items", quantity: 1 } },
+            { black_sweater: { type: "epic_items", quantity: 2 } },
+            { blue_hoodie: { type: "rare_items", quantity: 3 } }
+        ],
+    },
+    pickaxe: {
+        children: [
+            { chopsticks: { type: "legendary_items", quantity: 1 } },
+            { rolling_pin: { type: "epic_items", quantity: 2 } },
+            { ketchup: { type: "rare_items", quantity: 3 } }
+        ],
+    },
+    robot_head: {
+        children: [
+            { purple_cap: { type: "legendary_items", quantity: 1 } },
+            { hood: { type: "epic_items", quantity: 2 } },
+            { sushi_hat: { type: "rare_items", quantity: 3 } }
+        ],
+    },
+    robot_suit: {
+        children: [
+            { italian_chef: { type: "legendary_items", quantity: 1 } },
+            { purple_apron: { type: "epic_items", quantity: 2 } },
+            { yellow_hoodie: { type: "rare_items", quantity: 3 } }
+        ],
+    },
+    laser_gun: {
+        children: [
+            { mixer: { type: "legendary_items", quantity: 1 } },
+            { whisk: { type: "epic_items", quantity: 2 } },
+            { cheese_grater: { type: "rare_items", quantity: 3 } }
+        ],
+    },
+    shark_head: {
+        children: [
+            { tall_black_hat: { type: "legendary_items", quantity: 1 } },
+            { black_chefs_hat: { type: "epic_items", quantity: 2 } },
+            { cool_cap: { type: "rare_items", quantity: 3 } }
+        ],
+    },
+    shark_body: {
+        children: [
+            { black_apron: { type: "legendary_items", quantity: 1 } },
+            { kimono_white_belt: { type: "epic_items", quantity: 2 } },
+            { bowtie: { type: "rare_items", quantity: 3 } }
+        ],
+    },
+    anchor: {
+        children: [
+            { cook_book: { type: "legendary_items", quantity: 1 } },
+            { pizza_cutter: { type: "epic_items", quantity: 2 } },
+            { pasta_spoon: { type: "rare_items", quantity: 3 } }
+        ],
+    },
+    ring_of_evil: {
+        children: [
+            { snake_ring: { type: "legendary_items", quantity: 1 } },
+            { wreath_ring: { type: "epic_items", quantity: 2 } },
+            { silver_ring: { type: "rare_items", quantity: 3 } }
+        ],
+    },
+    ring_of_love: {
+        children: [
+            { winged_ring: { type: "legendary_items", quantity: 1 } },
+            { donut_ring: { type: "epic_items", quantity: 2 } },
+            { candy_ring: { type: "rare_items", quantity: 3 } }
+        ],
+    },
+    ring_of_nature: {
+        children: [
+            { bee_ring: { type: "legendary_items", quantity: 1 } },
+            { bagel_ring: { type: "epic_items", quantity: 2 } },
+            { onion_ring: { type: "rare_items", quantity: 3 } }
+        ],
+    },
+    ring_of_seas: {
+        children: [
+            { lucky_ring: { type: "legendary_items", quantity: 1 } },
+            { gold_ring: { type: "epic_items", quantity: 2 } },
+            { plastic_ring: { type: "rare_items", quantity: 3 } }
+        ],
+    },
+    anchor_necklace: {
+        children: [
+            { shark_tooth: { type: "legendary_items", quantity: 1 } },
+            { pearls: { type: "epic_items", quantity: 2 } },
+            { shellfish: { type: "rare_items", quantity: 3 } }
+        ],
+    },
+    nazar: {
+        children: [
+            { beads: { type: "legendary_items", quantity: 1 } },
+            { diamond_chain: { type: "epic_items", quantity: 2 } },
+            { leather: { type: "rare_items", quantity: 3 } }
+        ],
+    },
+    pirate_skull: {
+        children: [
+            { compass: { type: "legendary_items", quantity: 1 } },
+            { gold_chain: { type: "epic_items", quantity: 2 } },
+            { bandana: { type: "rare_items", quantity: 3 } }
+        ],
+    },
+    treasure_key: {
+        children: [
+            { sausages: { type: "legendary_items", quantity: 1 } },
+            { dog_collar: { type: "epic_items", quantity: 2 } },
+            { salt_shaker: { type: "rare_items", quantity: 3 } }
+        ],
+    },
+};
+
+export const legendary_items = {
+    elder_beard: {
+        children: [
+            { mafia_hat: { type: "epic_items", quantity: 2 } },
+            { white_hat: { type: "rare_items", quantity: 3 } }
+        ],
+    },
+    kimono_black_belt: {
+        children: [
+            { kimono_white_belt: { type: "epic_items", quantity: 2 } },
+            { bowtie: { type: "rare_items", quantity: 3 } }
+        ],
+    },
+    pepper_mill: {
+        children: [
+            { rolling_pin: { type: "epic_items", quantity: 2 } },
+            { broom: { type: "rare_items", quantity: 3 } }
+        ],
+    },
+    irish_hat: {
+        children: [
+            { red_glasses: { type: "epic_items", quantity: 2 } },
+            { fireman_hat: { type: "rare_items", quantity: 3 } }
+        ],
+    },
+    tank_top: {
+        children: [
+            { black_sweater: { type: "epic_items", quantity: 2 } },
+            { blue_hoodie: { type: "rare_items", quantity: 3 } }
+        ]
+    },
+    chopsticks: {
+        children: [
+            { pizza_cutter: { type: "epic_items", quantity: 2 } },
+            { ketchup: { type: "rare_items", quantity: 3 } }
+        ]
+    },
+    purple_cap: {
+        children: [
+            { hood: { type: "epic_items", quantity: 2 } },
+            { cool_cap: { type: "rare_items", quantity: 3 } }
+        ]
+    },
+    italian_chef: {
+        children: [
+            { robe: { type: "epic_items", quantity: 2 } },
+            { apron: { type: "rare_items", quantity: 3 } }
+        ]
+    },
+    mixer: {
+        children: [
+            { whisk: { type: "epic_items", quantity: 2 } },
+            { cheese_grater: { type: "rare_items", quantity: 3 } }
+        ]
+    },
+    tall_black_hat: {
+        children: [
+            { black_chefs_hat: { type: "epic_items", quantity: 2 } },
+            { cone: { type: "rare_items", quantity: 3 } }
+        ]
+    },
+    black_apron: {
+        children: [
+            { purple_apron: { type: "epic_items", quantity: 2 } },
+            { tux: { type: "rare_items", quantity: 3 } }
+        ]
+    },
+    cook_book: {
+        children: [
+            { mug: { type: "epic_items", quantity: 2 } },
+            { pasta_spoon: { type: "rare_items", quantity: 3 } }
+        ]
+    },
+    bee_ring: {
+        children: [
+            { bagel_ring: { type: "epic_items", quantity: 2 } },
+            { onion_ring: { type: "rare_items", quantity: 3 } }
+        ]
+    },
+    lucky_ring: {
+        children: [
+            { gold_ring: { type: "epic_items", quantity: 2 } },
+            { plastic_ring: { type: "rare_items", quantity: 3 } }
+        ]
+    },
+    snake_ring: {
+        children: [
+            { wreath_ring: { type: "epic_items", quantity: 2 } },
+            { silver_ring: { type: "rare_items", quantity: 3 } }
+        ]
+    },
+    winged_ring: {
+        children: [
+            { donut_ring: { type: "epic_items", quantity: 2 } },
+            { candy_ring: { type: "rare_items", quantity: 3 } }
+        ]
+    },
+    beads: {
+        children: [
+            { diamond_chain: { type: "epic_items", quantity: 2 } },
+            { leather: { type: "rare_items", quantity: 3 } }
+        ]
+    },
+    compass: {
+        children: [
+            { gold_chain: { type: "epic_items", quantity: 2 } },
+            { bandana: { type: "rare_items", quantity: 3 } }
+        ]
+    },
+    sausages: {
+        children: [
+            { dog_collar: { type: "epic_items", quantity: 2 } },
+            { salt_shaker: { type: "rare_items", quantity: 3 } }
+        ]
+    },
+    shark_tooth: {
+        children: [
+            { pearls: { type: "epic_items", quantity: 2 } },
+            { shellfish: { type: "rare_items", quantity: 3 } }
+        ]
+    },
+};
+
+export const mythic_items = {
+    chefs_helmet: {
+        children: [
+            { robot_head: { type: "ultimate_items", quantity: 1 } },
+            { royal_crown: { type: "ultimate_items", quantity: 1 } },
+            { shark_head: { type: "ultimate_items", quantity: 1 } },
+            { torch_helmet: { type: "ultimate_items", quantity: 1 } },
+        ]
+    },
+    armoured_apron: {
+        children: [
+            { robot_suit: { type: "ultimate_items", quantity: 1 } },
+            { royal_robe: { type: "ultimate_items", quantity: 1 } },
+            { shark_body: { type: "ultimate_items", quantity: 1 } },
+            { tool_belt: { type: "ultimate_items", quantity: 1 } },
+        ]
+    },
+    warriors_cleaver: {
+        children: [
+            { laser_gun: { type: "ultimate_items", quantity: 1 } },
+            { royal_sceptre: { type: "ultimate_items", quantity: 1 } },
+            { anchor: { type: "ultimate_items", quantity: 1 } },
+            { pickaxe: { type: "ultimate_items", quantity: 1 } },
+        ]
+    },
+    warriors_tenderiser: {
+        children: [
+            { laser_gun: { type: "ultimate_items", quantity: 1 } },
+            { royal_sceptre: { type: "ultimate_items", quantity: 1 } },
+            { anchor: { type: "ultimate_items", quantity: 1 } },
+            { pickaxe: { type: "ultimate_items", quantity: 1 } },
+        ]
+    },
+    ring_of_thunder:{
+        children: [
+            { ring_of_evil: { type: "ultimate_items", quantity: 1 } },
+            { ring_of_love: { type: "ultimate_items", quantity: 1 } },
+            { ring_of_nature: { type: "ultimate_items", quantity: 1 } },
+            { ring_of_seas: { type: "ultimate_items", quantity: 1 } },
+        ]
+    },
+}
+
+export const epic_items = {
+    mafia_hat: {ingredients: [{}]},
+    robe: {ingredients: [{}]},
+    mug: {ingredients: [{}]},
+    red_glasses: {ingredients: [{}]},
+    black_sweater: {ingredients: [{}]},
+    rolling_pin: {ingredients: [{}]},
+    hood: {ingredients: [{}]},
+    purple_apron: {ingredients: [{}]},
+    whisk: {ingredients: [{}]},
+    black_chefs_hat: {ingredients: [{}]},
+    kimono_white_belt: {ingredients: [{}]},
+    pizza_cutter: {ingredients: [{}]},
+}
+
+export const rare_items = {
+    white_hat: {ingredients: [{}]},
+    tux: {ingredients: [{}]},
+    scooper: {ingredients: [{}]},
+    fireman_hat: {ingredients: [{}]},
+    blue_hoodie: {ingredients: [{}]},
+    ketchup: {ingredients: [{}]},
+    sushi_hat: {ingredients: [{}]},
+    yellow_hoodie: {ingredients: [{}]},
+    cheese_grater: {ingredients: [{}]},
+    cool_cap: {ingredients: [{}]},
+    bowtie: {ingredients: [{}]},
+    pasta_spoon: {ingredients: [{}]},
+    broom: {ingredients: [{}]},
+}
+
+export const itemsMap = {
+    mythic: mythic_items,
+    ultimate: ultimate_items,
+    legendary: legendary_items,
+    epic: epic_items,
+    rare: rare_items,
+};
+
+export const itemBtns = {
+    mythic: "mythicBtn",
+    ultimate: "ultimateBtn",
+    legendary: "legendaryBtn",
 }

@@ -1,4 +1,4 @@
-import { regex_patterns } from "./constants";
+import { regex_patterns, petProfitBonuses, petPerfectDishBonuses, petDivineDishBonuses } from "./constants";
 
 export function calculateAWvsSolo() {
     const awPercent = parseFloat(document.getElementById('awPercent').value);
@@ -16,25 +16,81 @@ export function calculateAWvsSolo() {
 export function calculateProfit() {
     const apPercent = parseFloat(document.getElementById('apPercent').value);
     const remoteMultiplier = parseFloat(document.getElementById('remoteMultiplier').value);
-    const pet = document.getElementById('petSelect').value;
-    const perfect = document.getElementById('perfect').value.toLowerCase();
-    const divinity = document.getElementById('divinity').value.toLowerCase();
+    const pet1 = document.getElementById('petSelect1').value;
+    const pet2 = document.getElementById('petSelect2').value;
+    const dish = document.getElementById('dish').value.toLowerCase();
     const two = document.getElementById('2x').value.toLowerCase();
 
-    if (isNaN(apPercent) || isNaN(remoteMultiplier) || !petBonuses[pet]) {
+    if (isNaN(apPercent) || isNaN(remoteMultiplier) || !petProfitBonuses[pet1] || !petProfitBonuses[pet2]) {
         document.getElementById('profit-result').innerText = "Please enter valid values.";
         return;
     }
 
-    const petBonus = petBonuses[pet];
-    const perfectMultiplier = perfect === 'yes' ? 6 : 1;
-    const divinityMultiplier = divinity === 'yes' ? 25 : 1;
-    const twoMultiplier = two === 'yes' ? 2 : 1;
+    const petBonus1 = petProfitBonuses[pet1]
+    const petBonus2 = petProfitBonuses[pet2]
+    const usePetBonus = petBonus1  > petBonus2 ? petBonus1 : petBonus2
 
-    const formula = (apPercent / 100) * (petBonus / 100) * perfectMultiplier * divinityMultiplier * remoteMultiplier * twoMultiplier;
-    document.getElementById('profit-result').innerText = `Profit Multiplier: ${formula.toFixed(2)}x`;
+    // const petBonus = petProfitBonuses[pet];
+    const perfectMultiplier = dish === 'perfect' ? 6 : 1;
+    const divinityMultiplier = dish === 'divine' ? 25 : 1;
+    const doubledMultiplier = two === 'yes' ? 2 : 1;
+
+    let perfectMultiplierExtender = 1;
+    let divineMultiplierExtender= 1;
+
+    // determine to extend the perfect multiplier based on some pets
+    if (dish === 'perfect') {
+        const perfectPet1 = petPerfectDishBonuses[pet1] || false;
+        const perfectPet2 = petPerfectDishBonuses[pet2] || false;
+        if (perfectPet1 && perfectPet2) {
+            perfectMultiplierExtender = (perfectPet1 / 100) + (perfectPet2 / 100);
+        } else if (perfectPet1){
+            perfectMultiplierExtender = perfectPet1 / 100;
+        } else if (perfectPet2){
+            perfectMultiplierExtender = perfectPet2 / 100;
+        }
+    }
+
+    // determine to extend the divine multiplier based on some pets
+    if (dish === 'divine') {
+        const divinePet1 = petDivineDishBonuses[pet1] || false;
+        const divinePet2 = petDivineDishBonuses[pet2] || false;
+        if (divinePet1 && divinePet2) {
+            divineMultiplierExtender = (divinePet1 / 100) + (divinePet2 / 100) + 1;
+        } else if (divinePet1){
+            divineMultiplierExtender = (divinePet1 / 100) + 1;
+        } else if (divinePet2){
+            divineMultiplierExtender = (divinePet2 / 100) + 1;
+        }
+    }
+    
+    // determine profit multiplier of workers
+    let fivePecentPerWorker = 1;
+    if (pet1 === 'vroomba' && pet2 === 'vroomba'){
+        fivePecentPerWorker = ( (apPercent * (0.05 + 0.05) ) / 100) + 1;
+    } else if (pet1 === 'vroomba' || pet2 === 'vroomba'){
+        fivePecentPerWorker = ((apPercent * 0.05) / 100) + 1;
+    }
+
+    // const fivePecentPerWorker = pet1 === 'vroomba' ? ((apPercent * 0.05) / 100) + 1 : 1;
+    const formula = ( (( (apPercent / 100) * (usePetBonus / 100) * (perfectMultiplier * perfectMultiplierExtender) * (divinityMultiplier * divineMultiplierExtender) ) * fivePecentPerWorker) * remoteMultiplier) * doubledMultiplier;
+    const wholeNum = Math.ceil(formula).toString();
+    const places = wholeNum.length - 2;
+
+
+    const roundedFormula = function placement(number, zeroes) {
+        const tens = 10**zeroes;
+        return Math.round(number / tens) * tens
+    }
+
+    const result = roundedFormula(formula, places)
+
+    document.getElementById('profit-result').innerHTML = `
+    <div class="text-white font-normal">Rounded Profit: <span class="text-green-400 mb-2">${result}x</span></div>
+    <div class="text-white font-normal">Exact Profit: <span class="text-green-400">${formula}x</span></div>
+    `;
 }
-
+// // const divineDishMultplierByRedPanda = pet === 'red_panda' ? ;
 export function levelSearch() {
     const clubGoal = Number(document.getElementById("level-search").value);
     const goalResult = document.getElementById("level-result");

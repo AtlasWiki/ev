@@ -1,6 +1,7 @@
 import { clubLvlsArray } from "./utils.js";
-import { sections, sectionPlaceholder, descriptions } from './constants.js';
+import { sections, sectionPlaceholder, descriptions, itemsMap, itemBtns } from './constants.js';
 import { calculateRewards } from './calculations.js';
+
 
 // console.log("Props module loaded");
 // console.log("Imported clubLvlsArray:", clubLvlsArray);
@@ -171,3 +172,189 @@ export function createDescription(sectionname){
         </div>
     `
 }
+
+let currentPage = 1; // Start on the first page
+const itemsPerPage = 6; // Number of items to display per page
+let prevItems = ""
+
+export function setPrevItems(type){
+    prevItems = type
+    console.log(prevItems + ' from setPrevItems()')
+}
+
+export function createBlueprint(type) {
+    const blueprints = document.getElementById("blueprint-grid");
+    const items = itemsMap[type]; // Access items based on the type passed
+    // const mythicBtn = document.getElementById('mythicBtn');
+    // const ultimateBtn = document.getElementById('ultimateBtn');
+    // const legendaryBtn = document.getElementById("legendaryBtn");
+
+   
+
+    if (type != prevItems){
+        currentPage = 1;
+    }
+
+    const itemBtn = document.getElementById(itemBtns[type]);
+
+    if (!itemBtn.classList.contains('text-purple-500')) {
+        itemBtn.classList.add('text-purple-500');
+        itemBtn.classList.add("border-purple-500");
+    }
+
+    const filteredBtns = Object.entries(itemBtns).filter(([key]) => key !== type);
+
+    filteredBtns.forEach(([key, value]) => {
+        // Access the value, which is the second element of the entry
+        const btnElement = document.getElementById(value);
+        btnElement.classList.remove('text-purple-500')
+        btnElement.classList.remove("border-purple-500");
+    });
+
+    // Get the entries of the items and slice them for the current page
+    const itemEntries = Object.entries(items);
+    const startIdx = (currentPage - 1) * itemsPerPage;
+    const endIdx = startIdx + itemsPerPage;
+    const currentItems = itemEntries.slice(startIdx, endIdx);
+
+    // Map over items and create HTML
+    const item_mapper = currentItems.map(([item, data]) => {
+        // Map over ingredients
+        const ingredientsMapper = data.children.flatMap((ingredient) => {
+            const [[key, { type, quantity }]] = Object.entries(ingredient); // Destructure key, type, quantity
+
+            // Repeat the ingredient HTML based on its quantity
+            return Array.from({ length: quantity }, () => `
+                <div class="relative flex flex-col items-center">
+                    <img src="${"./images/" + key + '.png'}" alt="${key}" class="rounded shadow-lg" draggable="false">
+                    <span class="absolute -top-4 font-semibold text-xs px-2 rounded-lg w-full text-gray-400">${key}</span>
+                </div>
+            `);
+        });
+
+        // Return the full blueprint HTML
+        return `
+        <div class="flex flex-col items-center space-y-4">
+            <div class="relative flex flex-col items-center">
+                <img src="${"./images/" + item + '.png'}" alt="${item}" class="rounded shadow-lg" draggable="false">
+                <span class="absolute -top-4 font-bold text-xs px-2 rounded-lg w-full text-gray-500">${item}</span>
+            </div>
+
+            <!-- Connector Line -->
+            <div class="w-0.5 h-10 bg-gray-400"></div>
+
+            <!-- Ingredients (Bottom Items) -->
+            <div class="grid grid-cols-3 gap-4">
+                ${ingredientsMapper.join("")}
+            </div>
+        </div>`;
+    });
+
+    // Append the mapped blueprints to the DOM
+    blueprints.innerHTML = item_mapper.join("");
+
+    // Add pagination buttons for this type
+    const totalPages = Math.ceil(itemEntries.length / itemsPerPage);
+    createPagination(type, totalPages); // Pass type here
+}
+
+// Function to create the pagination buttons (previous and next)
+export function createPagination(type, totalPages) {
+    const paginationContainer = document.getElementById("pagination-container");
+    paginationContainer.innerHTML = ""; // Clear previous pagination
+
+    // Create Previous button
+    const prevButton = document.createElement("button");
+    prevButton.innerHTML = `<div class="flex justify-center item-center text-center"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#fff8f8" d="m14 18l-6-6l6-6l1.4 1.4l-4.6 4.6l4.6 4.6z"/></svg></div>`;
+    prevButton.classList.add(
+        "px-4", 
+        "py-2", 
+        "border", 
+        "border-gray-300", 
+        "hover:opacity-80", 
+        "rounded", 
+        "focus:outline-none", 
+        "focus:ring-2", 
+        "focus:ring-blue-500"
+    );
+    prevButton.disabled = currentPage === 1; // Disable if on first page
+    prevButton.addEventListener("click", (event) => {
+        event.preventDefault();
+        if (currentPage > 1) {
+            currentPage--;
+            createBlueprint(type); // Refresh blueprint content with current type
+            createPagination(type, totalPages); // Recreate pagination
+        }
+    });
+    if (currentPage !== 1) {
+        paginationContainer.appendChild(prevButton);
+    }
+
+    // Create page number buttons
+    for (let i = 1; i <= totalPages; i++) {
+        const pageButton = document.createElement("button");
+        pageButton.textContent = i;
+        pageButton.classList.add(
+            "px-4", 
+            "py-2", 
+            "border", 
+            "border-gray-300", 
+            "hover:opacity-80", 
+            "rounded", 
+            "focus:outline-none", 
+            "focus:ring-2", 
+            "focus:ring-blue-500"
+        );
+
+        // Highlight the current page button
+        if (i === currentPage) {
+            pageButton.classList.add("text-purple-500");
+            pageButton.classList.add("border-purple-500");
+        }
+
+        // Add click event to each page button
+        pageButton.addEventListener("click", (event) => {
+            event.preventDefault();
+
+            // Update current page
+            currentPage = i;
+
+            // Refresh blueprint and pagination
+            createBlueprint(type);
+            createPagination(type, totalPages);
+        });
+
+        paginationContainer.appendChild(pageButton);
+    }
+
+    // Create Next button
+    const nextButton = document.createElement("button");
+    nextButton.innerHTML = `<div class="flex justify-center item-center text-center"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="#fff8f8" d="M12.6 12L8 7.4L9.4 6l6 6l-6 6L8 16.6z"/></svg></div>`;
+    nextButton.classList.add(
+        "px-4", 
+        "py-2", 
+        "border", 
+        "border-gray-300", 
+        "hover:opacity-80", 
+        "rounded", 
+        "focus:outline-none", 
+        "focus:ring-2", 
+        "focus:ring-black"
+    );
+    nextButton.disabled = currentPage === totalPages; // Disable if on last page
+    nextButton.addEventListener("click", (event) => {
+        event.preventDefault();
+        if (currentPage < totalPages) {
+            currentPage++;
+            createBlueprint(type); // Refresh blueprint content with current type
+            createPagination(type, totalPages); // Recreate pagination
+        }
+    });
+    if (currentPage < totalPages) {
+        paginationContainer.appendChild(nextButton);
+    }
+}
+
+
+
+
