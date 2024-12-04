@@ -13,6 +13,8 @@ export function showCurrentTab(tabname){
     filteredTabs.forEach((tab) => {
         document.getElementById(tabs[tab]).style.display='none'
     })
+
+    currTab.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 export function showCurrentSection(sectionname){
