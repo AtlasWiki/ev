@@ -363,7 +363,8 @@ export function calculateCityRewards(){
     const gemsPerLoop = cityArray.reduce((acc, [key, {city, totalGems}]) => {
         return acc + totalGems;
       }, 0);
-    const cityRange = cityArray.filter(([key, {city, totalGems}]) =>  key <= targetCityLvl);
+    // const cityRange = cityArray.filter(([key, {city, totalGems}]) =>  key <= targetCityLvl);
+    const cityRange = cityArray.filter(([key, {city, totalGems}]) =>  key > currCityLvl && key <= currCityLvl + targetCityLvl);
     result.innerText =  rounds * (gemsPerLoop) + cityRange.reduce((acc, [key, {city, totalGems}]) => {return totalGems + acc}, 0) + ' gems gained'// good for lifetime calculator
-    
+    // this is inaccurate as of right now as it doesnt consider which city youre currently in
 }
