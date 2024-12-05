@@ -504,7 +504,7 @@ export const itemBtns = {
     legendary: "legendaryBtn",
 }
 
-const cities = {
+export const cities = {
     1: { city: "San Francisco", totalGems: 196 },
     2: { city: "New York", totalGems: 160 },
     3: { city: "Miami", totalGems: 172 },

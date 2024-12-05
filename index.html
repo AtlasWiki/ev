@@ -214,8 +214,7 @@
         <h2 class="text-2xl font-semibold text-custom-highlight mb-5">Club Rewards</h2>
         
         <div id="clubSection"></div>
-
-        <label for="level-search" class="block font-semibold mt-5">Level Goal</label>
+        <label for="level-search" class="block font-semibold mt-5">Level Lookup</label>
         <input oninput="levelSearch()" type="number" id="level-search" min="1" max="50" placeholder="Enter Level" class="mt-2 w-full p-3 rounded bg-custom-input text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2" />
         <span id="level-result" class="text-[#00b3b3] font-semibold mt-3 mb-5 block"></span>
 
@@ -358,25 +357,26 @@
         <h2 class="text-2xl font-semibold text-custom-highlight mb-5">Cities</h2>
         
         <div id="citiesSection"></div>
-            <label for="current-city-level" class="block font-semibold mt-10">Current City Level</label>
-            <input id="current-city-level" type="number" min="1" max="50" placeholder="Enter Level" class="mt-2 w-full p-3 rounded bg-custom-input text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2" />
-            <span id="current-city-level-error" class="text-red-400 font-semibold mt-2 block"></span>
+        <h3 class="mt-10 text-xl font-semibold text-gray-400">Growth Calculator</h3>
+        <label for="current-city-level" class="block font-semibold mt-5">Current City Level</label>
+        <input id="current-city-level" type="number" min="1" max="50" placeholder="Enter Level" class="mt-2 w-full p-3 rounded bg-custom-input text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2" />
+        <span id="current-city-level-error" class="text-red-400 font-semibold mt-2 block"></span>
 
-            <label for="" class="block font-semibold mt-5">City Level Goal</label>
-            <input id="target-city-level" type="number" min="1" max="50" placeholder="Enter Level" class="mt-2 w-full p-3 rounded bg-custom-input text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2" />
-            <span id="target-city-level" class="text-red-400 font-semibold mt-2 block"></span>
-             
-            <!-- <label for="" class="block font-semibold mt-5">Your Current XP in Level</label>
-            <input id="current-level-xp" type="number" placeholder="Enter XP Amount" class="mt-2 w-full p-3 rounded bg-custom-input text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2" /> -->
-            <!-- <span id="" class="text-[#00b3b3] font-semibold mt-3 mb-2 block"></span> -->
-             
-            <button onclick="" class="bg-[#00b3b3] hover:bg-[#008080] text-white py-2 px-4 rounded mt-2">
-                Calculate
-            </button>
-            <button onclick="clearValue(['current-city-level', 'target-city-level', 'city-goal-result'])" class="bg-[#00b3b3] hover:bg-[#008080] text-white py-2 px-4 rounded mt-2">
-                Clear
-            </button>
-            <div id="city-goal-result" class="text-[#00b3b3] font-semibold mt-10 mb-5 text-md"></div>
+        <label for="target-city-level" class="block font-semibold mt-5">Number of Cities</label>
+        <input id="target-city-level" type="number" min="1" max="50" placeholder="Enter Level" class="mt-2 w-full p-3 rounded bg-custom-input text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2" />
+        <span id="target-city-level" class="text-red-400 font-semibold mt-2 block"></span>
+            
+        <!-- <label for="" class="block font-semibold mt-5">Your Current XP in Level</label>
+        <input id="current-level-xp" type="number" placeholder="Enter XP Amount" class="mt-2 w-full p-3 rounded bg-custom-input text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2" /> -->
+        <!-- <span id="" class="text-[#00b3b3] font-semibold mt-3 mb-2 block"></span> -->
+            
+        <button onclick="calculateCityRewards()" class="bg-[#00b3b3] hover:bg-[#008080] text-white py-2 px-4 rounded mt-2">
+            Calculate
+        </button>
+        <button onclick="clearValue(['current-city-level', 'target-city-level', 'city-goal-result'])" class="bg-[#00b3b3] hover:bg-[#008080] text-white py-2 px-4 rounded mt-2">
+            Clear
+        </button>
+        <div id="city-goal-result" class="text-[#00b3b3] font-semibold mt-3 text-md"></div>
 
     
     </div>

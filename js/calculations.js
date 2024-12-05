@@ -1,4 +1,4 @@
-import { regex_patterns, petProfitBonuses, petPerfectDishBonuses, petDivineDishBonuses } from "./constants";
+import { regex_patterns, petProfitBonuses, petPerfectDishBonuses, petDivineDishBonuses, cities } from "./constants";
 
 export function calculateAWvsSolo() {
     const awPercent = parseFloat(document.getElementById('awPercent').value);
@@ -350,4 +350,20 @@ export function calculateXPTotal() {
         <p>Rewards Gained <span class="text-white">(Level ${currentLvlInput} -> ${targetLvlInput})</span></p> 
         <p class="mb-1"><span class='text-white font-light'>${rewardsList}</span></p>
     `
+}
+
+export function calculateCityRewards(){
+    const currCityLvlInput = document.getElementById('current-city-level').value;
+    const targetCityLvlInput = document.getElementById('target-city-level').value;
+    const result = document.getElementById('city-goal-result');
+    const currCityLvl = currCityLvlInput % 60
+    const targetCityLvl = targetCityLvlInput % 60
+    const cityArray = Object.entries(cities)
+    const rounds = Math.floor(targetCityLvlInput / 60);
+    const gemsPerLoop = cityArray.reduce((acc, [key, {city, totalGems}]) => {
+        return acc + totalGems;
+      }, 0);
+    const cityRange = cityArray.filter(([key, {city, totalGems}]) =>  key <= targetCityLvl);
+    result.innerText =  rounds * (gemsPerLoop) + cityRange.reduce((acc, [key, {city, totalGems}]) => {return totalGems + acc}, 0) + ' gems gained'// good for lifetime calculator
+    
 }
