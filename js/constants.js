@@ -42,7 +42,8 @@ export const sections = {
     "awvsolo": "awvsolo-desc",
     "profit": "profit-desc",
     "clubGoal": "clubGoal",
-    "cities": "cities-desc"
+    "cities": "cities-desc",
+    "citiesLifetime": "citiesLifetime"
 }
 
 // SectionPlaceholders. tag names and IDs. used for matching with the placeholder divs

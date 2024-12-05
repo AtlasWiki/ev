@@ -1,4 +1,11 @@
-import { regex_patterns, petProfitBonuses, petPerfectDishBonuses, petDivineDishBonuses, cities } from "./constants";
+import { 
+    regex_patterns, 
+    petProfitBonuses, 
+    petPerfectDishBonuses, 
+    petDivineDishBonuses,
+    // cityArray,
+    // gemsPerLoop
+} from "./constants";
 
 export function calculateAWvsSolo() {
     const awPercent = parseFloat(document.getElementById('awPercent').value);
@@ -353,7 +360,7 @@ export function calculateXPTotal() {
 }
 
 export function calculateCityRewards(){
-    const currCityLvlInput = document.getElementById('current-city-level').value;
+    const currCityLvlInput = Number(document.getElementById('current-city-level').value);
     const targetCityLvlInput = document.getElementById('target-city-level').value;
     const result = document.getElementById('city-goal-result');
     const currCityLvl = currCityLvlInput % 60
@@ -363,8 +370,21 @@ export function calculateCityRewards(){
     const gemsPerLoop = cityArray.reduce((acc, [key, {city, totalGems}]) => {
         return acc + totalGems;
       }, 0);
-    // const cityRange = cityArray.filter(([key, {city, totalGems}]) =>  key <= targetCityLvl);
     const cityRange = cityArray.filter(([key, {city, totalGems}]) =>  key > currCityLvl && key <= currCityLvl + targetCityLvl);
-    result.innerText =  rounds * (gemsPerLoop) + cityRange.reduce((acc, [key, {city, totalGems}]) => {return totalGems + acc}, 0) + ' gems gained'// good for lifetime calculator
-    // this is inaccurate as of right now as it doesnt consider which city youre currently in
+    // console.log(cityRange)
+    result.innerText =  rounds * (gemsPerLoop) + cityRange.reduce((acc, [key, {city, totalGems}]) => {return totalGems + acc}, 0) + ' gems gained'
+}
+
+export function calculateTotalCityTotRewards(){
+    const cityLifetimeLvlInput = Number(document.getElementById('cities-lifetime-input').value);
+    const cityLifetimeLvl = cityLifetimeLvlInput % 60
+    const result = document.getElementById('cities-lifetime-result');
+    const cityArray = Object.entries(cities)
+    const cityRange = cityArray.filter(([key, {city, totalGems}]) =>  key <= cityLifetimeLvl);
+    const rounds = Math.floor(cityLifetimeLvlInput / 60);
+    const gemsPerLoop = cityArray.reduce((acc, [key, {city, totalGems}]) => {
+        return acc + totalGems;
+      }, 0);
+    result.innerText =  rounds * (gemsPerLoop) + cityRange.reduce((acc, [key, {city, totalGems}]) => {return totalGems + acc}, 0) + ' gems accumulated overall'
+    // console.log(cityRange);
 }

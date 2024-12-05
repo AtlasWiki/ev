@@ -359,11 +359,11 @@
         <div id="citiesSection"></div>
         <h3 class="mt-10 text-xl font-semibold text-gray-400">Growth Calculator</h3>
         <label for="current-city-level" class="block font-semibold mt-5">Current City Level</label>
-        <input id="current-city-level" type="number" min="1" max="50" placeholder="Enter Level" class="mt-2 w-full p-3 rounded bg-custom-input text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2" />
+        <input id="current-city-level" type="number" min="1" placeholder="Enter Level" class="mt-2 w-full p-3 rounded bg-custom-input text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2" />
         <span id="current-city-level-error" class="text-red-400 font-semibold mt-2 block"></span>
 
         <label for="target-city-level" class="block font-semibold mt-5">Number of Cities</label>
-        <input id="target-city-level" type="number" min="1" max="50" placeholder="Enter Level" class="mt-2 w-full p-3 rounded bg-custom-input text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2" />
+        <input id="target-city-level" type="number" min="1" placeholder="Enter Level" class="mt-2 w-full p-3 rounded bg-custom-input text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2" />
         <span id="target-city-level" class="text-red-400 font-semibold mt-2 block"></span>
             
         <!-- <label for="" class="block font-semibold mt-5">Your Current XP in Level</label>
@@ -376,8 +376,24 @@
         <button onclick="clearValue(['current-city-level', 'target-city-level', 'city-goal-result'])" class="bg-[#00b3b3] hover:bg-[#008080] text-white py-2 px-4 rounded mt-2">
             Clear
         </button>
-        <div id="city-goal-result" class="text-[#00b3b3] font-semibold mt-3 text-md"></div>
+        <div id="city-goal-result" class="text-[#00b3b3] font-semibold mt-3 mb-4 text-md"></div>
 
+        <!-- Cities Lifetime Button -->
+        <button onclick="showCurrentSection('citiesLifetime');createGap('citiesLifetime', this)" class="mt-2 bg-[#3a3a3a] hover:bg-[#4b4b4b] transition-all duration-300 w-full p-2 md:p-3 font-semibold text-xl rounded-md flex items-center justify-between">
+            <div class="flex justify-center items-center gap-2">
+                <svg id="citiesLifetimeChevronIcon" class="w-6 h-6 transform transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7" />
+                </svg>
+                <span>Lifetime Calculator</span>
+            </div>
+        </button>
+
+        <!-- Section for Cities Lifetime -->
+        <section id="citiesLifetime" class="hidden">
+            <label for="cities-lifetime-input" class="block font-semibold mt-5">Current City Level</label>
+            <input oninput="calculateTotalCityTotRewards()" min="1" id="cities-lifetime-input" type="number" placeholder="Enter Level" class="mt-2 w-full p-3 rounded bg-custom-input text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2" />
+            <div id="cities-lifetime-result" class="text-[#00b3b3] font-semibold mt-3 mb-4 text-md"></div>
+        </section>
     
     </div>
 
