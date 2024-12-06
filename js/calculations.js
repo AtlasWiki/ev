@@ -420,7 +420,7 @@ export function calculateTotalCityTotRewards(){
     const cityLifetimeLvl = cityLifetimeLvlInput % 60 || 60;
     const result = document.getElementById('cities-lifetime-result');
     const cityArray = Object.entries(cities)
-    const cityRange = cityArray.filter(([key, {city, totalGems}]) =>  key <= cityLifetimeLvl);
+    const cityRange = cityArray.filter(([key, {city, totalGems}]) =>  key < cityLifetimeLvl);
     const gemsBeforeFullLoop = cityRange.reduce((acc, [key, {city, totalGems}]) => {return totalGems + acc}, 0);
     const rounds = Math.floor(cityLifetimeLvlInput / 60);
 
