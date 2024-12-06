@@ -77,7 +77,10 @@ export const descriptions = {
 
     "cities-desc": `This is a calculator for calculating statistics related to how gems and boxes associate with cities.
                     As of right now, there are only 60 different cities and they loop in cycles.
-                    Cities may have different amount of stages, stations, gems, and boxes. 
+                    Cities may have different amount of stages, stations, gems, and boxes.
+                    The Growth Calculator assumes you gained 0 gems at your current city level, so
+                    if your city is San Francisco and your target city is New York, you would
+                    gain only the total amount of gems <b>prior</b> New York (in this case San Francisco). 
                     `,
     
                 
