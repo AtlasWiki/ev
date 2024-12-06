@@ -415,37 +415,50 @@ export function calculateCityRewards() {
 }
 
 
-export function calculateTotalCityTotRewards(){
+export function calculateTotalCityTotRewards() {
     const cityLifetimeLvlInput = Number(document.getElementById('cities-lifetime-input').value);
     const cityLifetimeLvl = cityLifetimeLvlInput % 60 || 60;
     const result = document.getElementById('cities-lifetime-result');
-    const cityArray = Object.entries(cities)
-    const cityRange = cityArray.filter(([key, {city, totalGems}]) =>  key < cityLifetimeLvl);
-    const gemsBeforeFullLoop = cityRange.reduce((acc, [key, {city, totalGems}]) => {return totalGems + acc}, 0);
-    const rounds = Math.floor(cityLifetimeLvlInput / 60);
+    const cityArray = Object.entries(cities);
 
-    if (cityLifetimeLvlInput === 0){
-        result.innerText = ""
-        return
+    // Input validation
+    if (cityLifetimeLvlInput === 0) {
+        result.innerText = "";
+        return;
     }
 
-    if (cityLifetimeLvl < 0) {
+    if (cityLifetimeLvlInput < 0) {
         result.classList.replace("text-[#00b3b3]", "text-red-400");
         result.innerText = "Invalid level. Valid level range are positive numbers";
         return;
-    } else{
+    } else {
         result.classList.replace("text-red-400", "text-[#00b3b3]");
     }
 
-    const gemsPerFullLoop = cityArray.reduce((acc, [key, {city, totalGems}]) => {
-        return acc + totalGems;
-      }, 0);
-    const formula =  (rounds * gemsPerFullLoop) + (gemsBeforeFullLoop === gemsPerFullLoop ? 0 : gemsBeforeFullLoop);
-    
+    // Total gems for a full loop
+    const gemsPerFullLoop = cityArray.reduce((acc, [, { totalGems }]) => acc + totalGems, 0);
+
+    let currentIndex = cityLifetimeLvl - 1;
+
+    // Calculate the range of cities cyclically, excluding the starting city
+    const cityRange = [];
+    for (let i = 1; i < cityLifetimeLvlInput; i++) { // Start from 1 to exclude the starting city
+        const wrappedIndex = (currentIndex + i) % 60; // Wrap around after 60
+        cityRange.push(cityArray[wrappedIndex]);
+    }
+
+    // Calculate gems gained in the selected range
+    const gemsAmt = cityRange.reduce((acc, [, { totalGems }]) => acc + totalGems, 0);
+
+    // Get the current city name
+    const currentCity = cities[cityLifetimeLvl].city;
+
+    // Update the result display
     result.innerHTML = `
       <div class="flex flex-col gap-3">
-        <div>Your Current City: <div class="text-white font-normal">${cities[cityLifetimeLvl].city}</div></div>
-        <div>Gems Acquired: <div class="text-white font-normal">${formula}</div></div>
+        <div>Your Current City: <div class="text-white font-normal">${currentCity}</div></div>
+        <div>Gems Acquired (Excluding Current City): <div class="text-white font-normal">${gemsAmt}</div></div>
       </div>
     `;
 }
+
