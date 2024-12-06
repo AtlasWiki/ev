@@ -4,6 +4,7 @@ export const changelog = {
     'v0.3.0': { title:"Accessibility and Bug fixes", date: "11/25/2024", url:"https://github.com/AtlasWiki/ev/releases/tag/v0.3.0" },
     'v1.0.0': { title:"Performance and Offline Viewing", date: "11/26/2024", url:"https://github.com/AtlasWiki/ev/releases/tag/v1.0.0" },
     'v2.0.0': { title:"Blueprints and Profit", date: "12/3/2024", url:"https://github.com/AtlasWiki/ev/releases/tag/v2.0.0" },
+    'v2.1.0': { title:"Cities", date: "12/5/2024", url:"https://github.com/AtlasWiki/ev/releases/tag/v2.1.0" },
 }
 
 export function createLog(){
