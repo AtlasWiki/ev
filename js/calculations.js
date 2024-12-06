@@ -435,10 +435,7 @@ export function calculateTotalCityTotRewards() {
         result.classList.replace("text-red-400", "text-[#00b3b3]");
     }
 
-    // Total gems for a full loop
-    const gemsPerFullLoop = cityArray.reduce((acc, [, { totalGems }]) => acc + totalGems, 0);
-
-    let currentIndex = cityLifetimeLvl - 1;
+    let currentIndex = cityLifetimeLvl;
 
     // Calculate the range of cities cyclically, excluding the starting city
     const cityRange = [];

@@ -25,19 +25,12 @@ fs.readdirSync(jsSourceDir).forEach((file) => {
     // Read file and process content
     const content = fs.readFileSync(sourcePath, 'utf-8');
     const processedContent = content
-      .split('\n')
-      .map((line) => {
-        if (line.trim().startsWith('import')) {
-          // Remove the entire line if it's an import statement
-          return '';
-        } else if (line.trim().startsWith('export')) {
-          // Remove only the word "export" and retain the rest of the line
-          return line.replace(/^\s*export\s*/, '');
-        }
-        return line;
-      })
-      .filter((line) => line.trim() !== '') // Remove empty lines from the import removal
-      .join('\n');
+      // Remove multiline and single-line import statements
+      .replace(/import[\s\S]*?from\s+['"][^'"]+['"];?/g, '')
+      // Remove "export" keywords while preserving content
+      .replace(/^\s*export\s*/gm, '')
+      // Trim leading and trailing empty lines
+      .trim();
 
     // Write processed content to the destination
     fs.writeFileSync(destPath, processedContent, 'utf-8');
