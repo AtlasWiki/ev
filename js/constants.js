@@ -31,7 +31,8 @@ export const tabs = {
     "Boxes": "boxes",
     "ClubRewards": "club-rewards",
     "Changelog": "changelog",
-    "Blueprint": "blueprint"
+    "Blueprint": "blueprint",
+    "Cities": "Cities",
 } 
 
 // Section tag names and IDs
@@ -41,13 +42,16 @@ export const sections = {
     "awvsolo": "awvsolo-desc",
     "profit": "profit-desc",
     "clubGoal": "clubGoal",
+    "cities": "cities-desc",
+    "citiesLifetime": "citiesLifetime"
 }
 
 // SectionPlaceholders. tag names and IDs. used for matching with the placeholder divs
 export const sectionPlaceholder = {
     "club": "clubSection",
     "profit" : "profitSection",
-    "awvsolo": "awvsoloSection"
+    "awvsolo": "awvsoloSection",
+    "cities": "citiesSection"
 }
 
 // IDs (belongs to section ids) and text
@@ -71,6 +75,13 @@ export const descriptions = {
                 <a class="text-blue-400 underline hover:no-underline" href="https://docs.google.com/spreadsheets/d/e/2PACX-1vSV4ou9YZ1NgCYkT4Tr__sq6PHN6YsPyQuUh-Pryw98hQiEkCwcbUhoPXAB2pPGynuBIAjcyc7A86zv/pubhtml#">Eatventure's handbook</a>
                 made by <span class="text-[#00b3b3]">fallen_spectre</span> and <span class="text-[#00b3b3]">BladedCross</span>. The calculations can be seen from <a class="text-blue-400 underline hover:no-underline" href="https://docs.google.com/spreadsheets/d/1b79jTHCbbLnLLWFgrCdxYWqDgt2msgrFqUMaBR3XSYo/edit?gid=607690110#gid=607690110"> EV Multipurpose Calculator</a>`,
 
+    "cities-desc": `This is a calculator for calculating statistics related to how gems and boxes associate with cities.
+                    As of right now, there are only 60 different cities and they loop in cycles.
+                    Cities may have different amount of stages, stations, gems, and boxes.
+                    The Growth Calculator assumes you gained 0 gems at your current city level, so
+                    if your city is San Francisco and your target city is New York, you would
+                    gain only the total amount of gems <b>prior</b> New York (in this case San Francisco). 
+                    `,
     
                 
 };
@@ -496,3 +507,67 @@ export const itemBtns = {
     ultimate: "ultimateBtn",
     legendary: "legendaryBtn",
 }
+
+export const cities = {
+    1: { city: "San Francisco", totalGems: 196 },
+    2: { city: "New York", totalGems: 160 },
+    3: { city: "Miami", totalGems: 172 },
+    4: { city: "Paris", totalGems: 196 },
+    5: { city: "London", totalGems: 190 },
+    6: { city: "Tokyo", totalGems: 184 },
+    7: { city: "Venice", totalGems: 178 },
+    8: { city: "Beirut", totalGems: 190 },
+    9: { city: "Berlin", totalGems: 184 },
+    10: { city: "Oslo", totalGems: 202 },
+    11: { city: "Rome", totalGems: 178 },
+    12: { city: "Warsaw", totalGems: 184 },
+    13: { city: "Johannesburg", totalGems: 178 },
+    14: { city: "Stockholm", totalGems: 196 },
+    15: { city: "Mexico City", totalGems: 172 },
+    16: { city: "Portland", totalGems: 184 },
+    17: { city: "Toronto", totalGems: 154 },
+    18: { city: "Sydney", totalGems: 184 },
+    19: { city: "Lyon", totalGems: 208 },
+    20: { city: "Glasgow", totalGems: 178 },
+    21: { city: "Beijing", totalGems: 178 },
+    22: { city: "Bruges", totalGems: 172 },
+    23: { city: "Istanbul", totalGems: 190 },
+    24: { city: "Hamburg", totalGems: 184 },
+    25: { city: "Zurich", totalGems: 202 },
+    26: { city: "Milan", totalGems: 178 },
+    27: { city: "Budapest", totalGems: 208 },
+    28: { city: "Nairobi", totalGems: 172 },
+    29: { city: "Helsinki", totalGems: 190 },
+    30: { city: "Sao Paulo", totalGems: 172 },
+    31: { city: "Seattle", totalGems: 196 },
+    32: { city: "San Diego", totalGems: 160 },
+    33: { city: "Santa Monica", totalGems: 172 },
+    34: { city: "Brussels", totalGems: 196 },
+    35: { city: "Luxembourg", totalGems: 190 },
+    36: { city: "Hong Kong", totalGems: 184 },
+    37: { city: "Treviso", totalGems: 178 },
+    38: { city: "Marrakesh", totalGems: 190 },
+    39: { city: "Cologne", totalGems: 184 },
+    40: { city: "Tallinn", totalGems: 202 },
+    41: { city: "Florence", totalGems: 178 },
+    42: { city: "Prague", totalGems: 184 },
+    43: { city: "Cape Town", totalGems: 178 },
+    44: { city: "Copenhagen", totalGems: 196 },
+    45: { city: "Lima", totalGems: 172 },
+    46: { city: "Los Angeles", totalGems: 184 },
+    47: { city: "Pittsburgh", totalGems: 154 },
+    48: { city: "Nassau", totalGems: 184 },
+    49: { city: "Madrid", totalGems: 208 },
+    50: { city: "Amsterdam", totalGems: 178 },
+    51: { city: "Seoul", totalGems: 178 },
+    52: { city: "Birmingham", totalGems: 172 },
+    53: { city: "Cairo", totalGems: 190 },
+    54: { city: "Frankfurt", totalGems: 184 },
+    55: { city: "Quebec", totalGems: 202 },
+    56: { city: "Naples", totalGems: 178 },
+    57: { city: "Zagreb", totalGems: 208 },
+    58: { city: "Pretoria", totalGems: 172 },
+    59: { city: "Gothenburg", totalGems: 190 },
+    60: { city: "Santiago", totalGems: 172 }
+};
+  
