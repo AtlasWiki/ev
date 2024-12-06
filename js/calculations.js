@@ -404,7 +404,7 @@ export function calculateCityRewards() {
     // Update the result display
     result.innerHTML = `
         <div class="flex flex-col gap-3">
-            <div>Your City: <div class="text-white font-normal">${currCity} ${currCityLvl}</div></div>
+            <div>Your City: <div class="text-white font-normal">${currCity}(${currCityLvl})</div></div>
              <div>Your City Level: <div class="text-white font-normal">${currCityLvl}<span class="text-green-400">+${targetCityLvlInput} Cities</span></div></div>
             <div>
                 City Range: <div class="text-white font-normal">${currCity}(${currCityLvl}) -> ${targetCity}(${((currCityLvl - 1 + targetCityLvlInput) % 60) + 1})</div>
