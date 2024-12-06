@@ -359,65 +359,64 @@ export function calculateXPTotal() {
     `
 }
 
-export function calculateCityRewards(){
+export function calculateCityRewards() {
     const currCityLvlInput = Number(document.getElementById('current-city-level').value);
     const targetCityLvlInput = Number(document.getElementById('target-city-level').value);
-    const currCityErrorMSG = document.getElementById('current-city-level-error')
-    const targetCityErrorMSG = document.getElementById('target-city-level-error')
-    const adder = document.getElementById('plus')
+    const currCityErrorMSG = document.getElementById('current-city-level-error');
+    const targetCityErrorMSG = document.getElementById('target-city-level-error');
+    const adder = document.getElementById('plus');
     const result = document.getElementById('city-goal-result');
-    // const currCityLvl = currCityLvlInput % 61 === 0 ? 1 : currCityLvlInput % 61;
-    // const targetCityLvl = targetCityLvlInput % 61 === 0 ? 1 : targetCityLvlInput % 61;
-    const currCityLvl = currCityLvlInput % 60 || 60;
-    const targetCityLvl = targetCityLvlInput % 60 || 60;
+    const currCityLvl = currCityLvlInput % 60 || 60; // Current city level
     const cityArray = Object.entries(cities);
-    const rounds = Math.floor(targetCityLvlInput / 60);
 
-    if (currCityLvlInput < 0){
-        currCityErrorMSG.innerText = "Invalid level. Valid level range are positive numbers"
-    } 
-    
-    if (targetCityLvlInput < 0){
-        targetCityErrorMSG.innerText = "Invalid level. Valid level range are positive numbers"
+    // Input validation
+    if (currCityLvlInput < 0) {
+        currCityErrorMSG.innerText = "Invalid level. Valid level range are positive numbers";
+        return;
+    }
+    if (targetCityLvlInput < 0) {
+        targetCityErrorMSG.innerText = "Invalid level. Valid level range are positive numbers";
+        return;
     }
 
-    const gemsPerFullLoop = cityArray.reduce((acc, [key, {city, totalGems}]) => {
-        return acc + totalGems;
-      }, 0);
-    
-      if (!isNaN(targetCityLvlInput)) {
-        const adder = document.getElementById('plus');
+    if (!isNaN(targetCityLvlInput)) {
         adder.innerText = `(+${targetCityLvlInput})`;
     } else {
         console.error('Invalid input: not a number');
     }
 
-    // adder.innerText = targetCityLvlInput;
-    
-    const cityRange = cityArray.filter(([key, {totalGems}]) =>  key >= currCityLvl && key <= currCityLvl + targetCityLvl);
-    const gemsBeforeFullLoop = cityRange.reduce((acc, [key, {city, totalGems}]) => {return totalGems + acc}, 0)
-    console.log(cityRange)
+    // Calculate the range of cities cyclically
+    const citiesPassed = [];
+    let currentIndex = currCityLvl - 1; // Convert to zero-based index
 
+    for (let i = 0; i < targetCityLvlInput; i++) {
+        const wrappedIndex = (currentIndex + i) % 60;
+        citiesPassed.push(cityArray[wrappedIndex]);
+    }
 
-    const formula = (rounds * gemsPerFullLoop) + (gemsBeforeFullLoop === gemsPerFullLoop ? 0 : gemsBeforeFullLoop)
+    const gemsAmt = citiesPassed.reduce((acc, [, { totalGems }]) => acc + totalGems, 0);
+    const formula = gemsAmt;
+
+    // Get the city names for the range
     const currCity = cities[currCityLvl].city;
-    const targetCity = cities[((currCityLvl - 1 + targetCityLvl) % 60) + 1].city;
-    
-// 1 - 1 = 0 + 120 % 60 = 0
+    const targetCity = cities[((currCityLvl - 1 + targetCityLvlInput) % 60) + 1].city;
+
+    // Update the result display
     result.innerHTML = `
         <div class="flex flex-col gap-3">
-            <div>Your City: <div class="text-white font-normal">${currCityLvl} (${currCity})</div></div>
+            <div>Your City: <div class="text-white font-normal">${currCity} ${currCityLvl}</div></div>
+             <div>Your City Level: <div class="text-white font-normal">${currCityLvl}<span class="text-green-400">+${targetCityLvlInput} Cities</span></div></div>
             <div>
-            City Range: <div class="text-white font-normal">${currCity}(${currCityLvl}) -> ${targetCity}(${((currCityLvl - 1 + targetCityLvl) % 60) + 1})</div>
+                City Range: <div class="text-white font-normal">${currCity}(${currCityLvl}) -> ${targetCity}(${((currCityLvl - 1 + targetCityLvlInput) % 60) + 1})</div>
             </div>
             <div>Gems Gained: <div class="text-white font-normal">${formula}</div></div>
         </div>
-        `;
+    `;
 }
+
 
 export function calculateTotalCityTotRewards(){
     const cityLifetimeLvlInput = Number(document.getElementById('cities-lifetime-input').value);
-    // const cityLifetimeLvl = cityLifetimeLvlInput % 61 === 0 ? 1 : cityLifetimeLvlInput % 60 || 60;
     const cityLifetimeLvl = cityLifetimeLvlInput % 60 || 60;
     const result = document.getElementById('cities-lifetime-result');
     const cityArray = Object.entries(cities)
@@ -447,8 +446,6 @@ export function calculateTotalCityTotRewards(){
       <div class="flex flex-col gap-3">
         <div>Your Current City: <div class="text-white font-normal">${cities[cityLifetimeLvl].city}</div></div>
         <div>Gems Acquired: <div class="text-white font-normal">${formula}</div></div>
-        <div>debug: <div class="text-white font-normal">rounds=${rounds}, gemsPerLoop=${gemsPerFullLoop}, gemsBeforeFullLoop=${gemsBeforeFullLoop}</div></div>
       </div>
     `;
-    // console.log(cityRange);
 }
