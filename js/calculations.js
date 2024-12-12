@@ -98,8 +98,9 @@ export function calculateProfit() {
     const result = roundedFormula(formula, places)
 
     document.getElementById('profit-result').innerHTML = `
-    <div class="text-white font-normal">Rounded Profit: <span class="text-green-400 mb-2">${result}x</span></div>
-    <div class="text-white font-normal">Exact Profit: <span class="text-green-400">${formula}x</span></div>
+    <div class="text-white font-normal mb-1">Rounded Profit: <span class="text-green-400 mb-2">${result}x</span></div>
+    <div class="text-white font-normal mb-1">Exact Profit: <span class="text-green-400">${formula}x</span></div>
+    <div class="text-white font-normal mb-1">Profit %: <span class="text-green-400">${formula * 100}%</span></div>
     `;
 }
 // // const divineDishMultplierByRedPanda = pet === 'red_panda' ? ;
