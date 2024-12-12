@@ -1,4 +1,4 @@
-import { regex_patterns, petProfitBonuses, petPerfectDishBonuses, petDivineDishBonuses } from "./constants";
+import { regex_patterns, petProfitBonuses, petPerfectDishBonuses, petDivineDishBonuses, unitLetters } from "./constants";
 
 export function calculateAWvsSolo() {
     const awPercent = parseFloat(document.getElementById('awPercent').value);
@@ -95,6 +95,8 @@ export function calculateProfit() {
     const roundedNotation = Math.round(notation * 100) / 100
     const base = exponent === 0 ? 1 : 0;
     const dishPrice = document.getElementById("dishPrice") === null ? 90 : document.getElementById("dishPrice").value
+    const dishPriceforLetter = 1;
+    // const letterRound = % 1000;
 
     document.getElementById('profit-result').innerHTML = `
     <div class="text-white font-normal mb-1">Rounded Profit: <span class="text-green-400 mb-2">${result}x</span></div>
@@ -103,14 +105,20 @@ export function calculateProfit() {
     
     <div class="text-white font-normal mb-1">Scientific Notation:
         <span class="text-green-400">
-            ${roundedNotation} * 10<sup class="text-xs text-white" style="font-size: 0.7em; position: relative; top: -0.5em;">${exponent}</sup>
+            ${roundedNotation + base} * 10<sup class="text-xs text-white" style="font-size: 0.7em; position: relative; top: -0.5em;">${exponent}</sup>
         </span>
     </div>
 
     <div class="text-white font-normal mb-1">Test Calculation: 
-        <span class="text-green-400">$<input class="inline px-1 w-40" id="dishPrice" type="number" value=${dishPrice} onchange="calculateProfit()"> * (${roundedNotation} * 10<sup class="text-xs" style="font-size: 0.7em; position: relative; top: -0.5em;">${exponent}</sup>)</span>
+        <span class="text-green-400">$<input class="inline px-1 md:w-40" id="dishPrice" type="number" value=${dishPrice} onchange="calculateProfit()"> * (${roundedNotation + base} * 10<sup class="text-xs" style="font-size: 0.7em; position: relative; top: -0.5em;">${exponent}</sup>)</span>
          = 
         <span class="text-white">$${(Math.round((Number(dishPrice)*((roundedNotation + base)*10**exponent)) * 100)) / 100}</span>
+    </div>
+
+    <div class="text-white font-normal mb-1">Test Calculation by Unit Letters:
+        <span class="text-green-400">
+            ${roundedNotation + base} * 10<sup class="text-xs text-white" style="font-size: 0.7em; position: relative; top: -0.5em;">${exponent}</sup>
+        </span>
     </div>
 `;
 

@@ -496,3 +496,32 @@ export const itemBtns = {
     ultimate: "ultimateBtn",
     legendary: "legendaryBtn",
 }
+
+export const unitLetters = {
+    a: "aa",
+    b: "ab",
+    c: "ac",
+    d: "ad",
+    e: "ae",
+    f: "af",
+    g: "ag",
+    h: "ah",
+    i: "ai",
+    j: "aj",
+    k: "ak",
+    l: "al",
+    m: "am",
+    n: "an",
+    o: "ao",
+    p: "ap",
+    q: "aq",
+    r: "ar",
+    s: "as",
+    t: "at",
+    u: "au",
+    v: "av",
+    w: "aw",
+    x: "ax",
+    y: "ay",
+    z: "az"
+};
