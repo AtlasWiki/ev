@@ -90,11 +90,30 @@ export function calculateProfit() {
 
     const result = roundedFormula(formula, places)
 
+    const exponent = wholeNum.length - 1;
+    const notation = (formula / (10**exponent))
+    const roundedNotation = Math.round(notation * 100) / 100
+    const base = exponent === 0 ? 1 : 0;
+    const dishPrice = document.getElementById("dishPrice") === null ? 90 : document.getElementById("dishPrice").value
+
     document.getElementById('profit-result').innerHTML = `
     <div class="text-white font-normal mb-1">Rounded Profit: <span class="text-green-400 mb-2">${result}x</span></div>
     <div class="text-white font-normal mb-1">Exact Profit: <span class="text-green-400">${formula}x</span></div>
     <div class="text-white font-normal mb-1">Profit %: <span class="text-green-400">${formula * 100}%</span></div>
-    `;
+    
+    <div class="text-white font-normal mb-1">Scientific Notation:
+        <span class="text-green-400">
+            ${roundedNotation} * 10<sup class="text-xs text-white" style="font-size: 0.7em; position: relative; top: -0.5em;">${exponent}</sup>
+        </span>
+    </div>
+
+    <div class="text-white font-normal mb-1">Test Calculation: 
+        <span class="text-green-400">$<input class="inline px-1 w-40" id="dishPrice" type="number" value=${dishPrice} onchange="calculateProfit()"> * (${roundedNotation} * 10<sup class="text-xs" style="font-size: 0.7em; position: relative; top: -0.5em;">${exponent}</sup>)</span>
+         = 
+        <span class="text-white">$${(Math.round((Number(dishPrice)*((roundedNotation + base)*10**exponent)) * 100)) / 100}</span>
+    </div>
+`;
+
 }
 // // const divineDishMultplierByRedPanda = pet === 'red_panda' ? ;
 export function levelSearch() {
