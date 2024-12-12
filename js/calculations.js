@@ -1,4 +1,11 @@
-import { regex_patterns, petProfitBonuses, petPerfectDishBonuses, petDivineDishBonuses, unitLetters } from "./constants";
+import { 
+    regex_patterns, 
+    petProfitBonuses, 
+    petPerfectDishBonuses, 
+    petDivineDishBonuses,
+    // cityArray,
+    // gemsPerLoop
+} from "./constants";
 
 export function calculateAWvsSolo() {
     const awPercent = parseFloat(document.getElementById('awPercent').value);
@@ -384,3 +391,104 @@ export function calculateXPTotal() {
         <p class="mb-1"><span class='text-white font-light'>${rewardsList}</span></p>
     `
 }
+
+export function calculateCityRewards() {
+    const currCityLvlInput = Number(document.getElementById('current-city-level').value);
+    const targetCityLvlInput = Number(document.getElementById('target-city-level').value);
+    const currCityErrorMSG = document.getElementById('current-city-level-error');
+    const targetCityErrorMSG = document.getElementById('target-city-level-error');
+    const adder = document.getElementById('plus');
+    const result = document.getElementById('city-goal-result');
+    const currCityLvl = currCityLvlInput % 60 || 60; // Current city level
+    const cityArray = Object.entries(cities);
+
+    // Input validation
+    if (currCityLvlInput < 0) {
+        currCityErrorMSG.innerText = "Invalid level. Valid level range are positive numbers";
+        return;
+    }
+    if (targetCityLvlInput < 0) {
+        targetCityErrorMSG.innerText = "Invalid level. Valid level range are positive numbers";
+        return;
+    }
+
+    if (!isNaN(targetCityLvlInput)) {
+        adder.innerText = `(+${targetCityLvlInput})`;
+    } else {
+        console.error('Invalid input: not a number');
+    }
+
+    // Calculate the range of cities cyclically
+    const citiesPassed = [];
+    let currentIndex = currCityLvl - 1; // Convert to zero-based index
+
+    for (let i = 0; i < targetCityLvlInput; i++) {
+        const wrappedIndex = (currentIndex + i) % 60;
+        citiesPassed.push(cityArray[wrappedIndex]);
+    }
+
+    const gemsAmt = citiesPassed.reduce((acc, [, { totalGems }]) => acc + totalGems, 0);
+    const formula = gemsAmt;
+
+    // Get the city names for the range
+    const currCity = cities[currCityLvl].city;
+    const targetCity = cities[((currCityLvl - 1 + targetCityLvlInput) % 60) + 1].city;
+
+    // Update the result display
+    result.innerHTML = `
+        <div class="flex flex-col gap-3">
+            <div>Your City: <div class="text-white font-normal">${currCity}(${currCityLvl})</div></div>
+             <div>Your City Level: <div class="text-white font-normal">${currCityLvlInput}<span class="text-green-400">+${targetCityLvlInput} Cities</span></div></div>
+            <div>
+                City Range: <div class="text-white font-normal">${currCity}(${currCityLvl}) -> ${targetCity}(${((currCityLvl - 1 + targetCityLvlInput) % 60) + 1})</div>
+            </div>
+            <div>Gems Gained: <div class="text-white font-normal">${formula}</div></div>
+        </div>
+    `;
+}
+
+
+export function calculateTotalCityTotRewards() {
+    const cityLifetimeLvlInput = Number(document.getElementById('cities-lifetime-input').value);
+    const cityLifetimeLvl = cityLifetimeLvlInput % 60 || 60;
+    const result = document.getElementById('cities-lifetime-result');
+    const cityArray = Object.entries(cities);
+
+    // Input validation
+    if (cityLifetimeLvlInput === 0) {
+        result.innerText = "";
+        return;
+    }
+
+    if (cityLifetimeLvlInput < 0) {
+        result.classList.replace("text-[#00b3b3]", "text-red-400");
+        result.innerText = "Invalid level. Valid level range are positive numbers";
+        return;
+    } else {
+        result.classList.replace("text-red-400", "text-[#00b3b3]");
+    }
+
+    let currentIndex = cityLifetimeLvl;
+
+    // Calculate the range of cities cyclically, excluding the starting city
+    const cityRange = [];
+    for (let i = 1; i < cityLifetimeLvlInput; i++) { // Start from 1 to exclude the starting city
+        const wrappedIndex = (currentIndex + i) % 60; // Wrap around after 60
+        cityRange.push(cityArray[wrappedIndex]);
+    }
+
+    // Calculate gems gained in the selected range
+    const gemsAmt = cityRange.reduce((acc, [, { totalGems }]) => acc + totalGems, 0);
+
+    // Get the current city name
+    const currentCity = cities[cityLifetimeLvl].city;
+
+    // Update the result display
+    result.innerHTML = `
+      <div class="flex flex-col gap-3">
+        <div>Your Current City: <div class="text-white font-normal">${currentCity}</div></div>
+        <div>Gems Acquired (Excluding Current City): <div class="text-white font-normal">${gemsAmt}</div></div>
+      </div>
+    `;
+}
+
