@@ -19,7 +19,9 @@ export function calculateProfit() {
     const pet1 = document.getElementById('petSelect1').value;
     const pet2 = document.getElementById('petSelect2').value;
     const dish = document.getElementById('dish').value.toLowerCase();
+    const doubleFood = document.getElementById('double_food').value.toLowerCase();
     const two = document.getElementById('2x').value.toLowerCase();
+   
 
     if (isNaN(apPercent) || isNaN(remoteMultiplier) || !petProfitBonuses[pet1] || !petProfitBonuses[pet2]) {
         document.getElementById('profit-result').innerText = "Please enter valid values.";
@@ -30,10 +32,13 @@ export function calculateProfit() {
     const petBonus2 = petProfitBonuses[pet2]
     const usePetBonus = petBonus1  > petBonus2 ? petBonus1 : petBonus2
 
+    const doubledFoodMultiplier = doubleFood === 'yes' ? 2 : 1;
     // const petBonus = petProfitBonuses[pet];
     const perfectMultiplier = dish === 'perfect' ? 6 : 1;
     const divinityMultiplier = dish === 'divine' ? 25 : 1;
     const doubledMultiplier = two === 'yes' ? 2 : 1;
+    
+
 
     let perfectMultiplierExtender = 1;
     let divineMultiplierExtender= 1;
@@ -73,7 +78,7 @@ export function calculateProfit() {
     }
 
     // const fivePecentPerWorker = pet1 === 'vroomba' ? ((apPercent * 0.05) / 100) + 1 : 1;
-    const formula = ( (( (apPercent / 100) * (usePetBonus / 100) * (perfectMultiplier * perfectMultiplierExtender) * (divinityMultiplier * divineMultiplierExtender) ) * fivePecentPerWorker) * remoteMultiplier) * doubledMultiplier;
+    const formula = ( ((( (apPercent / 100) * (usePetBonus / 100) * (perfectMultiplier * perfectMultiplierExtender) * (divinityMultiplier * divineMultiplierExtender) ) * fivePecentPerWorker) * remoteMultiplier) * doubledFoodMultiplier) * doubledMultiplier;
     const wholeNum = Math.ceil(formula).toString();
     const places = wholeNum.length - 2;
 

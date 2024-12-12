@@ -187,12 +187,21 @@
             <option value="no">no</option>
         </select> -->
 
+        <label for="double_food" class="block font-semibold">Double Food [yes/no]:</label>
+        <select id="double_food" class="mt-2 w-full p-2 rounded bg-custom-input text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2">
+            <option value="none"></option>
+            <option value="yes">yes</option>
+            <option value="no">no</option>
+        </select>
+
         <label for="2x" class="block font-semibold">2x permanent [yes/no]:</label>
         <select id="2x" class="mt-2 w-full p-2 rounded bg-custom-input text-white border focus:outline-none focus:ring-2 focus:ring-[#00b3b3] mb-2">
             <option value="none"></option>
             <option value="yes">yes</option>
             <option value="no">no</option>
         </select>
+
+        
 
         <button onclick="calculateProfit()" class="bg-[#00b3b3] hover:bg-[#008080] text-white py-2 px-4 rounded mt-2">
             Calculate
