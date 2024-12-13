@@ -46,7 +46,7 @@ export function calculateProfit() {
     const divinityMultiplier = dish === 'divine' ? 26 : 1;
     const doubledMultiplier = two === 'yes' ? 2 : 1;
     
-    let perfectMultiplierExtender = 1;
+    let perfectMultiplierExtender = 0;
     let divineMultiplierExtender= 1;
 
     // determine to extend the perfect multiplier based on some pets
