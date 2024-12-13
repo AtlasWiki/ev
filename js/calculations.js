@@ -84,7 +84,7 @@ export function calculateProfit() {
     }
 
     // const fivePecentPerWorker = pet1 === 'vroomba' ? ((apPercent * 0.05) / 100) + 1 : 1;
-    const formula = ( ((( (apPercent / 100) * (usePetBonus / 100) * (perfectMultiplier * perfectMultiplierExtender) * (divinityMultiplier * divineMultiplierExtender) ) * fivePecentPerWorker) * remoteMultiplier) * doubledFoodMultiplier) * doubledMultiplier;
+    const formula = ( ((( (apPercent / 100) * (usePetBonus / 100) * (perfectMultiplier + perfectMultiplierExtender) * (divinityMultiplier * divineMultiplierExtender) ) * fivePecentPerWorker) * remoteMultiplier) * doubledFoodMultiplier) * doubledMultiplier;
     const wholeNum = Math.ceil(formula).toString();
     const places = wholeNum.length - 2;
 

@@ -15,8 +15,8 @@ export const petProfitBonuses = {
 
 // pet multiplier percentages that affect dishes like perfect and divinity
 export const petPerfectDishBonuses = {
-    tortoise: 200,
-    dark_horse: 200
+    tortoise: 600,
+    dark_horse: 600
 }
 
 export const petDivineDishBonuses = {
