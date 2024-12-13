@@ -43,7 +43,7 @@ export function calculateProfit() {
     const doubledFoodMultiplier = doubleFood === 'yes' ? 2 : 1;
     // const petBonus = petProfitBonuses[pet];
     const perfectMultiplier = dish === 'perfect' ? 6 : 1;
-    const divinityMultiplier = dish === 'divine' ? 25 : 1;
+    const divinityMultiplier = dish === 'divine' ? 26 : 1;
     const doubledMultiplier = two === 'yes' ? 2 : 1;
     
     let perfectMultiplierExtender = 1;
