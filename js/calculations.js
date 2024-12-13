@@ -4,7 +4,8 @@ import {
     petPerfectDishBonuses, 
     petDivineDishBonuses,
     // cityArray,
-    // gemsPerLoop
+    // gemsPerLoop,
+    unitLetters,
 } from "./constants";
 
 export function calculateAWvsSolo() {
@@ -45,8 +46,6 @@ export function calculateProfit() {
     const divinityMultiplier = dish === 'divine' ? 25 : 1;
     const doubledMultiplier = two === 'yes' ? 2 : 1;
     
-
-
     let perfectMultiplierExtender = 1;
     let divineMultiplierExtender= 1;
 
@@ -89,7 +88,6 @@ export function calculateProfit() {
     const wholeNum = Math.ceil(formula).toString();
     const places = wholeNum.length - 2;
 
-
     const roundedFormula = function placement(number, zeroes) {
         const tens = 10**zeroes;
         return Math.round(number / tens) * tens
@@ -99,12 +97,24 @@ export function calculateProfit() {
 
     const exponent = wholeNum.length - 1;
     const notation = (formula / (10**exponent))
-    const roundedNotation = Math.round(notation * 100) / 100
-    const base = exponent === 0 ? 1 : 0;
+    const notationString = notation.toString()[0]
+    const base = exponent === 0 && notationString === "0" ? 1 : 0;
+    const roundedNotation = Number((Number(notation.toFixed(2)) + base).toFixed(2))
     const dishPrice = document.getElementById("dishPrice") === null ? 90 : document.getElementById("dishPrice").value
-    const dishPriceforLetter = 1;
-    // const letterRound = % 1000;
+    const startingLetterAmt = 0;
+    const initialLetter = Object.entries(unitLetters)[startingLetterAmt][1];
 
+    // const finalLetterAmt = (startingLetterAmt + 1) * formula;
+    // let exponentPerRound = 0;
+
+    const letterRound =  Math.floor(exponent / 3);
+    const letterAmtPerRound = 10**Math.round(exponent % 3);
+  
+    const finalLetter = Object.entries(unitLetters)[letterRound][1];
+
+    // console.log(letterRound)
+    // console.log(finalLetterAmt)
+    // console.log(finalLetter)
     document.getElementById('profit-result').innerHTML = `
     <div class="text-white font-normal mb-1">Rounded Profit: <span class="text-green-400 mb-2">${result}x</span></div>
     <div class="text-white font-normal mb-1">Exact Profit: <span class="text-green-400">${formula}x</span></div>
@@ -112,19 +122,25 @@ export function calculateProfit() {
     
     <div class="text-white font-normal mb-1">Scientific Notation:
         <span class="text-green-400">
-            ${roundedNotation + base} * 10<sup class="text-xs text-white" style="font-size: 0.7em; position: relative; top: -0.5em;">${exponent}</sup>
+            ${roundedNotation} * 10<sup class="text-xs text-white" style="font-size: 0.7em; position: relative; top: -0.5em;">${exponent}</sup>
         </span>
     </div>
 
-    <div class="text-white font-normal mb-1">Test Calculation: 
-        <span class="text-green-400">$<input class="inline px-1 md:w-40" id="dishPrice" type="number" value=${dishPrice} onchange="calculateProfit()"> * (${roundedNotation + base} * 10<sup class="text-xs" style="font-size: 0.7em; position: relative; top: -0.5em;">${exponent}</sup>)</span>
+    <div class="text-white font-normal mb-1">Dish Calculation: 
+        <span class="text-green-400">$<input class="inline px-1 md:w-40" id="dishPrice" type="number" value=${dishPrice} onchange="calculateProfit()"> * (${roundedNotation} * 10<sup class="text-xs" style="font-size: 0.7em; position: relative; top: -0.5em;">${exponent}</sup>)</span>
          = 
-        <span class="text-white">$${(Math.round((Number(dishPrice)*((roundedNotation + base)*10**exponent)) * 100)) / 100}</span>
+        <span class="text-white">$${(Math.round((Number(dishPrice)*((roundedNotation)*10**exponent)) * 100)) / 100}</span>
     </div>
 
-    <div class="text-white font-normal mb-1">Test Calculation by Unit Letters:
+    <div class="text-white font-normal mb-1">Dish Calculation by Unit Letters:
         <span class="text-green-400">
-            ${roundedNotation + base} * 10<sup class="text-xs text-white" style="font-size: 0.7em; position: relative; top: -0.5em;">${exponent}</sup>
+            ${startingLetterAmt + 1}${initialLetter} -> ${letterAmtPerRound}${finalLetter}
+        </span>
+    </div>
+
+    <div class="text-white font-normal mb-1">Moved Places/Zeroes:
+        <span class="text-green-400">
+            ${exponent}
         </span>
     </div>
 `;
